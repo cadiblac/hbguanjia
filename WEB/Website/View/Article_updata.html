@@ -90,6 +90,17 @@
 											</label>
 										</foreach>
 									</div>
+									<if condition="$cid eq 1">
+									<label for="confirm_password" class="control-label col-lg-1">查询手机号</label>
+									<div class="col-lg-2">
+										<input class="form-control " type="text" name="tel" value="{$v.tel}" />
+									</div>
+									<else />
+									<label for="confirm_password" class="control-label col-lg-1">阅读积分</label>
+									<div class="col-lg-2">
+										<input class="form-control " type="text" name="jf" value="{$v.jf}" />
+									</div>
+									</if>
 								</div>
 								<div class="form-group ">
 									<label for="confirm_password" class="control-label col-lg-1">文章作者</label>
@@ -100,7 +111,7 @@
 								<div class="form-group ">
 									<label for="email" class="control-label col-lg-1">发布时间</label>
 									<div class="col-lg-2">
-										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd hh:mm" data-date="{$v.time|default=time()|date='Y-m-d H:i',###}"  class="input-append date dpYears" style="width:200px;">
+										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="{$v.time|default=time()|date='Y-m-d H:i',###}"  class="input-append date dpYears" style="width:200px;">
 											<input type="text" name="time" value="{$v.time|default=time()|date='Y-m-d H:i',###}" size="16" class="form-control">
 											<span class="input-group-btn add-on">
 											  <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>

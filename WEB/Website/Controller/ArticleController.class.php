@@ -49,6 +49,8 @@ class ArticleController extends CommonController {
     		'time' => strtotime($_POST['time']),
     		'cid' => (int) $_POST['cid'],
     		'pic' => $_POST['pic'],
+			'tel' => I('tel',intval),
+			'jf' => I('jf',intval)
     		);
     	//p($data); die;
 		if ($bid = M('article')->add($data)){
@@ -91,7 +93,9 @@ class ArticleController extends CommonController {
 			'time' => strtotime($_POST['time']),
     		'content' =>$_POST['content'],
     		'cid' => (int) $_POST['cid'],
-    		'pic' => $_POST['pic']
+    		'pic' => $_POST['pic'],
+			'tel' => I('tel',intval),
+			'jf' => I('jf',intval)
     		);
     	$res = M('article')->save($data);
 		$resj = M('article_attr')->where(array('artid'=>$id))->delete();

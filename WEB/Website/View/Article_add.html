@@ -79,6 +79,17 @@
 											</label>
 										</foreach>
 									</div>
+									<if condition="$cid eq 1">
+									<label for="confirm_password" class="control-label col-lg-1">查询手机号</label>
+									<div class="col-lg-2">
+										<input class="form-control " type="text" name="tel" value="" />
+									</div>
+									<else />
+									<label for="confirm_password" class="control-label col-lg-1">阅读积分</label>
+									<div class="col-lg-2">
+										<input class="form-control " type="text" name="jf" value="" />
+									</div>
+									</if>
 								</div>
 								<div class="form-group ">
 									<label for="confirm_password" class="control-label col-lg-1">文章作者</label>
@@ -89,7 +100,7 @@
 								<div class="form-group ">
 									<label for="email" class="control-label col-lg-1">发布时间</label>
 									<div class="col-lg-2">
-										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd hh:mm" data-date="{$v.time|default=time()|date='Y-m-d H:i',###}"  class="input-append date dpYears" style="width:200px;">
+										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="{$v.time|default=time()|date='Y-m-d H:i',###}"  class="input-append date dpYears" style="width:200px;">
 											<input type="text" name="time" value="{$v.time|default=time()|date='Y-m-d H:i',###}" size="16" class="form-control">
 											<span class="input-group-btn add-on">
 											  <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
@@ -100,7 +111,15 @@
 								<div class="form-group">
 									<label for="email" class="control-label col-lg-1">文章内容</label>
 									<div class="col-lg-10">
-										<textarea name="content" id="content"></textarea>
+										<textarea name="content" id="content">
+										<if condition="$cid eq 1">
+										<p class="jbxx">基本信息</p>
+										<table style="width:100%;" cellpadding="2" cellspacing="0" border="1" bordercolor="#000000"><tbody><tr><td>合同号</td><td></td></tr><tr><td>项目名称</td><td></td></tr><tr><td>项目负责人</td><td></td></tr><tr><td>约定完成日期</td><td></td></tr><tr><td>预付款</td><td></td></tr><tr><td>项目负责人联系方式</td><td></td></tr></tbody></table>
+										<br />
+										<p class="xmjd">项目进度</p>
+										<table style="width:100%;" cellpadding="2" cellspacing="0" border="1" bordercolor="#000000"><tbody><tr><td>现场踏勘</td><td></td><td>第十章</td><td></td></tr><tr><td>资料情况</td><td></td><td><span>第<span>十</span>一章</span><br /></td><td></td></tr><tr><td>一次公示</td><td></td><td><span>第<span>十</span>二章</span><br /></td><td></td></tr><tr><td>监测方案</td><td></td><td><span>第<span>十</span>三章</span><br /></td><td></td></tr><tr><td>监测报告</td><td></td><td><span>第<span>十</span>四章</span><br /></td><td></td></tr><tr><td>标准申请</td><td></td><td><span>第<span>十</span>五章</span><br /></td><td></td></tr><tr><td>标准批复</td><td></td><td>二次公示</td><td></td></tr><tr><td>报告编制</td><td></td><td>公参调查</td><td></td></tr><tr><td>前言</td><td></td><td>一级审核</td><td></td></tr><tr><td>第一章</td><td></td><td>二级审核</td><td></td></tr><tr><td><span>第二章</span><br /></td><td></td><td>三级审核</td><td></td></tr><tr><td><span>第三章</span><br /></td><td></td><td>资质申请</td><td></td></tr><tr><td><span>第四章</span><br /></td><td></td><td>装订报告</td><td></td></tr><tr><td><span>第五章</span><br /></td><td></td><td>报审申请及送审</td><td></td></tr><tr><td><span>第六章</span><br /></td><td></td><td>评审会</td><td></td></tr><tr><td><span>第七章</span><br /></td><td></td><td>会后修改</td><td></td></tr><tr><td><span>第八章</span><br /></td><td></td><td>项目报批</td><td></td></tr><tr><td><span>第九章</span><br /></td><td></td><td>尾款</td><td></td></tr><tr><td colspan="4">备注：</td></tr></tbody></table>
+										</if>
+										</textarea>
 									</div>
 								</div>
 								

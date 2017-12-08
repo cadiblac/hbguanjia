@@ -85,35 +85,6 @@
 									</div>
 								</div>
 								<div class="form-group ">
-									<label for="password" class="control-label col-lg-1">分类</label>
-									<div class="col-lg-2">
-										<select class=" form-control" name="aid">
-											<foreach name='attr' item='v'>
-											<option value="{$v.id}">{$v.classname}</option>
-											</foreach>
-										</select>
-									</div>
-									<label for="confirm_password" class="control-label col-lg-1">品牌</label>
-									<div class="col-lg-2">
-										<input class="form-control " type="text" name="brand" />
-									</div>
-									<label for="confirm_password" class="control-label col-lg-1">计数单位</label>
-									<div class="col-lg-2">
-										<input class="form-control " type="text" name="unit" />
-									</div>
-									<label for="email" class="control-label col-lg-1">库存量</label>
-									<div class="col-lg-2">
-										<input class="form-control" type="text" name="stock">
-									</div>
-								</div>
-								<div class="form-group ">
-									<label for="confirm_password" class="control-label col-lg-1">重量</label>
-									<div class="col-lg-2">
-									<div class="input-group">
-										<input class="form-control" type="text" name="weight" />
-										<span class="input-group-addon ">kg</span>
-									</div>
-									</div>
 									<label for="confirm_password" class="control-label col-lg-1">单价</label>
 									<div class="col-lg-2">
 									<div class="input-group">
@@ -127,26 +98,19 @@
 										<input class="form-control " type="text" name="memprice" />
 										<span class="input-group-addon ">元</span>										
 									</div>
-									<span class="help-block">勾选特价才能生效</span>
+									<span class="help-block" style="color:red">勾选特价才能生效</span>
 									</div>
 									<label for="confirm_password" class="control-label col-lg-1">特价</label>
 									<div class="col-lg-2">
 									<label class="checkbox-inline">
 										<input type="radio" name="isdis" checked="true" value="0">否&nbsp;&nbsp;<input type="radio" name="isdis" value="1">是</label>
 									</div>
-								</div>
-								<div class="form-group ">
-									<label for="confirm_password" class="control-label col-lg-1">精品</label>
+									<label for="email" class="control-label col-lg-1">库存</label>
 									<div class="col-lg-2">
-									<label class="checkbox-inline">
-										<input type="radio" name="isref" checked="true" value="0">否&nbsp;&nbsp;<input type="radio" name="isref" value="1">是	
-									</label>
+										<input class="form-control" type="text" name="stock">
 									</div>
-									<label for="confirm_password" class="control-label col-lg-1">热卖</label>
-									<div class="col-lg-2">
-									<label class="checkbox-inline">
-									<input type="radio" name="ishot" checked="true" value="0">否&nbsp;&nbsp;<input type="radio" name="ishot" value="1">是</label>
-									</div>
+								</div>								
+								<div class="form-group ">									
 									<label for="email" class="control-label col-lg-1">发布时间</label>
 									<div class="col-lg-2">
 										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="{$v.time|default=time()|date='Y-m-d H:i:s',###}"  class="input-append date dpYears" style="width:200px;">

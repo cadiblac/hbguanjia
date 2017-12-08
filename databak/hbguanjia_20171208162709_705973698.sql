@@ -1,4 +1,4 @@
-/* This file is created by MySQLReback 2017-12-08 09:06:18 */
+/* This file is created by MySQLReback 2017-12-08 16:27:09 */
  /* 创建表结构 `lj_access` */
  DROP TABLE IF EXISTS `lj_access`;/* MySQLReback Separation */ CREATE TABLE `lj_access` (
   `role_id` smallint(6) unsigned NOT NULL,
@@ -24,6 +24,8 @@
   `del` int(1) unsigned NOT NULL DEFAULT '0',
   `pic` varchar(255) DEFAULT NULL,
   `author` varchar(20) NOT NULL,
+  `tel` int(11) DEFAULT NULL COMMENT '查询手机号',
+  `jf` int(10) unsigned DEFAULT '0' COMMENT '积分',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;/* MySQLReback Separation */
  /* 创建表结构 `lj_article_attr` */
@@ -97,7 +99,9 @@
   `link` varchar(200) DEFAULT NULL,
   `stauts` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;/* MySQLReback Separation */
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;/* MySQLReback Separation */
+ /* 插入数据 `lj_cate` */
+ INSERT INTO `lj_cate` VALUES ('1','项目进度','','','100','0','Article','','','','0'),('2','积分文章','','','100','0','Article','','','','0'),('3','环保商城','','','100','0','Goods','','','','0');/* MySQLReback Separation */
  /* 创建表结构 `lj_class` */
  DROP TABLE IF EXISTS `lj_class`;/* MySQLReback Separation */ CREATE TABLE `lj_class` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '分类id',
@@ -149,7 +153,7 @@
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;/* MySQLReback Separation */
  /* 插入数据 `lj_conf` */
- INSERT INTO `lj_conf` VALUES ('0','a:10:{s:9:\"MAIL_HOST\";s:12:\"mail.dpwl.cn\";s:13:\"MAIL_SMTPAUTH\";s:4:\"true\";s:13:\"MAIL_USERNAME\";s:21:\"sales@hubeishunye.com\";s:13:\"MAIL_PASSWORD\";s:6:\"112233\";s:13:\"MAIL_FROMNAME\";s:42:\"湖北顺业农机有限公司网站系统\";s:9:\"MAIL_FROM\";s:21:\"sales@hubeishunye.com\";s:12:\"MAIL_CHARSET\";s:5:\"utf-8\";s:11:\"MAIL_ISHTML\";s:4:\"true\";s:7:\"partner\";s:14:\"20889xxxxxxxxx\";s:3:\"key\";s:28:\"8066iwfyofXXXXXXXXXXXXXXXXXX\";}');/* MySQLReback Separation */
+ INSERT INTO `lj_conf` VALUES ('0','a:10:{s:9:\"MAIL_HOST\";s:12:\"mail.dpwl.cn\";s:13:\"MAIL_SMTPAUTH\";s:4:\"true\";s:13:\"MAIL_USERNAME\";s:12:\"800@dpwL.net\";s:13:\"MAIL_PASSWORD\";s:6:\"112233\";s:13:\"MAIL_FROMNAME\";s:24:\"湖北大鹏网络科技\";s:9:\"MAIL_FROM\";s:12:\"800@dpwL.net\";s:12:\"MAIL_CHARSET\";s:5:\"utf-8\";s:11:\"MAIL_ISHTML\";s:4:\"true\";s:7:\"partner\";s:14:\"20889xxxxxxxxx\";s:3:\"key\";s:28:\"8066iwfyofXXXXXXXXXXXXXXXXXX\";}');/* MySQLReback Separation */
  /* 创建表结构 `lj_gbook` */
  DROP TABLE IF EXISTS `lj_gbook`;/* MySQLReback Separation */ CREATE TABLE `lj_gbook` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -200,6 +204,17 @@
   `cid` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;/* MySQLReback Separation */
+ /* 创建表结构 `lj_jf` */
+ DROP TABLE IF EXISTS `lj_jf`;/* MySQLReback Separation */ CREATE TABLE `lj_jf` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `mid` int(10) NOT NULL COMMENT '用户id',
+  `stutas` int(1) NOT NULL COMMENT '0是消费1是增加',
+  `jf` int(10) NOT NULL COMMENT '积分值',
+  `aid` int(10) DEFAULT NULL COMMENT '文章id',
+  `beizhu` varchar(100) DEFAULT NULL COMMENT '备注信息',
+  `time` int(10) NOT NULL COMMENT '时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;/* MySQLReback Separation */
  /* 创建表结构 `lj_jobs` */
  DROP TABLE IF EXISTS `lj_jobs`;/* MySQLReback Separation */ CREATE TABLE `lj_jobs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -230,13 +245,14 @@
  /* 创建表结构 `lj_member` */
  DROP TABLE IF EXISTS `lj_member`;/* MySQLReback Separation */ CREATE TABLE `lj_member` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) NOT NULL COMMENT '账号',
-  `pass` varchar(32) NOT NULL COMMENT '密码',
+  `openid` varchar(30) NOT NULL,
+  `username` varchar(20) NOT NULL COMMENT '昵称',
+  `photo` varchar(60) DEFAULT NULL COMMENT '头像',
   `realname` varchar(10) DEFAULT NULL COMMENT '真实姓名',
   `tel` varchar(20) DEFAULT NULL COMMENT '电话',
   `address` varchar(60) DEFAULT NULL COMMENT '邮递地址',
   `QQ` int(15) unsigned DEFAULT NULL,
-  `email` varchar(20) NOT NULL,
+  `email` varchar(20) DEFAULT NULL,
   `state` int(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
   `regtime` int(10) unsigned NOT NULL COMMENT '注册时间',
   `regip` varchar(20) NOT NULL COMMENT '注册ip',
@@ -244,6 +260,7 @@
   `integral` int(10) DEFAULT '0' COMMENT '会员积分',
   `logintime` int(10) unsigned DEFAULT NULL COMMENT '登录时间',
   `loginip` varchar(20) DEFAULT NULL COMMENT '登录ip',
+  `yqrid` int(10) DEFAULT NULL COMMENT '邀请人id',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;/* MySQLReback Separation */
@@ -283,9 +300,9 @@
   `remark` char(255) DEFAULT NULL COMMENT '备注',
   `pname` varchar(100) NOT NULL COMMENT '产品名称',
   `buyer_alipay` varchar(255) DEFAULT NULL COMMENT '用户支付宝账号',
-  `trade` varchar(255) DEFAULT NULL COMMENT '支付宝交易号',
+  `trade` varchar(255) DEFAULT NULL COMMENT '交易号',
   `total_fee` varchar(10) DEFAULT NULL COMMENT '支付金额',
-  `trade_status` varchar(10) DEFAULT NULL COMMENT '支付宝交易状态',
+  `trade_status` varchar(10) DEFAULT NULL COMMENT '交易状态',
   PRIMARY KEY (`id`,`order`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;/* MySQLReback Separation */
  /* 创建表结构 `lj_role` */
@@ -316,7 +333,7 @@
   UNIQUE KEY `session_id` (`session_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;/* MySQLReback Separation */
  /* 插入数据 `lj_session` */
- INSERT INTO `lj_session` VALUES ('se9n50sbntt6pmlv788g47v587','1512702376','uid|s:1:\"1\";username|s:8:\"lj_admin\";name|s:12:\"大鹏网络\";logintime|s:17:\"17-12-07 16:18:50\";loginip|s:9:\"127.0.0.1\";superadmin|b:1;');/* MySQLReback Separation */
+ INSERT INTO `lj_session` VALUES ('00dg3gmgv53nebte4i40lenui4','1512727224','uid|s:1:\"1\";username|s:8:\"lj_admin\";name|s:12:\"大鹏网络\";logintime|s:17:\"17-12-08 09:06:05\";loginip|s:9:\"127.0.0.1\";superadmin|b:1;'),('guupieo92dupsp0qvskhp1adq5','1512728825','uid|s:1:\"1\";username|s:8:\"lj_admin\";name|s:12:\"大鹏网络\";logintime|s:17:\"17-12-08 14:16:21\";loginip|s:9:\"127.0.0.1\";superadmin|b:1;');/* MySQLReback Separation */
  /* 创建表结构 `lj_user` */
  DROP TABLE IF EXISTS `lj_user`;/* MySQLReback Separation */ CREATE TABLE `lj_user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -330,4 +347,12 @@
   UNIQUE KEY `用户名` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;/* MySQLReback Separation */
  /* 插入数据 `lj_user` */
- INSERT INTO `lj_user` VALUES ('1','lj_admin','2d1154ddc80567c150177ca4fc4de010','1512695165','127.0.0.1','0','大鹏网络');/* MySQLReback Separation */
+ INSERT INTO `lj_user` VALUES ('1','lj_admin','2d1154ddc80567c150177ca4fc4de010','1512721329','127.0.0.1','0','大鹏网络');/* MySQLReback Separation */
+ /* 创建表结构 `lj_yzm` */
+ DROP TABLE IF EXISTS `lj_yzm`;/* MySQLReback Separation */ CREATE TABLE `lj_yzm` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `tel` int(11) NOT NULL COMMENT '手机号',
+  `code` varchar(6) NOT NULL COMMENT '验证码',
+  `time` int(10) NOT NULL COMMENT '发送时间',
+  PRIMARY KEY (`id`,`tel`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;/* MySQLReback Separation */
