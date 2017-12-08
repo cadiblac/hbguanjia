@@ -1,0 +1,92 @@
+<include file="Public:common" />
+<title>权限管理</title>
+
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                设置权限节点
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 节点管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+					<section class="panel">
+						<header class="panel-heading">
+						   节点管理&nbsp;&nbsp;<a href="{:U(MODULE_NAME.'/Rbac/addNode')}" class="btn btn-primary btn-xs" data-toggle="modal">
+										添加应用 <i class="fa fa-plus"></i>
+									</a>
+							<span class="tools pull-right">
+								<a class="fa fa-chevron-down" href="javascript:;"></a>
+							 </span>
+						</header>
+						<div class="panel-body">
+						<div class="adv-table editable-table ">
+							<div class="space15"></div>
+							<div class="col-md-12">
+								<foreach name='node' item='app'>
+								<section class="panel panel-primary">
+									<header class="panel-heading">
+										{$app.title} 
+										<a class="btn btn-primary  btn-xs" href="{:U(MODULE_NAME.'/Rbac/addNode',array('pid'=>$app['id'],'level'=>2))}">添加控制器</a>
+										<a onclick="return confirm('确实要删除吗？')" class="btn btn-warning btn-xs" href="{:U(MODULE_NAME.'/Rbac/deleteNode',array('id'=>$app['id']))}">删除</a>
+									</header>
+									<div class="panel-body">
+									<div class="alert alert-success alert-block fade in">注意:若要删除父项，必先删除其下所有子项！</div>
+										<foreach name='app.chlid' item='action'>
+										<div class="col-md-6">
+										<div class="panel panel-info">
+											<header class="panel-heading">
+											{$action.title}
+											<a class="btn btn-primary  btn-xs" href="{:U(MODULE_NAME.'/Rbac/addNode',array('pid'=>$action['id'],'level'=>3))}">添加方法</a>
+											<a onclick="return confirm('确实要删除吗？')" class="btn btn-warning btn-xs" href="{:U(MODULE_NAME.'/Rbac/deleteNode',array('id'=>$action['id']))}">删除</a>	
+											</header>
+											<div class="panel-body">
+											<foreach name="action.chlid" item="method">
+												<div class="col-sm-3">															
+												{$method.title} <a onclick="return confirm('确实要删除吗？')" class="btn btn-warning btn-xs" href="{:U(MODULE_NAME.'/Rbac/deleteNode',array('id'=>$method['id']))}">删除</a>
+												</div>
+											</foreach>
+											</div>
+										</div>
+										</div>
+										</foreach>							
+									</div>
+								</section>
+								</foreach>
+							</div>
+						</div>
+						</div>
+					</section>
+				</div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

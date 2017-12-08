@@ -1,0 +1,130 @@
+<include file="Public:common" />
+<title>网站扩展参数设置</title>
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                网站扩展参数设置
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/meter')}">首页</a>
+                </li>
+                <li class="active"> 网站参数 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+					<form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/System/meter')}">
+                        <header class="panel-heading">
+                            扩展参数设置
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+								<div class="alert alert-success alert-block fade in">PHPMailer邮件发送设置</div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">smtp服务器</label>
+                                        <div class="col-lg-3">
+                                            <input class=" form-control" id="firstname" name="MAIL_HOST" type="text" value="{$data['MAIL_HOST']}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="lastname" class="control-label col-lg-2">是否启用smtp认证</label>
+                                        <div class="col-lg-3">
+										<label class="checkbox-inline"><input type="radio" name="MAIL_SMTPAUTH" id="optionsRadios1" value="true" <if condition="$data['MAIL_SMTPAUTH'] neq 'false'">checked=""</if>>是&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<label class="checkbox-inline"><input type="radio" name="MAIL_SMTPAUTH" id="optionsRadios1" value="false" <if condition="$data['MAIL_SMTPAUTH'] eq 'false'">checked=""</if>>否</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="username" class="control-label col-lg-2">邮箱账号</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control " id="username" name="MAIL_USERNAME" type="text" value="{$data['MAIL_USERNAME']}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="password" class="control-label col-lg-2">邮箱密码</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control " id="password" name="MAIL_PASSWORD" type="password" value="{$data['MAIL_PASSWORD']}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="confirm_password" class="control-label col-lg-2">发件人姓名</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control " id="confirm_password" name="MAIL_FROMNAME" type="text" value="{$data['MAIL_FROMNAME']}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="email" class="control-label col-lg-2">发件人email</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control " id="email" name="MAIL_FROM" type="text" value="{$data['MAIL_FROM']}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">设置邮件编码</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control " name="MAIL_CHARSET" type="text" placeholder="utf-8或者gb2312" value="{$data['MAIL_CHARSET']}"/>
+                                        </div>
+                                    </div> 
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">是否HTML格式邮件</label>
+                                        <div class="col-lg-3">
+                                        <label class="checkbox-inline"><input type="radio" name="MAIL_ISHTML" id="optionsRadios1" value="true" <if condition="$data['MAIL_ISHTML'] neq 'false'">checked=""</if>>是&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<label class="checkbox-inline"><input type="radio" name="MAIL_ISHTML" id="optionsRadios1" value="false" <if condition="$data['MAIL_ISHTML'] eq 'false'">checked=""</if>>否</label>
+                                        </div>
+                                    </div>
+                            
+							<div class="alert alert-success alert-block fade in">支付宝参数</div>
+							<div class="form-group has-success">
+								<label class="col-lg-2 control-label">PID</label>
+								<div class="col-lg-3">
+									<input type="text" placeholder="" id="f-name" name="partner" class="form-control" value="{$data['partner']}">
+									<p class="help-block">成功申请支付宝接口后获取到的PID</p>
+								</div>
+							</div>
+							<div class="form-group has-error">
+								<label class="col-lg-2 control-label">Key</label>
+								<div class="col-lg-3">
+									<input type="password" placeholder="" id="l-name" name="key" class="form-control" value="{$data['key']}">
+									<p class="help-block">成功申请支付宝接口后获取到的Key</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-offset-2 col-lg-10">
+									<button class="btn btn-primary" type="submit">保存</button>
+								</div>
+							</div>   
+							</div>
+                        </div>
+						</form>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.validate.min.js"></script>
+<script src="__PUBLIC__/js/validation-init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

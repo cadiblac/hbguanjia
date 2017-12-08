@@ -1,0 +1,96 @@
+<include file="Public:common" />
+  <title>内容管理</title>
+  <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<!--tree-->
+<script src="__PUBLIC__/js/jquery.ztree.core-3.5.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Css/zTreeStyle/metro.css" type="text/css">
+  <!--data table-->
+  <link rel="stylesheet" href="__PUBLIC__/js/data-tables/DT_bootstrap.css" />
+</head>
+
+<body class="sticky-header left-side-collapsed">
+<include file="Public:header" />
+        <!-- header section end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="mail-box">
+                {:W('Menu/mau')}
+                <section class="mail-box-info">
+                   <div class="col-sm-12">
+					<section class="panel">
+					<header class="panel-heading">
+						{$cate['name']}
+						<span class="tools pull-right">
+							<a href="javascript:;" class="fa fa-chevron-down"></a>
+						 </span>
+					</header>
+					<div class="panel-body">
+					<div class="adv-table editable-table">
+					<if condition='ACTION_NAME eq "index"'>
+					<div class="clearfix">
+                    <div class="btn-group">
+                        <a target="_parent" href="{:U(MODULE_NAME.'/Goods/add',array('cid'=>$id))}" class="btn btn-primary">
+                            添加产品 <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+					</div>
+					</if>
+					<table  class="display table table-bordered table-striped" id="editable-sample">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>标题</th>
+						<th>发布时间</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<foreach name='goods' item='v'>
+					<tr class="gradeX">
+						<td>{$v.id}</td>
+						<td>{$v.title}<foreach name='v.attr' item='value'>[{$value.name}]</foreach></td>
+						<td>{$v.time|date='y-m-d H:i',###}</td>
+						<td>
+						<a href="{:U(MODULE_NAME.'/Goods/updata',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-success btn-xs">修改</span></a>
+						<a onclick="return confirm('确实要删除吗？')" href="{:U(MODULE_NAME.'/Goods/toTrash',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-warning btn-xs">删除</span>
+						</td>
+					</tr>
+					</foreach>				   
+					</tbody>
+					</table>
+					</div>
+					</div>
+					</section>
+					</div>
+                </section>
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--data table-->
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/DT_bootstrap.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+<!--script for editable table-->
+<script src="__PUBLIC__/js/editable-table.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function() {
+        EditableTable.init();
+    });
+</script>
+</body>
+</html>

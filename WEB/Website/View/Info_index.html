@@ -1,0 +1,96 @@
+<include file="Public:common" />
+  <title>内容管理</title>
+  <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<!--tree-->
+<script src="__PUBLIC__/js/jquery.ztree.core-3.5.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Css/zTreeStyle/metro.css" type="text/css">
+
+<script type="text/javascript">
+	window.UEDITOR_HOME_URL = "__ROOT__/Data/ueditor/";
+	window.onload = function (){
+	//window.UEDITOR_CONFIG.initialFrameWidth = 1000; 初始化编辑器宽度,默认1000
+	window.UEDITOR_CONFIG.initialFrameHeight = 500; //初始化编辑器高度,默认320
+		UE.getEditor('content',{ initialFrameWidth: null });
+	}
+</script>
+<js file="__ROOT__/Data/ueditor/ueditor.config.js" />
+<js file="__ROOT__/Data/ueditor/ueditor.all.min.js" />
+</head>
+
+<body class="sticky-header left-side-collapsed">
+<include file="Public:header" />
+        <!-- header section end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="mail-box">
+                {:W('Menu/mau')}
+                <section class="mail-box-info">
+                   <div class="col-sm-12">
+					<section class="panel">
+					<foreach name='cate' item='v'>
+					<header class="panel-heading">
+						{$v.name}<span class="text-muted">——修改内容</span>
+						<span class="tools pull-right">
+							 <a href="javascript:;" class="fa fa-chevron-down"></a>
+						 </span>
+					</header>
+					<div class="panel-body">
+						<div class="form">
+							<form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Info/updata')}">							
+								<div class="form-group ">
+									<label for="firstname" class="control-label col-lg-1">标题</label>
+									<div class="col-lg-6">
+										<input class=" form-control" id="firstname" name="title" type="text" value="{$v.title}"/>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">关键字</label>
+									<div class="col-lg-6">
+										<input class=" form-control" id="lastname" name="keywords" type="text" value="{$v.keywords}"/>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">描述</label>
+									<div class="col-lg-6">
+										<input class=" form-control" id="lastname" name="description" type="text" value="{$v.description}"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="email" class="control-label col-lg-1">内容</label>
+									<div class="col-lg-10">
+										<textarea name="content" id="content">{$v.content}</textarea>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="col-lg-offset-1 col-lg-10">
+									<input type="hidden" name="cid" value="{$v.id}">
+										<input class="btn btn-primary" type="submit" value="保&nbsp;&nbsp;存">
+									</div>
+								</div>							
+							</form>
+						</div>
+					</div>
+					</foreach>
+					</section>
+					</div>
+                </section>
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+</body>
+</html>

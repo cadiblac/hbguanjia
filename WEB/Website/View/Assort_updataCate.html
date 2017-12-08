@@ -1,0 +1,94 @@
+<include file="Public:common" />
+<title>添加{$str}栏目</title>
+<!--file upload-->
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                设置网站栏目
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 栏目管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            修改分类
+							
+							<span class="tools pull-right">
+                                <a class="fa fa-rotate-left" href="javascript:history.go(-1)"> 返回</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Assort/runupdata')}">
+								<foreach name='cate' item='v'>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">分类名称</label>
+                                        <div class="col-lg-3">
+                                            <input class=" form-control" id="firstname" name="classname" type="text" value="{$v.classname}"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">排序</label>
+                                        <div class="col-lg-2">
+                                           <input type="text" class="form-control " name="sort" value="{$v.sort}">
+										   <input type="hidden" name="id" value="{$v.id}">
+                                        </div>
+                                    </div>
+                                </foreach>    
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+										
+                                            <input class="btn btn-primary" type="submit" value="保存">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

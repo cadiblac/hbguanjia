@@ -1,0 +1,165 @@
+<include file="Public:common" />
+<title>会员管理</title>
+  <!--pickers css-->
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-datepicker/css/datepicker-custom.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-timepicker/css/timepicker.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-colorpicker/css/colorpicker.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                系统会员管理
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 会员管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            系统会员管理&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="#myModal2" class="btn btn-success btn-xs" data-toggle="modal">
+								添加管理员 <i class="fa fa-user"></i>
+							</a>
+							<!-- Modal -->
+                            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">添加管理员</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{:U(MODULE_NAME.'/Rbac/addUserHandle')}" method="post" class="form-horizontal ">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4"> 用户账号</label>
+                                                    <div class="col-md-6">
+                                                        <input size="16" type="text" name="username" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">用户名称</label>
+                                                    <div class="col-md-6 col-xs-11">
+                                                        <input class="form-control " name="name" size="16" type="text" />
+                                                    </div>
+                                                </div>                                              
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">用户密码</label>
+                                                    <div class="col-md-6 col-xs-11">
+														<input type="password" class="form-control " name="password" />
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">所属角色</label>
+                                                    <div class="col-md-6 col-xs-11">
+														<select class="form-control" name="role_id[]">
+															<option value="">请选择角色</option>
+															<foreach name='role' item='v'>
+																<option value="{$v.id}">{$v.name}({$v.remark})</option>
+															</foreach>
+														</select>
+                                                    </div>
+                                                </div>
+												<div class="modal-footer center-block">
+													<input class="btn btn-primary" type="submit" value="保存">
+												</div>
+                                            </form>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- modal -->
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+							<!--user list start-->
+							<div class="directory-info-row">
+							<foreach name="user" item="v">
+							<if condition='$v["username"] neq C("Rbac_SUPERADMIN")'>
+								<div class="col-sm-3">
+									<div class="panel panel-info">
+										<div class="panel-heading">
+											{$v.name}
+											<span class="pull-right">ID:{$v.id}</span>
+										</div>
+										<div class="panel-body">											
+											<div class="media">
+												<a class="pull-left" href="#">
+													<img class="thumb media-object" width="100" src="__PUBLIC__/images/photos/Admin.png" alt="">													
+												</a>
+												<div class="media-body">
+													<address>
+														账号:<strong>{$v.username}</strong><br>
+														登录时间:{$v.logintime|date='y-m-d H:i:s',###}<br>
+														登录IP:{$v.loginip}<br>													
+															<foreach name='v.role' item='value'>
+															  {$value.name}({$value.remark})
+															</foreach>
+														   <br>														
+														账号状态:<if condition="$v['lock']"><span style="color:red;">已锁定</span><else />正常</if>        
+													</address>
+													<if condition="$v['username'] neq C('Rbac_SUPERADMIN') and $v['username'] neq session('username')">
+													<ul class="social-links">
+														<li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{:U(MODULE_NAME.'/Rbac/modify',array('id'=>$v['id']))}" data-original-title="重置密码"><i class="fa fa-key"></i></a></li>
+														<if condition="$v['lock']">
+														<li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{:U(MODULE_NAME.'/Rbac/lock',array(id=>$v['id']))}" data-original-title="解锁账号"><i class="fa fa-unlock"></i></a></li><else />
+														<li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{:U(MODULE_NAME.'/Rbac/lock',array(id=>$v['id'],type=>1))}" data-original-title="锁定账号"><i class="fa fa-lock"></i></a></li>
+														</if>                                
+													</ul>
+													</if>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</if>
+							</foreach>
+							</div>
+							<!--user list end-->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

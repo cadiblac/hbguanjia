@@ -1,0 +1,166 @@
+<include file="Public:common" />
+<title>权限管理</title>
+<!--ios7-->
+    <link rel="stylesheet" type="text/css" href="js/ios-switch/switchery.css" />
+
+    <!--icheck-->
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/green.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/blue.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/yellow.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/minimal/purple.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/green.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/blue.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/yellow.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/square/purple.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/js/iCheck/skins/flat/grey.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/flat/red.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/flat/blue.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/flat/yellow.css" rel="stylesheet">
+    <link href="__PUBLIC__/js/iCheck/skins/flat/purple.css" rel="stylesheet">
+
+    <!--multi-select-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/jquery-multi-select/css/multi-select.css" />
+
+    <!--file upload-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.min.css" />
+
+    <!--tags input-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/jquery-tags-input/jquery.tagsinput.css" />
+
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                设置角色权限
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+				<li>
+                    <a href="{:U('Rbac/role')}">角色管理</a>
+                </li>
+                <li class="active"> 配置权限 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+				<div class="form">
+				<form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Rbac/setAccess')}" >
+					<foreach name='node' item='app'>
+                    <section class="panel panel-primary">
+                        <header class="panel-heading">
+						<div class="col-sm-3 icheck">
+						<div class="flat-yellow single-row">
+							<div class="radio ">
+                            <input type="checkbox" name="access[]" value="{$app.id}_1" level='1' checked />
+							{$app.title}
+							</div>
+						</div>
+						</div>
+							<span class="tools pull-right">
+                                <a class="fa fa-rotate-left" href="{:U(MODULE_NAME.'/Rbac/role')}"> 返回</a>
+                             </span>
+						<div class="clearfix"></div>
+                        </header>
+                        <div class="panel-body"><div class="alert alert-success alert-block fade in">注意:若要选择子项，必先选择其父项，子项才能生效！</div>
+							<foreach name='app.chlid' item='action'>
+							<div class="col-md-6">
+							<div class="panel panel-info">
+								<header class="panel-heading">
+								<div class="col-sm-3 icheck">
+									<div class="flat-yellow single-row">
+										<div class="radio ">{$action.title}
+										<input type="checkbox" name="access[]" value="{$action.id}_2" level='2' <if condition='$action["access"]'>checked</if>/>
+										</div>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								</header>
+								<div class="panel-body">
+								<foreach name="action.chlid" item="method">
+									<div class="col-sm-3 icheck">
+										<div class="flat-green single-row">
+											<div class="radio ">
+												<input type="checkbox" name="access[]" value="{$method.id}_3" level='3' <if condition='$method["access"]'>checked</if>/>
+												<label>{$method.title} </label>
+											</div>
+										</div>
+									</div>
+								</foreach>
+								</div>
+							</div>
+							</div>
+							</foreach>							
+							<div class="form-group"></div>
+							<div class="form-group">
+								<div class="col-lg-offset-6 col-lg-6">
+									<input type="hidden" name='rid' value="{$rid}">
+									<input class="btn btn-primary" type="submit" value="保&nbsp;&nbsp;存">
+								</div>
+							</div>
+						</div>
+                    </section>
+					</foreach>
+				</form>
+				</div>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--ios7-->
+<script src="__PUBLIC__/js/ios-switch/switchery.js" ></script>
+<script src="__PUBLIC__/js/ios-switch/ios-init.js" ></script>
+
+<!--icheck -->
+<script src="__PUBLIC__/js/iCheck/jquery.icheck.js"></script>
+<script src="__PUBLIC__/js/icheck-init.js"></script>
+<!--multi-select-->
+<script type="text/javascript" src="__PUBLIC__/js/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-multi-select/js/jquery.quicksearch.js"></script>
+<script src="__PUBLIC__/js/multi-select-init.js"></script>
+<!--spinner-->
+<script type="text/javascript" src="__PUBLIC__/js/fuelux/js/spinner.min.js"></script>
+<script src="__PUBLIC__/js/spinner-init.js"></script>
+<!--file upload-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-fileupload.min.js"></script>
+<!--tags input-->
+<script src="__PUBLIC__/js/jquery-tags-input/jquery.tagsinput.js"></script>
+<script src="__PUBLIC__/js/tagsinput-init.js"></script>
+<!--bootstrap input mask-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

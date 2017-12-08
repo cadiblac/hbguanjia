@@ -1,0 +1,191 @@
+<include file="Public:common" />
+<title>采集设置</title>
+<!--file upload-->
+<script type="text/javascript" src="__PUBLIC__/Js/cate.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                修改采集规则
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+				<li>
+                    <a href="{:U('Collect/index')}">规则列表</a>
+                </li>
+                <li class="active"> 修改规则 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            修改采集规则
+							
+							<span class="tools pull-right">
+                                <a class="fa fa-rotate-left" href="{:U(MODULE_NAME.'/Collect/index')}"> 返回</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Collect/runUpdata')}">
+								<foreach name="collect" item="v">
+								<div class="alert alert-success alert-block fade in">采集基本信息设置</div>
+                                    <div class="form-group">
+										<label class="control-label col-lg-2"> 采集项目名称</label>
+										<div class="col-lg-3">
+											<input size="16" type="text" name="name" class="form-control" value="{$v.name}">
+											<span class="help-inline">采集工程名称，中文</span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-2">目标站域名</label>
+										<div class="col-lg-3 col-xs-11">
+											<input type="text" name="site" id="site" class="form-control" value="{$v.site}" />
+											<span class="help-inline">站点地址，以 http:// 开始不带结尾的/</span>
+										</div>
+									</div>                                              
+									<div class="form-group">
+										<label class="control-label col-lg-2">采集列表页地址</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="url" class="form-control" id="url" class="span5" value="{$v.url}" />
+										<span class="help-block">采集列表页路径</span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">采集页面编码</label>
+										<div class="col-lg-3 col-xs-11">
+										<select id="charset" class="form-control" name="charset">
+											<option <if condition="$v['charset'] eq 'UTF-8'"> selected = "selected"</if>>UTF-8</option>
+											<option <if condition="$v['charset'] neq 'UTF-8'"> selected = "selected"</if>>GB2312</option>
+										</select>
+										<span class="help-block">采集页面编码</span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">采集结果对应本站栏目id</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="aid" class="form-control" value="{$v.aid}">
+										</div>
+									</div>
+									<div class="alert alert-success alert-block fade in">采集节点设置</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">采集节点范围</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="list" id="list_list" class="form-control" value="{$v.list}"/>
+										<span class="help-inline">采集列表节点范围标记(jquery 语法) 如：
+										<code>.test li</code></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">列表标题标签</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="title" id="list_title" class="form-control" value="{$v.title}"/>
+										<span class="help-inline">地址节点标记(jquery 语法) 如：<code>li a:eq(0) </code></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">题图标签</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="img" id="list_title" class="form-control" value="{$v.img}"/>
+										<span class="help-inline">地址节点标记(jquery 语法) 如：<code>li img:eq(0) </code></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">内容页url标签</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="liurl" id="list_title" class="form-control" value="{$v.liurl}"/>
+										<span class="help-inline">标题节点标记(jquery 语法) 如：<code>li href:eq(0) </code></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">添加时间标签</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="date" id="list_date" class="form-control" value="{$v.date}"/>
+										<span class="help-inline">时间节点标记(jquery 语法) 如：<code>.date</code></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">作者标签</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="author" id="list_author" class="form-control" value="{$v.author}"/>
+										<span class="help-inline">作者节点标记(jquery 语法) 如：<code>.author</code></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">访问量标签</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="hits" id="list_hits" class="form-control" value="{$v.hits}"/>
+										<span class="help-inline">访问量节点标记(jquery 语法) 如：<code>.list_hits</code></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">内容页标题标签</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="ntitle" id="list_content" class="form-control" value="{$v.ntitle}"/>
+										<span class="help-inline">内容页标题节点标记(jquery 语法) 如：<code>.title</code></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">内容页内容标签</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="content" id="list_content" class="form-control" value="{$v.content}"/>
+										<span class="help-inline">内容页内容节点标记(jquery 语法) 如：<code>.content</code></span>
+										</div>
+									</div>                                    
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+										<input type="hidden" name="id" value="{$v.id}">
+                                            <input class="btn btn-primary" type="submit" value="保&nbsp;&nbsp;存">
+                                        </div>
+                                    </div>
+								</foreach>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<script>var app="__ROOT__";</script>
+<script type="text/javascript" src="__PUBLIC__/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/upload.js"></script>
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

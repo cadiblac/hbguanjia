@@ -1,0 +1,164 @@
+<include file="Public:common" />
+<title>轮播图管理</title>
+<!--file upload-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                设置轮播图
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 轮播管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+			<if condition='ACTION_NAME eq addbanner'>
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            添加轮播图
+							
+							<span class="tools pull-right">
+                                <a class="fa fa-rotate-left" href="{:U(MODULE_NAME.'/System/banner')}"> 返回</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/System/runAdd')}">
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">轮播名称</label>
+                                        <div class="col-lg-3">
+                                            <input class=" form-control" id="firstname" name="title" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="username" class="control-label col-lg-2">轮播图片</label>
+                                        <div class="col-lg-6">
+                                            <a class="btn btn-primary upimgs" id="btn">选择图片</a> 最大2M，支持jpg，gif，png格式。
+											 <dl id="ul_pics" class="ul_pics clearfix"><dd id='slt'></dd></dl>
+											 <input name="img" id="picsa" style="display: none;">
+                                        </div>
+                                    </div>
+                                    
+									<div class="form-group" >
+                                        <label for="email" class="control-label col-lg-2">转向链接</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control " id="email" name="url" type="text" />
+                                        </div>
+                                    </div>								
+                                    <div class="form-group" >
+                                        <label for="email" class="control-label col-lg-2">轮播类型</label>
+                                        <div class="col-lg-6">
+                                        <label class="checkbox-inline"><input type="radio" name="type" id="optionsRadios1" value="0" >pc&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<label class="checkbox-inline"><input type="radio" name="type" id="optionsRadios1" value="1" checked="">wap&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <input class="btn btn-primary" type="submit" value="保存">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+			<else />
+			        <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            修改轮播图
+							
+							<span class="tools pull-right">
+                                <a class="fa fa-rotate-left" href="{:U(MODULE_NAME.'/System/banner')}"> 返回</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/System/runUpdata')}">
+								<foreach name='banner' item='v'>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">轮播名称</label>
+                                        <div class="col-lg-3">
+                                            <input class=" form-control" id="firstname" name="title" type="text" value="{$v.title}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="username" class="control-label col-lg-2">轮播图片</label>
+                                        <div class="col-lg-6">
+                                            <a class="btn btn-primary upimgs" id="btn">选择图片</a> 最大2M，支持jpg，gif，png格式。
+											 <dl id="ul_pics" class="ul_pics clearfix"><dd id='slt'><if condition='$v["img"]'><img src="{$v.img}"></if></dd></dl>
+											 <input name="img" id="picsa" style="display: none;" value="{$v.img}">
+                                        </div>
+                                    </div>
+                                    
+									<div class="form-group">
+                                        <label for="email" class="control-label col-lg-2">转向链接</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control " id="email" name="url" type="text" value="{$v.url}"/>
+											<input type="hidden" name="id" value="{$v.id}">
+                                        </div>
+                                    </div>
+									<div class="form-group" >
+                                        <label for="email" class="control-label col-lg-2">轮播类型</label>
+                                        <div class="col-lg-6">
+                                        <label class="checkbox-inline"><input type="radio" name="type" id="optionsRadios1" value="0" <if condition="$v['type'] eq 0">checked=""</if>>pc&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<label class="checkbox-inline"><input type="radio" name="type" id="optionsRadios1" value="1" <if condition="$v['type'] eq 1">checked=""</if>>wap&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        </div>
+                                    </div>									
+                                </foreach>    
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <input class="btn btn-primary" type="submit" value="保存">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+			</if>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<script>var app="__ROOT__";</script>
+<script type="text/javascript" src="__PUBLIC__/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/upload.js"></script>
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

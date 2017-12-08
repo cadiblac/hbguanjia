@@ -1,0 +1,88 @@
+<include file="Public:common" />
+<title>文章属性管理</title>
+<!--file upload-->
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                设置文章属性
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 文章属性 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <if condition="ACTION_NAME eq 'addAttr'">添加文章属性<else />修改文章属性</if>
+							
+							<span class="tools pull-right">
+                                <a class="fa fa-rotate-left" href="javascript:history.go(-1)"> 返回</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" method="post" <if condition='ACTION_NAME eq "addAttr"'> action="{:U(MODULE_NAME.'/Attr/addAttrHandle')}" <else />action="{:U(MODULE_NAME.'/Attr/runupdata')}" </if>>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">属性名称</label>
+                                        <div class="col-lg-3">
+										<if condition='ACTION_NAME eq "addAttr"'><input class=" form-control" id="firstname" name="name" type="text" /></if>
+										<foreach name='attr' item='v'>
+                                            <input class=" form-control" id="firstname" name="name" type="text" value="{$v.name}"/>
+											<input type="hidden" name="id" value="{$v.id}">
+										</foreach> 
+                                        </div>
+                                    </div>                                   
+                                   
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <input class="btn btn-primary" type="submit" value="保存">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

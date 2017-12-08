@@ -1,0 +1,79 @@
+<include file="Public:common" />
+<title>修改密码</title>
+</head>
+<body class="sticky-header">
+<include file="Public:header" />
+<!--body wrapper start-->
+ <div class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                修改登录密码
+            </header>
+            <div class="panel-body">
+                <form class="form-horizontal adminex-form" action="{:U(MODULE_NAME.'/System/updatapwd')}" method="post">
+                    
+					<div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">账号:</label>
+                        <div class="col-sm-10">
+                            <span class="form-control" style="border:0;">{$username}</span>
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">用户名:</label>
+                        <div class="col-sm-10">
+                           <span class="form-control" style="border:0;">{$Think.session.name}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">请输入新密码:</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password" style="width: 400px;" class="form-control" placeholder="需包含字母数字,长度为6-20位">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">再次输入新密码:</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="repassword" style="width: 400px;" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-sm-2 control-label"></label>
+                        <div class="col-lg-10">
+                          <input type="submit" class="btn btn-primary" value="修改"></input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+       </div>
+    </div>    
+ </div>
+<!--body wrapper end-->
+<include file="Public:bottom" />
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

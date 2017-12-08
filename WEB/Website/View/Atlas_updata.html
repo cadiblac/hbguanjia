@@ -1,0 +1,190 @@
+<include file="Public:common" />
+  <title>内容管理</title>
+  <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<!--tree-->
+<script src="__PUBLIC__/js/jquery.ztree.core-3.5.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/zTreeStyle/metro.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+<style type="text/css">
+ .del{
+	display:inline-block;
+	color:blue;
+	text-align: center;
+	cursor: pointer; 
+ }
+</style>
+<!--pickers css-->
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-datepicker/css/datepicker-custom.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-timepicker/css/timepicker.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-colorpicker/css/colorpicker.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+<script type="text/javascript">
+	var app="__ROOT__";
+	window.UEDITOR_HOME_URL = "__ROOT__/Data/ueditor/";
+	window.onload = function (){
+	//window.UEDITOR_CONFIG.initialFrameWidth = 1000; 初始化编辑器宽度,默认1000
+	window.UEDITOR_CONFIG.initialFrameHeight = 500; //初始化编辑器高度,默认320
+		UE.getEditor('content',{ initialFrameWidth: null });
+	}
+	function deli (id) {
+			var handleUrl = '{:U(MODULE_NAME."/Atlas/deli")}'
+			$.post(handleUrl,{id:id},function(data){
+				if (data.status){
+					$('#p_'+id).remove();
+				}
+			},'json');
+		}
+</script>
+<js file="__ROOT__/Data/ueditor/ueditor.config.js" />
+<js file="__ROOT__/Data/ueditor/ueditor.all.min.js" />
+</head>
+
+<body class="sticky-header left-side-collapsed">
+<include file="Public:header" />
+        <!-- header section end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="mail-box">
+                {:W('Menu/mau')}
+                <section class="mail-box-info">
+                   <div class="col-sm-12">
+					<section class="panel">
+					<header class="panel-heading">
+						{$cates['name']}<span class="text-muted">——修改图集</span>
+						<span class="tools pull-right">
+							<a class="fa fa-rotate-left" href="javascript:history.go(-1)"> 返回</a>
+						 </span>
+					</header>
+					<div class="panel-body">
+						<div class="form">
+							<form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Atlas/runUpdata')}">
+							<foreach name='article' item='v'>
+								<div class="form-group ">
+									<label for="firstname" class="control-label col-lg-1">图集标题</label>
+									<div class="col-lg-6">
+										<input class=" form-control" id="firstname" name="title" type="text" value="{$v.title}"/>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="username" class="control-label col-lg-1">题图</label>
+									<div class="col-lg-6">
+										<a class="btn btn-primary upimgs" id="btn">选择图片</a> 最大2M，支持jpg，gif，png格式。
+										 <dl id="ul_pics" class="ul_pics clearfix"><dd id='slt'><if condition="$v['pic']"><img src="{$v.pic}"></if></dd></dl>
+										 <input name="pic" id="picsa" value="{$v.pic}" style="display: none;">
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">图集关键字</label>
+									<div class="col-lg-6">
+										<input class=" form-control" id="lastname" name="keywords" type="text" value="{$v.keywords}"/>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">图集描述</label>
+									<div class="col-lg-6">
+										<input class=" form-control" id="lastname" name="description" type="text" value="{$v.description}"/>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="username" class="control-label col-lg-1">图集</label>
+									<div class="col-lg-6">
+										<a class="btn btn-primary upimgs" class="upimgs" id="bte">选择图片</a> 最大2M，支持jpg，gif，png格式。按CTRL多选(一次最多传30张)
+										<dl id="ul_pic" class="ul_pic clearfix">
+										<foreach name='atlas' item='p'>
+										<dd id="p_{$p.id}"><img src="{$p.img}"><p><a href="javascript:void(0);" onclick="deli({$p.id});">删除</a></p></dd>
+										</foreach>
+										</dl>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="password" class="control-label col-lg-1">图集移动到</label>
+									<div class="col-lg-2">
+										<select class=" form-control" name="cid">
+											<foreach name='cate' item='c'>
+											<option value="{$c.id}" <if condition='$c["id"] eq $v["cid"]'>selected = "selected"</if>>{$c.name}</option>
+											</foreach>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group ">
+									<label for="email" class="control-label col-lg-1">发布时间</label>
+									<div class="col-lg-2">
+										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd hh:mm" data-date="{$v.time|default=time()|date='Y-m-d H:i',###}"  class="input-append date dpYears" style="width:200px;">
+										  
+										  <input type="text" name="time" value="{$v.time|default=time()|date='Y-m-d H:i',###}" size="16" class="form-control">
+														<span class="input-group-btn add-on">
+														  <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+														</span>
+										</div>                                         
+									</div>
+									
+									<label for="password" class="control-label col-lg-1">属性</label>
+									<div class="col-lg-2">
+										<foreach name='attr' item='value'>
+											<label class="checkbox-inline">
+												<input type="checkbox" name="aid[]" value="{$value.id}" <foreach name='v.attr' item='a'><if condition="$value['id'] eq $a['id']">checked="checked"</if></foreach>>{$value.name}&nbsp;
+											</label>
+										</foreach>
+									</div>
+									
+								</div>
+								<div class="form-group">
+									<label for="email" class="control-label col-lg-1">图集内容</label>
+									<div class="col-lg-10">
+										<textarea name="content" id="content">{$v.content}</textarea>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="col-lg-offset-1 col-lg-10">
+										<input type="hidden" name="id" value="{$v.id}">
+										<input class="btn btn-primary" type="submit" value="保&nbsp;&nbsp;存">
+									</div>
+								</div>
+							</foreach>
+							</form>
+						</div>
+					</div>
+					</section>
+					</div>
+                </section>
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script type="text/javascript">
+  $('.date-picker').datepicker({
+      language: 'zh-CN',
+      autoclose: true,
+      todayHighlight: true
+  })
+</script>
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/upload.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<include file="Public:common" />
+  <title>内容管理</title>
+  <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<!--tree-->
+<script src="__PUBLIC__/js/jquery.ztree.core-3.5.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Css/zTreeStyle/metro.css" type="text/css">
+</head>
+
+<body class="sticky-header left-side-collapsed">
+<include file="Public:header" />
+        <!-- header section end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="mail-box">
+                {:W('Menu/mau')}
+                <section class="mail-box-info">
+                   <div class="col-sm-12">
+					<section class="panel">
+					<header class="panel-heading">
+						近期文档
+						<span class="tools pull-right">
+							<a href="javascript:;" class="fa fa-chevron-down"></a>
+						 </span>
+					</header>
+					<div class="panel-body">
+					<div class="adv-table">
+					<table  class="display table table-bordered table-striped" id="dynamic-table">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>标题</th>
+						<th>类型</th>
+						<th>发布时间</th>						
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<foreach name='searchg' item='v'>
+					<tr class="gradeX">
+						<td>{$v.id}</td>
+						<td>{$v.title|msubstr=###,0,30,'utf-8',false}</td>
+						<td>产品</td>
+						<td>{$v.time|date='y-m-d H:i:s',###}</td>						
+						<td>
+						<a href="{:U(MODULE_NAME.'/Goods/updata',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-success btn-xs">修改</span></a>
+						<a onclick="return confirm('确实要删除吗？')" href="{:U(MODULE_NAME.'/Goods/toTrash',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-warning btn-xs">删除</span>
+						</td>
+					</tr>
+					</foreach>
+					<foreach name='works' item='v'>
+					<tr class="gradeX">
+						<td>{$v.id}</td>
+						<td>{$v.title}<foreach name='v.attr' item='value'>[{$value.name}]</foreach></td>
+						<td>文章/图集</td>
+						<td>{$v.time|date='y-m-d H:i',###}</td>
+						<td>
+						<a href="{:U(MODULE_NAME.'/Article/updata',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-success btn-xs">修改</span></a>
+						<a onclick="return confirm('确实要删除吗？')" href="{:U(MODULE_NAME.'/Article/toTrash',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-warning btn-xs">删除</span>
+						</td>
+					</tr>
+					</foreach>				   
+					</tbody>
+					</table>
+					</div>
+					</div>
+					</section>
+					</div>
+                </section>
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<include file="Public:common" />
+<title>采集设置</title>
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                <if condition='ACTION_NAME eq "test"'>测试采集规则<else />采集结果</if>
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+				<li>
+                    <a href="{:U('Collect/index')}">规则列表</a>
+                </li>
+				<if condition='ACTION_NAME eq "test"'>
+                <li class="active"> 采集测试 </li>
+				</if>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                           <if condition='ACTION_NAME eq "test"'>测试采集规则<else />采集结果</if>
+                            <span class="tools pull-right">
+                                <a class="fa fa-rotate-left" href="{:U(MODULE_NAME.'/Collect/index')}"> 返回</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+						<if condition='ACTION_NAME eq "test"'>
+                            <div class="adv-table editable-table ">
+								<table class="table table-bordered table-striped dataTable">
+								
+								<thead>								
+								<tr role="row">
+									<th>文章标题</th>
+									<th>文章地址URL</th>
+								</tr>
+								</thead>
+								<tbody>
+								<foreach name="arr" item="v">							
+								<tr class="">
+									<td>{$v.title}</td>
+									<td>{$v.url}</td>
+								</tr>
+								</foreach>
+								</tbody>								
+								</table>
+							</div>
+							<else />
+							<volist name="jl" id="vo">
+							<div class="form-group">
+							<label class="control-label col-lg-8">{$vo}</label>
+							</div>
+							</volist>
+							<div class="form-group">
+							<label class="control-label col-lg-8">{$msg}</label>
+							</div>
+							</if>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

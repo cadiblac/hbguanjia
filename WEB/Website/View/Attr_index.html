@@ -1,0 +1,87 @@
+<include file="Public:common" />
+<title>文章属性管理</title>
+  <!--pickers css-->
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                设置文章属性
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 文章属性 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            文章属性
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+								<div class="clearfix">
+									<div class="form-group">
+										<a href="{:U(MODULE_NAME.'/Attr/addAttr')}" class="btn btn-primary">
+											添加属性 <i class="fa fa-plus"></i>
+										</a>
+									</div>
+								</div>
+								<div class="space15"></div>
+								<table class="table table-bordered table-striped dataTable">
+								
+								<thead>								
+								<tr role="row">
+									<th>ID</th>
+									<th>属性名称</th>
+									<th width=15%>操作</th>
+								</tr>
+								</thead>
+								<tbody>
+								<foreach name='attr' item='v'>								
+								<tr class="">
+									<td>{$v.id}</td>									
+									<td>{$v.name}</td>
+									<td>
+										<a href="{:U(MODULE_NAME.'/Attr/updataAttr',array('id'=>$v['id']))}"><span class="btn btn-success btn-xs">修改</span></a>
+										<a onclick="return confirm('确实要删除吗？')" href="{:U(MODULE_NAME.'/Attr/delAttr',array('id'=>$v['id']))}"><span class="btn btn-warning btn-xs">删除</span></a>
+									</td>
+								</tr>
+								</foreach>
+								</tbody>
+								
+								</table>
+
+							</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+</body>
+</html>

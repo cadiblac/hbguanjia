@@ -1,0 +1,157 @@
+<include file="Public:common" />
+<title>添加新投票</title>
+<!--file upload-->
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                设置投票
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 设置投票 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            添加新投票
+							
+							<span class="tools pull-right">
+                                <a class="fa fa-rotate-left" href="javascript:history.go(-1)"> 返回</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Vote/addHandle')}">
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">标题</label>
+                                        <div class="col-lg-2">
+                                           <input type="text" class="form-control " name="remark" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">投票问题</label>
+                                        <div class="col-lg-8">
+                                            <textarea name="title" id="content"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">投票栏目</label>
+                                        <div class="col-lg-2">
+                                           <select name="cid" class="form-control input-sm m-bot15">
+										    <foreach name='cate' item='v'>
+												<option value="{$v.id}">{$v.name}</option>												
+											</foreach>											
+										   </select>
+                                        </div>
+                                    </div>
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">投票类型</label>
+                                        <div class="col-lg-8">
+												<label class="checkbox-inline"><input type="radio" name="ismore"  value="0" checked="checked">
+													单选													
+												</label>
+												<label class="checkbox-inline"><input type="radio" name="ismore"  value="1">
+													多选
+												</label>
+												<label class="checkbox-inline"><input type="radio" name="ismore"  value="2">
+													简答
+												</label>
+                                        </div>
+                                    </div>
+									
+                                    <div class="form-group">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">排序</label>
+                                        <div class="col-lg-2">
+                                           <input type="text" class="form-control " name="sort" value="100">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="da">
+									<label for="agree" class="control-label col-lg-2 col-sm-3">设置答案</label>
+                                        <div class="col-lg-10" id="last">
+										   <div class="form-group" ><label class="col-sm-6"><a class="btn btn-info" href="javascript:addAns()" >添加答案</a></label></div>
+											<div class="form-group" ><label class="col-sm-6"><input type="text" class="form-control" name="ans[]"/></label><label class="col-sm-2"><a class="btn btn-sm btn-warning" href="#" name="rmlink">删除</a></label></div>
+										</div>
+									</div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <input class="btn btn-primary" type="submit" value="保&nbsp;&nbsp;存">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+<js file="__ROOT__/Data/ueditor/ueditor.config.js" />
+<js file="__ROOT__/Data/ueditor/ueditor.all.min.js" />
+<script type="text/javascript">
+	window.UEDITOR_HOME_URL = "__ROOT__/Data/ueditor/";
+	window.onload = function (){
+	//window.UEDITOR_CONFIG.initialFrameWidth = 1000; 初始化编辑器宽度,默认1000
+	window.UEDITOR_CONFIG.initialFrameHeight = 50; //初始化编辑器高度,默认320
+		UE.getEditor('content',{ initialFrameWidth: null });
+	}
+
+$(document).ready(function(){ 
+    bindListener();
+})
+function addAns(){
+	$("#last").append('<div class="form-group" ><label class="col-sm-6"><input type="text" class="form-control" name="ans[]"/></label><label class="col-sm-2"><a class="btn btn-sm btn-warning" href="#" name="rmlink">删除</a></label></div>');      
+    // 为新元素节点添加事件侦听器
+    bindListener();
+}
+function bindListener(){
+    $("a[name=rmlink]").unbind().click(function(){
+    $(this).parent().parent().remove(); 
+})
+}
+
+$(":radio[name='ismore']").click(function(){
+    var index = $(":radio[name='ismore']").index($(this));
+    if(index == 2) //选中第3个时，div隐藏
+        $("#da").hide();
+    else //当被选中的不是第2个时，div显示
+        $("#da").show();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<include file="Public:common" />
+<title>投票记录</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+			投票记录
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+
+                <li class="active"> 投票记录 </li>
+
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+							投票记录	
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+								<table class="table table-bordered table-striped dataTable">								
+								<thead>								
+								<tr role="row">
+									<th>ID</th>
+									<th>栏目ID</th>									
+									<th>IP</th>
+									<th>投票时间</th>
+									<th>记录</th>									
+								</tr>
+								</thead>
+								<tbody>
+								<foreach name='record' item='v'>						
+								<tr class="">
+									<td>{$v.id}</td>
+									<td>{$v.cid}</td>
+									<td>{$v.ip}</td>
+									<td>{$v.time|date='Y-m-d H:i:s',###}</td>
+									<td>{$v.records}</td>
+								</tr>
+								</foreach>
+								</tbody>								
+								</table>								
+								<div class="form-group">
+									<div class="col-lg-offset-6 col-lg-6" id="page">{$page}</div>
+								</div>
+							</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

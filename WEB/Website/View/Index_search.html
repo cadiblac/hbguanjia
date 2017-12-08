@@ -1,0 +1,127 @@
+<include file="Public:common" />
+  <title>快捷搜索</title>
+  <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+  <!--data table-->
+  <link rel="stylesheet" href="__PUBLIC__/js/data-tables/DT_bootstrap.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+             全站快捷搜索   
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/meter')}">首页</a>
+                </li>
+                <li class="active"> 快捷搜索 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+			   <div class="col-sm-12">
+				<section class="panel">
+				<header class="panel-heading">
+					搜索"{$str}"相关内容
+					<span class="tools pull-right">
+						<a href="javascript:;" class="fa fa-chevron-down"></a>
+					 </span>
+				</header>
+				<div class="panel-body">
+				<div class="adv-table editable-table">
+				<table  class="display table table-bordered table-striped" id="editable-sample">
+				<thead>
+				<tr>
+					<th>ID</th>
+					<th>标题</th>
+					<th>发布日期</th>
+					<th>类型</th>		
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<foreach name='searcha' item='v'>
+				<tr class="gradeX">
+					<td>{$v.id}</td>
+					<td>{$v.title|msubstr=###,0,30,'utf-8',false}</td>
+					<td>{$v.time|date='Y-m-d H:i:s',###}</td>
+					<td>文章/图集</td>
+					<td>
+					<a href="{:U(MODULE_NAME.'/Article/updata',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-success btn-xs">查看</span></a>
+					</td>
+				</tr>
+				</foreach>
+				<foreach name='searchg' item='v'>
+				<tr class="gradeX">
+					<td>{$v.id}</td>
+					<td>{$v.title|msubstr=###,0,30,'utf-8',false}</td>
+					<td>{$v.time|date='Y-m-d H:i:s',###}</td>
+					<td>产品</td>
+					<td>
+					<a href="{:U(MODULE_NAME.'/Goods/updata',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-success btn-xs">查看</span></a>
+					</td>
+				</tr>
+				</foreach>
+				<foreach name='searchk' item='v'>
+				<tr class="gradeX">
+					<td>{$v.id}</td>
+					<td>{$v.title|msubstr=###,0,30,'utf-8',false}</td>
+					<td>{$v.time|date='Y-m-d H:i:s',###}</td>
+					<td>留言</td>
+					<td>
+					<a href="{:U(MODULE_NAME.'/Gbook/replay',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-success btn-xs">查看</span></a>
+					</td>
+				</tr>
+				</foreach>
+				<foreach name='searchj' item='v'>
+				<tr class="gradeX">
+					<td>{$v.id}</td>
+					<td>{$v.title|msubstr=###,0,30,'utf-8',false}</td>
+					<td>{$v.time|date='Y-m-d H:i:s',###}</td>
+					<td>招聘</td>
+					<td>
+					<a href="{:U(MODULE_NAME.'/Jobs/updata',array('id'=>$v['id'],'cid'=>$v['cid']))}"><span class="btn btn-success btn-xs">查看</span></a>
+					</td>
+				</tr>
+				</foreach>				
+				</tbody>
+				</table>
+				</div>
+				</div>
+				</section>
+				</div>
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--data table-->
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/DT_bootstrap.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+<!--script for editable table-->
+<script src="__PUBLIC__/js/editable-table.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function() {
+        EditableTable.init();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<include file="Public:common" />
+<title>数据备份工具</title>
+  <!--pickers css-->
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                数据库在线备份
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 数据备份工具 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            数据在线备份
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+								<div class="clearfix">
+									<div class="form-group">
+										<a type="button" onClick="location.href = '__URL__/index/Action/backup'" class="btn btn-primary">
+											备份数据 <i class="fa fa-save"></i>
+										</a>
+									</div>
+								</div>
+								<div class="space15"></div>
+								<table class="table table-bordered table-striped dataTable">
+								
+								<thead>								
+								<tr role="row">
+									<th>序号</th>
+									<th width=40%>文件名</th>
+									<th>备份时间</th>
+									<th>文件大小</th>
+									<th width=15%>操作</th>
+								</tr>
+								</thead>
+								<tbody>
+								<notempty  name="lists">
+
+									<foreach name="lists" key="key" item="row">
+										<if condition="$key gt 1">
+											<tr>
+												<td>{$key-1}</td>
+												<td style="text-align: left"><a href="{:U('Bak/index',array('Action'=>'download','file'=>$row))}">{$row}</a></td>
+												<td>{$row|getfiletime=$datadir}</td>
+												<td>{$row|getfilesize=$datadir}</td>
+												<td>
+													<a href="{:U('Bak/index',array('Action'=>'download','file'=>$row))}"><span class="btn btn-success btn-xs">下载</span></a>
+												<if condition="$_SESSION['username'] eq C('RBAC_SUPERADMIN')">
+													<a onclick="return confirm('确定将数据库还原到当前备份吗？')"href="{:U('Bak/index',array('Action'=>'RL','File'=>$row))}"><span class="btn btn-primary  btn-xs">还原</span></a>
+												</if>
+													<a onclick="return confirm('确定删除该备份文件吗？')"href="{:U('Bak/index',array('Action'=>'Del','File'=>$row))}"><span class="btn btn-warning btn-xs">删除</span></a>
+												</td>
+											</tr>
+										</if>
+									</foreach>
+									<else/>
+									<tr>
+										<td colspan="7">没有找到相关数据。</td>
+									</tr>
+
+								</notempty>
+								</tbody>
+								
+								</table>
+							</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

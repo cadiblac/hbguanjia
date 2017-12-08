@@ -1,0 +1,207 @@
+<include file="Public:common" />
+<title>订单管理</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                订单详情
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/meter')}">首页</a>
+                </li>
+                <li class="active"> 订单管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+					<form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Orders/runUpdata')}">
+                        <header class="panel-heading">
+                            订单详细信息
+							<span class="tools pull-right">
+								<a class="fa fa-rotate-left" href="{:U(MODULE_NAME.'/Orders/index',array(id=>$id))}"> 返回</a>
+							 </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+								<foreach name="orders" item="v">
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-1">订单号</label>
+                                        <div class="col-lg-3">
+                                            <label class="checkbox form-control">{$v.order}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="lastname" class="control-label col-lg-1">商品名称</label>
+                                        <div class="col-lg-3">
+										<label class="checkbox form-control">{$p.title}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="username" class="control-label col-lg-1">商品缩略图</label>
+                                        <div class="col-lg-3">
+                                            <dl id="ul_pics" class="ul_pics clearfix"><dd id='slt'><if condition="$p['pic']"><img src="{$p.pic}"/><else />暂无缩略图</if></dd></dl>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="password" class="control-label col-lg-1">购买价格</label>
+                                        <div class="col-lg-2">
+										<div class="input-group">
+                                            <input type="text" name="price" value="{$v.price}" class="form-control "/>
+											<span class="input-group-addon ">元</span>
+										</div>
+                                        </div>
+										<label for="password" class="control-label col-lg-1">商品原价</label>
+                                        <div class="col-lg-2">
+                                           <label class="checkbox form-control"> {$p.price}元</label>
+                                        </div>
+										<label for="password" class="control-label col-lg-1">优惠活动</label>
+                                        <div class="col-lg-2">
+                                           <label class="checkbox form-control"><if condition="$p['isdis']">政府补贴<else />暂无</if></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="confirm_password" class="control-label col-lg-1">品牌</label>
+                                        <div class="col-lg-2">
+                                           <label class="checkbox form-control">{$p.brand}</label>
+                                        </div>
+										<label for="confirm_password" class="control-label col-lg-1">购买数量</label>
+                                        <div class="col-lg-2">
+                                          <label class="checkbox form-control"> {$v.num}{$p.unit}</label>
+                                        </div>
+										<label for="confirm_password" class="control-label col-lg-1">单件重量</label>
+                                        <div class="col-lg-2">
+                                          <label class="checkbox form-control"> {$p.weight}kg</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="email" class="control-label col-lg-1">总计商品价格</label>
+                                        <div class="col-lg-2">
+										<div class="input-group">
+                                            <input type="text" name="sumprice" value="{$v.sumprice}" class="form-control "/>
+											<span class="input-group-addon ">元</span>
+										</div>
+										<span class="help-block">不含快递费用</span>
+                                        </div>
+										<label for="confirm_password" class="control-label col-lg-1">累计总重</label>
+                                        <div class="col-lg-2">
+                                          <label class="checkbox form-control"> {$p['weight']*$v['num']}kg</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-1 col-sm-3">客户名称</label>
+                                        <div class="col-lg-2">
+                                           <label class="checkbox form-control"> {$u.realname}</label>
+                                        </div>
+										<label for="agree" class="control-label col-lg-1 col-sm-3">会员等级</label>
+                                        <div class="col-lg-2">
+                                           <label class="checkbox form-control"> {$u.usertype}</label>
+                                        </div>
+										<label for="agree" class="control-label col-lg-1 col-sm-3">联系电话</label>
+                                        <div class="col-lg-2">
+                                           <label class="checkbox form-control"> {$v.tel}</label>
+                                        </div>
+                                    </div> 
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-1 col-sm-3">QQ</label>
+                                        <div class="col-lg-2">
+                                        <label class="checkbox form-control">{$u.QQ}	</label>									
+                                        </div>
+										<label for="agree" class="control-label col-lg-1 col-sm-3">邮递地址</label>
+                                        <div class="col-lg-5">
+                                       <label class="checkbox form-control"> {$v.adress}	</label>								
+                                        </div>
+                                    </div>
+               
+							<div class="form-group">
+								<label class="col-lg-1 control-label">下单时间</label>
+								<div class="col-lg-2">
+								<label class="checkbox form-control">	{$v.buytime|date="Y-m-d H:i",###}</label>
+								</div>
+								<label class="col-lg-1 control-label">订单状态</label>
+								<div class="col-lg-2"><label class="checkbox form-control">
+									<switch name="v['status']">
+										<case value="0">购物车</case>
+										<case value="1">已下单</case>
+										<case value="2">已支付</case>
+										<case value="3">已发货</case>
+										<case value="4">已收货</case>
+									</switch></label>
+								</div>
+								<label class="col-lg-1 control-label">是否支付</label>
+								<div class="col-lg-2">
+									<label class="checkbox form-control"><if condition="$v['paytime']">支付时间:{$v.paytime|date="Y-m-d H:i",###}<else />未支付</if></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">是否发货</label>
+								<div class="col-lg-2">
+								<if condition="$v['status'] lt 2"><label class="checkbox form-control">等待客户付款</label></if>
+								<if condition="$v['status'] eq 2"><label class="checkbox-inline"><input type="radio" name="status" value="3" />发货</label></if>
+								<if condition="$v['status'] gt 3"><label class="checkbox form-control">已发货</label></if>							
+								</div>
+								<label class="col-lg-1 control-label">支付宝交易号</label>
+								<div class="col-lg-2">
+								<label class="checkbox form-control">{$v.trade}	</label>						
+								</div>
+								<label class="col-lg-1 control-label">交易金额</label>
+								<div class="col-lg-2">
+								<label class="checkbox form-control">{$v.total_fee}元	</label>						
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">支付宝支付账号</label>
+								<div class="col-lg-3">
+								<label class="checkbox form-control">{$v.buyer_alipay}	</label>						
+								</div>
+								<label class="col-lg-1 control-label">支付宝交易状态</label>
+								<div class="col-lg-3">
+								<label class="checkbox form-control">{$v.trade_status}	</label>				
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">备注信息</label>
+								<div class="col-lg-6">
+								<textarea name="remark" class="wysihtml5 form-control" rows="5">{$v.remark}</textarea>
+								<input type="hidden" name="id" value="{$v.id}">								
+								</div>
+							</div>
+						</foreach>
+							<div class="form-group">
+								<div class="col-lg-offset-1 col-lg-10">
+									<button class="btn btn-primary" type="submit">保&nbsp;&nbsp;存</button>
+								</div>
+							</div>   
+							</div>
+                        </div>
+						</form>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<include file="Public:common" />
+<title>会员管理</title>
+<!--file upload-->
+<script type="text/javascript" src="__PUBLIC__/Js/cate.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                修改会员信息
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+				<li>
+                    <a href="{:U('Member/index')}">会员列表</a>
+                </li>
+                <li class="active"> 会员信息 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            修改会员信息
+							
+							<span class="tools pull-right">
+                                <a class="fa fa-rotate-left" href="{:U(MODULE_NAME.'/Member/index')}"> 返回</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Member/runUpdata')}">
+								<foreach name="member" item="v">
+								<div class="alert alert-success alert-block fade in">用户信息</div>
+                                    <div class="form-group">
+										<label class="control-label col-lg-1"> 用户名</label>
+										<div class="col-lg-3">
+											<input size="16" type="text" class="form-control" name="username" value="{$v.username}" readonly="readonly">											
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-1">姓名(昵称)</label>
+										<div class="col-lg-3 col-xs-11">
+											<input type="text" class="form-control" name="realname" value="{$v.realname}" readonly="readonly" />
+										</div>
+									</div>                                              
+									<div class="form-group">
+										<label class="control-label col-lg-1">电话</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" name="url" class="form-control" readonly="readonly" type="text" name="tel" value="{$v.tel}" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-1">邮递地址</label>
+										<div class="col-lg-3 col-xs-11">
+										<input class="form-control" readonly="readonly" type="text" class="len400" name="tel" value="{$v.adress}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-1">QQ</label>
+										<div class="col-lg-3 col-xs-11">
+										<input type="text" class="form-control" readonly="readonly" type="text" name="QQ" value="{$v.qq}">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="control-label col-lg-1">Email</label>
+										<div class="col-lg-3 col-xs-11">
+										<input class="form-control" readonly="readonly" type="text" name="email" value="{$v.email}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-1">会员积分</label>
+										<div class="col-lg-3 col-xs-11">
+										<input class="form-control" readonly="readonly" type="text" name="integral" value="{$v.integral}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-1">会员类型</label>
+										<div class="col-lg-3 col-xs-11">
+										<input class="form-control" readonly="readonly" type="text" name="usertype" value="{$v.usertype}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-1">注册时间</label>
+										<div class="col-lg-3 col-xs-11">
+										<input class="form-control" readonly="readonly" type="text" name="regtime" value="{$v.regtime|date='Y-m-d H:i:s',###}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-1">注册IP</label>
+										<div class="col-lg-3 col-xs-11">
+										<input class="form-control" readonly="readonly" type="text" name="regip" value="{$v.regip}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-1">最后一次登录时间</label>
+										<div class="col-lg-3 col-xs-11">
+										<input class="form-control" readonly="readonly" type="text" name="logintime" <if condition="$v['logintime']">value="{$v.logintime|date='Y-m-d H:i:s',###}"<else />value="未登录过"</if>>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-1">最后一次登录ip</label>
+										<div class="col-lg-3 col-xs-11">
+										<input class="form-control" readonly="readonly" type="text" name="loginip" value="{$v.loginip}">
+										</div>
+									</div>
+									<div class="alert alert-success alert-block fade in">用户设置</div>
+									<div class="form-group">
+										<label class="control-label col-lg-1">会员状态</label>
+										<div class="col-lg-2 col-xs-11">
+										<select class="form-control" name="state">
+										<switch name="v['state']">
+											<case value="0">
+											<option value ="0">待审核</option>
+											<option value ="1">审核</option>
+											<option value ="2">锁定</option>
+											</case>
+											<case value="1">
+											<option value ="1">正常使用</option>
+											<option value ="2">锁定</option>
+											</case>
+											<case value="2">
+											<option value ="2">已锁定(禁止登录)</option>
+											<option value ="1">解除锁定</option>
+											</case>
+										</switch>
+										</select>
+										</div>
+									</div>                                  
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+										<input type="hidden" name="id" value="{$v.id}">
+                                            <input class="btn btn-primary" type="submit" value="保&nbsp;&nbsp;存">
+                                        </div>
+                                    </div>
+								</foreach>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<script>var app="__ROOT__";</script>
+<script type="text/javascript" src="__PUBLIC__/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/upload.js"></script>
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

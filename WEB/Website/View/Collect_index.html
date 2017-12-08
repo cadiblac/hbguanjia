@@ -1,0 +1,239 @@
+<include file="Public:common" />
+<title>采集管理</title>
+  <!--pickers css-->
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-datepicker/css/datepicker-custom.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-timepicker/css/timepicker.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-colorpicker/css/colorpicker.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                采集规则设置
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 采集规则 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                           采集规则管理
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+								<div class="clearfix">
+									<div class="form-group">
+										<a href="#myModal2" class="btn btn-primary" data-toggle="modal">
+											添加规则 <i class="fa fa-plus"></i>
+										</a>
+										<!-- Modal -->
+                            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">添加新规则</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{:U(MODULE_NAME.'/Collect/runAdd')}" method="post" class="form-horizontal ">
+											<div class="alert alert-success alert-block fade in">采集基本信息设置</div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4"> 采集项目名称</label>
+                                                    <div class="col-md-6">
+                                                        <input size="16" type="text" name="name" class="form-control" placeholder="请输入采集项目名称">
+														<span class="help-inline">采集工程名称，中文</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">目标站域名</label>
+                                                    <div class="col-md-6 col-xs-11">
+                                                        <input type="text" name="site" id="site" class="form-control" placeholder="请输入站点地址" />
+														<span class="help-inline">站点地址，以 http:// 开始不带结尾的/</span>
+                                                    </div>
+                                                </div>                                              
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">采集列表页地址</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="url" class="form-control" id="url" class="span5" placeholder="请输入站点地址" />
+													<span class="help-block">采集列表页路径</span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">采集页面编码</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<select id="charset" class="form-control" name="charset">
+														<option>UTF-8</option>
+														<option>GB2312</option>
+													</select>
+													<span class="help-block">采集页面编码</span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">采集结果对应本站栏目id</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="aid" class="form-control" placeholder="对应栏目id">
+                                                    </div>
+                                                </div>
+												<div class="alert alert-success alert-block fade in">采集节点设置</div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">采集节点范围</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="list" id="list_list" class="form-control" />
+													<span class="help-inline">采集列表节点范围标记(jquery 语法) 如：
+													<code>.test li</code></span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">列表标题标签</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="title" id="list_title" class="form-control" />
+													<span class="help-inline">地址节点标记(jquery 语法) 如：<code>li a:eq(0) </code></span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">题图标签</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="img" id="list_title" class="form-control" />
+													<span class="help-inline">地址节点标记(jquery 语法) 如：<code>li img:eq(0) </code></span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">内容页url标签</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="liurl" id="list_title" class="form-control" />
+													<span class="help-inline">标题节点标记(jquery 语法) 如：<code>li href:eq(0) </code></span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">添加时间标签</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="date" id="list_date" class="form-control" />
+													<span class="help-inline">时间节点标记(jquery 语法) 如：<code>.date</code></span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">作者标签</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="author" id="list_author" class="form-control" />
+													<span class="help-inline">作者节点标记(jquery 语法) 如：<code>.author</code></span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">访问量标签</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="hits" id="list_hits" class="form-control" />
+													<span class="help-inline">访问量节点标记(jquery 语法) 如：<code>.list_hits</code></span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">内容页标题标签</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="ntitle" id="list_content" class="form-control" />
+													<span class="help-inline">内容页标题节点标记(jquery 语法) 如：<code>.title</code></span>
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="control-label col-md-4">内容页内容标签</label>
+                                                    <div class="col-md-6 col-xs-11">
+													<input type="text" name="content" id="list_content" class="form-control" />
+													<span class="help-inline">内容页内容节点标记(jquery 语法) 如：<code>.content</code></span>
+                                                    </div>
+                                                </div>
+												<div class="modal-footer center-block">
+													<input class="btn btn-primary" type="submit" value="保存">
+												</div>
+                                            </form>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- modal -->
+									</div>
+								</div>
+								<div class="space15"></div>
+								<table class="table table-bordered table-striped dataTable">
+								
+								<thead>								
+								<tr role="row">
+									<th>ID</th>
+									<th width=40%>规则名称</th>
+									<th>网站域名</th>
+									<th>采集目标地址</th>
+									<th>对应栏目ID</th>
+									<th width=10%>操作</th>
+									<th width=10%>功能</th>
+								</tr>
+								</thead>
+								<tbody>
+								<foreach name='collect' item='v'>							
+								<tr class="">
+									<td>{$v.id}</td>
+									<td>{$v.name}</td>
+									<td>{$v.site}</td>
+									<td>{$v.url}</td>
+									<td>{$v.aid}</td>
+									<td>
+										<a href="{:U(MODULE_NAME.'/Collect/updata',array('id'=>$v['id']))}"><span class="label label-success label-mini">修改</span></a>
+										<a onclick="return confirm('确实要删除吗？')" href="{:U(MODULE_NAME.'/Collect/del',array('id'=>$v['id']))}"><span class="label label-default">删除</span></a>
+									</td>
+									<td>
+										<a href="{:U(MODULE_NAME.'/Collect/test',array('id'=>$v['id']))}"><span class="label label-primary">测试</span></a>
+										<a href="{:U(MODULE_NAME.'/Collect/doNote',array('id'=>$v['id']))}"><span class="label label-info">采集</span></a>
+									</td>
+								</tr>
+								</foreach>
+								</tbody>								
+								</table>
+							</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--pickers plugins-->
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<!--pickers initialization-->
+<script src="__PUBLIC__/js/pickers-init.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

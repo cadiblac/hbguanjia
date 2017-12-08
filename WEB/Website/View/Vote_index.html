@@ -1,0 +1,63 @@
+<include file="Public:common" />
+  <title>内容管理</title>
+  <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<!--tree-->
+<script src="__PUBLIC__/js/jquery.ztree.core-3.5.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Css/zTreeStyle/metro.css" type="text/css">
+</head>
+
+<body class="sticky-header left-side-collapsed">
+<include file="Public:header" />
+        <!-- header section end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="mail-box">
+                {:W('Menu/mau')}
+                <section class="mail-box-info">
+                   <div class="col-sm-12">
+					<section class="panel">
+					<header class="panel-heading">
+						{$cate['name']}
+						<span class="tools pull-right">
+							<a href="javascript:;" class="fa fa-chevron-down"></a>
+						 </span>
+					</header>
+					<div class="panel-body">
+					<foreach name='vote' item='v'>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								{$v.question}
+							</h3>
+						</div>
+						<div class="panel-body">
+						<ul class="list-inline">                            							
+                            <foreach name='v.ans' item='a'>
+							<li class="alert alert-info" style="margin-right:10px;">{$a.answer}<if condition="$v['ismore'] neq 2"><span class="badge">{$a.votes}</span></if></li>
+							</foreach>					
+						</ul>
+						</div>
+					</div>
+					</foreach>
+					</div>
+					</section>
+					</div>
+                </section>
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+</body>
+</html>

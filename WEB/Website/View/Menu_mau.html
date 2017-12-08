@@ -1,0 +1,64 @@
+<script language="javascript"> 
+	var zTree;
+	var setting = {
+		view: {
+			dblClickExpand: false,
+			showLine: true,
+			selectedMulti: false
+		},
+		data: {
+			simpleData: {
+				enable:true,
+				idKey: "id",
+				pIdKey: "pId",
+				rootPId: ""
+			}
+		},
+		callback: {
+			beforeClick: function(treeId, treeNode) {
+				var zTree = $.fn.zTree.getZTreeObj("tree");
+				if (treeNode.isParent) {
+					zTree.expandNode(treeNode);
+					return false;
+				} else {
+					self.location=treeNode.file +'.htm';
+					return true;
+				}
+			}
+		}
+	};
+
+	var zNodes =[
+	    <foreach name='cate' item='v'>		
+		<if condition="$v['html']">
+		{id:{$v.id}, pId:{$v.pid}, name:"{$v.name}", file:<if condition="$v['model'] eq 'Slink'">"javascript:void(0)"<else />"{:U(MODULE_NAME.'/'.$v['model'].'/index',array('id' => $v['id']))}"</if>},
+		<else />
+		{id:{$v.id}, pId:{$v.pid}, name:"{$v.name}", open:true, file:<if condition="$v['model'] eq 'Slink'">"javascript:void(0)"<else />"{:U(MODULE_NAME.'/'.$v['model'].'/index',array('id' => $v['id']))}"</if><if condition="$v['model'] neq 'Info'">,icon:"__PUBLIC__/Css/zTreeStyle/img/diy/12.png"</if>},
+		</if>
+		</foreach>
+	];
+
+	$(document).ready(function(){
+		var t = $("#tree");
+		t = $.fn.zTree.init(t, setting, zNodes);
+		var zTree = $.fn.zTree.getZTreeObj("tree");
+	});
+</script>
+<aside class="mail-nav mail-nav-bg-color">
+	<header class="header"> <h4>内容管理</h4> </header>
+	<div class="mail-nav-body">
+		<div class="text-center">
+			<a class="btn btn-compose" href="javascript:;">
+				栏目菜单
+			</a>
+			<ul id="tree" class="ztree"></ul>
+		</div>
+	</div>
+	<footer class="text-center">
+		<div class="btn-group">
+			<a href="{:U(MODULE_NAME.'/Article/trash')}" title="回收站" class="btn mini btn-default">
+				<i class="fa fa fa-trash-o"></i>
+			</a>
+		</div>
+	</footer>
+</aside>
