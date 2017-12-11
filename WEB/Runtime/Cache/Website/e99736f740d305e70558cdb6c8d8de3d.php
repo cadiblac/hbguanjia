@@ -277,6 +277,21 @@
 									<p class="help-block">成功申请支付宝接口后获取到的Key</p>
 								</div>
 							</div>
+							<div class="alert alert-success alert-block fade in">微信登录参数</div>
+							<div class="form-group has-success">
+								<label class="col-lg-2 control-label">Appid</label>
+								<div class="col-lg-3">
+									<input type="text" placeholder="" id="f-name" name="Appid" class="form-control" value="<?php echo ($data['Appid']); ?>">
+									<p class="help-block">微信开发者信息开发者ID</p>
+								</div>
+							</div>
+							<div class="form-group has-error">
+								<label class="col-lg-2 control-label">AppSecret</label>
+								<div class="col-lg-3">
+									<input type="password" placeholder="" id="l-name" name="AppSecret" class="form-control" value="<?php echo ($data['AppSecret']); ?>">
+									<p class="help-block">开发者密码</p>
+								</div>
+							</div>
 							<div class="form-group">
 								<div class="col-lg-offset-2 col-lg-10">
 									<button class="btn btn-primary" type="submit">保存</button>
