@@ -23,3 +23,25 @@
 transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
 .contact-button-house{text-align:center;}
 .contact-button-house .contactButton {width:100px; height:30px; margin:10px auto; border-radius:8px; color:#fff; background:#21ba45; border:none;}
+
+.cpfl h3{height:36px; line-height:40px; text-align:center; background:#efefef;}
+.ld-left{padding:10px 10px 0; display:flex; justify-content:space-around; flex-wrap:wrap; border-bottom:#efefef 1px solid;}
+.ld-left .renwu{padding:5px 10px; margin-bottom:10px; border-radius:3px; border:#eee 1px solid;}
+.ld-left .renwu h2{font-weight:500;}
+.ld-left .current{border-color:#95c62b; background:#95c62b;}
+.ld-left .current h2{color:#fff;}
+
+.product{padding:10px 0; display:flex; justify-content:space-between; flex-wrap:wrap;}
+.product li{display:flex; align-content:space-between; flex-wrap:wrap; width:48%; margin-bottom:15px; border:#eee 1px solid; border-radius:5px;}
+.product li a{display:block;}
+.product li img,.product li .zc{width:100%;}
+.product li h3{padding:0 10px;line-height:24px;}
+.product li .db{padding:0 10px 5px;}
+.product li .db .jf{border:0;}
+.product li .lll{padding-left:20px; background:url(../images/eye18.png) left center no-repeat; background-size:20px 18px;}
+
+/*商品详情页*/
+.shangp{padding:15px 10px; border-bottom:#eee 3px solid;}
+.sku-name{font-size:16px;line-height:26px;color:#95c62b;}
+.dt{line-height:22px; color:#F9B61F;}
+.dtt{line-height:22px; color:#F63317;}

@@ -128,19 +128,19 @@ str;
   foreach (\$_navi_cate as \$_navi_v) :
   	extract(\$_navi_v);
   	switch (\$_navi_v['model']){
-		case Article : \$url = U("/".MODULE_NAME."/article/index",array('id'=>$id,'spread'=>session('userID')));
+		case Article : \$url = U("/".MODULE_NAME."/article/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break; 
-		case Info : \$url = U("/".MODULE_NAME."/info/index",array('id'=>$id,'spread'=>session('userID')));
+		case Info : \$url = U("/".MODULE_NAME."/info/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
-		case Atlas : \$url = U("/".MODULE_NAME."/atlas",array('id'=>$id,'spread'=>session('userID')));
+		case Atlas : \$url = U("/".MODULE_NAME."/atlas",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
-		case Gbook : \$url = U("/".MODULE_NAME."/gbook/index",array('id'=>$id,'spread'=>session('userID')));
+		case Gbook : \$url = U("/".MODULE_NAME."/gbook/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
 		case Slink : \$url = \$_navi_v['link'];
 		 break;
-		case Jobs : \$url = U("/".MODULE_NAME."/jobs/index",array('id'=>$id,'spread'=>session('userID')));
+		case Jobs : \$url = U("/".MODULE_NAME."/jobs/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
-		case Goods : \$url = U("/".MODULE_NAME."/goods/index",array('id'=>$id,'spread'=>session('userID')));
+		case Goods : \$url = U("/".MODULE_NAME."/goods/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
   	}
 ?>
@@ -203,19 +203,19 @@ str;
   foreach (\$_fav_cate as \$_fav_v) :
   	extract(\$_fav_v);
   	switch (\$_fav_v['model']){
-		case Article : \$url = U("/".MODULE_NAME."/article/index",array('id'=>$id,'spread'=>session('userID')));
+		case Article : \$url = U("/".MODULE_NAME."/article/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break; 
-		case Info : \$url = U("/".MODULE_NAME."/info/index",array('id'=>$id,'spread'=>session('userID')));
+		case Info : \$url = U("/".MODULE_NAME."/info/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
-		case Atlas : \$url = U("/".MODULE_NAME."/atlas",array('id'=>$id,'spread'=>session('userID')));
+		case Atlas : \$url = U("/".MODULE_NAME."/atlas",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
-		case Gbook : \$url = U("/".MODULE_NAME."/gbook/index",array('id'=>$id,'spread'=>session('userID')));
+		case Gbook : \$url = U("/".MODULE_NAME."/gbook/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
 		case Slink : \$url = \$_fav_v['link'];
 		 break;
-		case Jobs : \$url = U("/".MODULE_NAME."/jobs/index",array('id'=>$id,'spread'=>session('userID')));
+		case Jobs : \$url = U("/".MODULE_NAME."/jobs/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
-		case Goods : \$url = U("/".MODULE_NAME."/goods/index",array('id'=>$id,'spread'=>session('userID')));
+		case Goods : \$url = U("/".MODULE_NAME."/goods/index",array('id'=>\$id,'spread'=>session('userID')));
 		 break;
   	}
 ?>

@@ -16,165 +16,111 @@
 	<a class="fuwu" href="/index.php/Index/member/cart">购物车</a>
 </div>
 <div style="height:60px;"></div>
-<link href="/Public/css/fdj.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="/Public/css/fancybox.css" />
-<script src="/Public/js/fdj.js"></script>
-<script src="/Public/js/check.js"></script>
-<script type="text/javascript" src="/Public/js/jquery.fancybox-1.3.1.pack.js"></script>
-<script type="text/javascript">
-  $(document).ready(function(){
-	  var showproduct = {
-		  "boxid":"showbox",
-		  "sumid":"showsum",
-		  "boxw":456,//宽度,该版本中请把宽高填写成一样
-		  "boxh":456,//高度,该版本中请把宽高填写成一样
-		  "sumw":60,//列表每个宽度,该版本中请把宽高填写成一样
-		  "sumh":60,//列表每个高度,该版本中请把宽高填写成一样
-		  "sumi":7,//列表间隔
-		  "sums":5,//列表显示个数
-		  "sumsel":"sel",
-		  "sumborder":1,//列表边框，没有边框填写0，边框在css中修改
-		  "lastid":"showlast",
-		  "nextid":"shownext"
-		  };//参数定义	  
-	 $.ljsGlasses.pcGlasses(showproduct);//方法调用，务必在加载完后执行
-  });
+<link rel="stylesheet" type="text/css" href="/Public/css/style.css">
+<script src="/Public/js/comments.js"></script>
+<script src="/Public/js/fenye.js"></script>
+<script src="/Public/js/setfenye.js"></script>
+<!-- banner S -->
+<div class="banner">
+	
+	<div class="bd">
+		<ul>			
+			<?php if(is_array($img)): foreach($img as $key=>$v): ?><li style="background:url(<?php echo ($v["img"]); ?>) #BCE0FF center 0 no-repeat;"><a href="javascript:;"></a></li><?php endforeach; endif; ?>
+			<li style="background:url(<?php echo ($timg); ?>) #BCE0FF center 0 no-repeat;"><a href="javascript:;"></a></li>
+		</ul>
+	</div>
 
-$(function(){
-  $("#showdiv").fancybox({'centerOnScroll':true});
-  });
-</script>  
-<?php echo W('bann/banner');?> 
+	<div class="hd"><ul></ul></div>
+</div>
 
-<div class="main">
-    <ul class="crub"><li>当前位置:</li>	<li><a href='/index.php'>首页</a></li><?php
- $_crumb_cate = M('cate')->select(); $_crumb_cate = Lib\Category::getParents($_crumb_cate,$cid); foreach ($_crumb_cate as $_crumb_v){ extract($_crumb_v); switch ($_crumb_v['model']){ case 'Article' : $url = U("/".MODULE_NAME."/alist_".$id); break; case 'Info' : $url = U("/".MODULE_NAME."/info_".$id); break; case 'Atlas' : $url = U("/".MODULE_NAME."/plist_".$id); break; case 'Gbook' : $url = U("/".MODULE_NAME."/gbook_".$id); break; case 'Slink' : $url = $_crumb_v['link']; break; case 'Jobs' : $url = U("/".MODULE_NAME."/jobs_".$id); break; case 'Goods' : $url = U("/".MODULE_NAME."/goods_".$id); break; } echo "<li>&gt;&gt;&nbsp;<a href='".$url."'>"; echo $name; echo "</a></li>"; } ?></ul>	
-	<div class="readcon">
-	<div class="poto">
-	<div id="showbox">
-	  <img src="<?php echo ($timg); ?>" width="249" height="185">	  
-	  <?php if(is_array($img)): foreach($img as $key=>$v): ?><img src="<?php echo ($v["img"]); ?>" width="249" height="185"/><?php endforeach; endif; ?>
-	  <img src="<?php echo ($timg); ?>" width="249" height="185">
-	</div><!--展示图片盒子-->
-	<div id="showsum"></div><!--展示图片里边-->
-	<p class="showpage">
-	  <a href="javascript:void(0);" id="showlast"> < </a>
-	  <a href="javascript:void(0);" id="shownext"> > </a>
-	</p>	
-	</div>	
-	<div class="cans">
+<script type="text/javascript">jQuery(".banner").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click" });</script>
+<!-- banner E -->
+<div class="shangp">
 	<div class="sku-name"><?php echo ($title); ?></div>
-	<div class="price">
-	价&nbsp;&nbsp;格<div class="dt">￥<span><?php echo ($g["price"]); ?></span></div><br />	
-	促&nbsp;&nbsp;销<div class="dtt"><?php if($g[isdis]): ?><em class="hl_red_bg">政府补贴</em>购买后可以到当地农机局申领补贴<?php else: ?>暂无<?php endif; ?></div>
+	<div class="dt">单价&nbsp;&nbsp;￥<span><?php echo ($g["price"]); ?></span></div>
+	<?php if($g[isdis]): ?><div class="dtt">优惠价&nbsp;&nbsp;￥<span><?php echo ($g["memprice"]); ?></span><?php endif; ?>
+	<div class="shuliang"><div>数量</div>
+	<div><input class="addBtn min" type="button" value="-" /><input class="join-money" type="text" value="1" readonly><input class="addBtn add" type="button" value="+" /></div>
+	<script>
+	var t = $(".join-money");
+	$(function(){
+	$(".add").click(function() {
+		t.val(parseInt(t.val()) + 1); //点击加号输入框数值加1
+	});
+	$(".min").click(function(){
+		t.val(parseInt(t.val())-1); //点击减号输入框数值减1
+		if(t.val()<=0){
+			t.val(parseInt(t.val())+1); //最小值为1
+		}
+	});
+	});
+	</script>
 	</div>
-	<p><span>类&nbsp;&nbsp;别:</span><strong><?php echo ($clas["classname"]); ?></strong></p>
-	<p><span>品&nbsp;&nbsp;牌:</span><strong><?php echo ($g["brand"]); ?></strong></p>
-	<p><span>重&nbsp;&nbsp;量:</span><?php echo ($g["weight"]); ?>kg</p>
-	<p><span>库&nbsp;&nbsp;存:</span><?php echo ($g["stock"]); echo ($g["unit"]); ?></p>
-	<p><span>人&nbsp;&nbsp;气:</span><script type="text/javascript" src="<?php echo U(MODULE_NAME.'/Goods/getclick',array('id'=>$sid));?>"></script></p>
-	<div class="yuding"><a id="showdiv" href="#inline">在线预订</a></div>
-	</div>
-	<div class="clear"></div><!--form-->
-	<div style="display:none">
-     <div id="inline" style="width:600px; height:650px; overflow:auto">
-        <form class="basic-grey" onsubmit="return checkForm();" action="<?php echo U(MODULE_NAME.'/Goods/reser','','');?>" method="post">
-		<h1>在线商品预订单
-		<span>请认真填写所有的文本框.</span>
-		</h1>
-			<label>
-				<span>商品名称</span>			     
-				<input type="text" class="form-control" name="pname" id="pname" readonly value="<?php echo ($title); ?>">
-				<input type="hidden" class="form-control" name="pid" value="<?php echo ($g["id"]); ?>">
-			</label>
-			<label>
-				<span>姓名</span>			     
-				<input type="text" class="form-control" name="uname" id="isEmpty" placeholder="请输入姓名">
-				<input type="hidden" class="form-control" name="uid" value="0">
-			</label>
-			<label>
-				<span>联系地址</span>
-					 <input type="text" class="form-control" name="address" id="isLess"	placeholder="请输入家庭住址">
-			</label>
-			<label>
-				<span>联系电话</span>
-					 <input type="text" class="form-control" name="tel" id="isRange" placeholder="请输入联系电话">
-			</label>
-
-			<label>
-				<span>订购数量</span>
-					 <input type="text" class="form-control" name="num" id="isRangeNum" value="1">
-			</label>
-			<label>
-				<span>备注信息</span>
-				 <textarea class="form-control" name="remark" rows="3"></textarea>
-				 <input type="hidden" name="cid" value="13" >
-			</label>
-			<label>
-			<span>&nbsp;&nbsp;</span>
-				 <input type="submit" class="yuding" value="提交预订">
-		   </label>
-		</form>
-     </div>
-	</div><!--form-->
-	<div class="tab-main"><span>商品详细介绍</span><div class="clear"></div></div>
-        <div class="content">
-           <?php echo ($content); ?>
-           <p><br /><br /></p> 
-        <p><?php echo ($prev); ?></p>
-        <p><?php echo ($next); ?></p>
-        </div>
-        <!--end content-->
-    </div>
 </div>
+<!-- Tab切换 S -->
+	<div class="slideTxtBox">
+		<div class="hd">
+			<ul>
+				<li class="hover" id="one40" onclick="setTab(&#39;one&#39;,40,42)"><a href="#">详情</a></li>
+				<li id="one41" onclick="setTab(&#39;one&#39;,41,42)"><a href="#">评论<small style="font-size:12px;">(<?php if($counts): echo ($counts); else: ?>0<?php endif; ?>)</small></a></li>
+				<li id="one42" onclick="setTab(&#39;one&#39;,42,42)"><a href="#">已购买<small style="font-size:12px;">(<?php if($gmc): echo ($gmc); else: ?>0<?php endif; ?>)</small></a></li>
+			</ul>
+		</div>
+		<div class="bd">
+			<ul id="con_one_40">
+			<div class="content"><?php echo ($content); ?></div>	
+			</ul>
+			<ul id="con_one_41" style="display: none">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					评论列表
+				</h3>
+			</div>
+			<div class="panel-body">
+				<form id="ping" style="margin-bottom:20px;">
+				<input type="hidden" name="fz" value="<?php echo CONTROLLER_NAME;?>_<?php echo ($sid); ?>" id="fz">
+				<div><textarea type="textarea" rows="3" placeholder="还可以输入140个字" class="form-control" id="nei"></textarea></div>
+				<span class="comment_tip" id="comment_tip" data-top="11" data-foot="36"></span>
+				<div style="margin-top: 7px;"><button type="button" class="btn ant-btn" onclick="subcomment()"><i class="glyphicon glyphicon-send"></i><span style="margin-left:10px;">发布评论</span></button></div>
+				</form>
+				<input type='hidden' id='current_page' />
+				<input type='hidden' id='show_per_page' />
+				<div id="content">
+				<?php if(is_array($ping)): foreach($ping as $k=>$v): ?><div class="story">
+				<p class="story_t"><span><img src="<?php echo ($v["photo"]); ?>" width="30" />&nbsp;<?php echo ($v["username"]); ?></span><span class="time"><?php echo (date('Y-m-d H:i:s',$v["time"])); ?></span></p>
+				<p class="story_m"><?php echo ($v["neir"]); ?></p> 
+				<?php if(is_array($v["hf"])): foreach($v["hf"] as $key=>$h): ?><p class="story_hf">
+				<span>回复：</span><?php echo ($h["neir"]); ?></p><?php endforeach; endif; ?>
+				</div><?php endforeach; endif; ?>
+				</div>
+				<div id="page_navigation"></div>
+			</div>
+			</ul>
+			<ul id="con_one_42" style="display: none" class="news">
+			<?php if(is_array($xg)): foreach($xg as $key=>$x): ?><li><div class="img">
+			<img <?php if($x['pic']): ?>src="<?php echo ($x["pic"]); ?>"<?php else: ?>src="/Public/images/nopic.jpg"<?php endif; ?> /></div>
+			<div class="zc">
+				<h3><a href="<?php echo U('/'.MODULE_NAME.'/ashow_'.$x['id']);?>"><?php echo (msubstr($x["title"],0,15,'utf-8',false)); ?></a></h3>
+				<p><?php echo ($x["description"]); ?></p>
+				<div class="db"><div><?php echo (date('Y-m-d',$x["time"])); ?>&nbsp;&nbsp;&nbsp;&nbsp;(<?php echo ($x["click"]); ?>)</div><div class="jf"><?php echo ($x["jf"]); ?>积分</div></div>
+			</div>
+			</li><?php endforeach; endif; ?>				
+			</ul>
+		</div>
+	</div>
+	<script language="javascript">
+	<!--
+	function setTab(name,cursel,n){
+	for(i=40;i<=n;i++){
+	var menu=document.getElementById(name+i);
+	var con=document.getElementById("con_"+name+"_"+i);
+	menu.className=i==cursel?"hover":"";
+	con.style.display=i==cursel?"block":"none";
+	}
+	}
+	//-->
+	</script>
+	<!-- Tab切换 E -->
 <!--end main-->
-<div style="height:76px; background:#eee;"></div>
-<div class="bottom">
-	<div class="fdh">
-	<a href="/index.php/Index/index">
-	<?php if(CONTROLLER_NAME == 'Index'): ?><img src="/Public/images/sy1.png">
-	<p class="hover">首页</p>
-	<?php else: ?>
-	<img src="/Public/images/sy.png">
-	<p>首页</p><?php endif; ?>
-	</a>
-	</div>
-	<div class="fdh">
-	<a href="/index.php/alist_2.html">
-	<?php if(CONTROLLER_NAME == 'Article' && $cid != 1): ?><img src="/Public/images/kc1.png">
-	<p class="hover">资料</p>
-	<?php else: ?>
-	<img src="/Public/images/kc.png">
-	<p>资料</p><?php endif; ?>
-	</a>
-	</div>
-	<div class="fdh">
-	<a href="/index.php/goods_3.html">
-	<?php if(CONTROLLER_NAME == 'goods'): ?><img src="/Public/images/sc1.png">
-	<p class="hover">商城</p>
-	<?php else: ?>
-	<img src="/Public/images/sc.png">
-	<p>商城</p><?php endif; ?>
-	</a>
-	</div>
-	<div class="fdh">
-	<a href="/index.php/alist_1.html">
-	<?php if($cid == 1): ?><img src="/Public/images/xm1.png">
-	<p class="hover">项目</p>
-	<?php else: ?>
-	<img src="/Public/images/xm.png">
-	<p>项目</p><?php endif; ?>
-	</a>
-	</div>
-	<div class="fdh">
-	<a href="/index.php/Index/member/">
-	<?php if(CONTROLLER_NAME == 'Member'): ?><img src="/Public/images/me1.png">
-	<p class="hover">我的</p>
-	<?php else: ?>
-	<img src="/Public/images/me.png">
-	<p>我的</p><?php endif; ?>
-	</a>
-	</div>
-</div>
 </body>
 </html>
