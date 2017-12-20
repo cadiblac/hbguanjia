@@ -45,3 +45,8 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
 .sku-name{font-size:16px;line-height:26px;color:#95c62b;}
 .dt{line-height:22px; color:#F9B61F;}
 .dtt{line-height:22px; color:#F63317;}
+.shuliang{display:flex; justify-content:space-between; align-content:center;}
+.shuliang div{display:flex; align-content:center; line-height:26px;}
+.shuliang .addBtn{padding:0px 5px; font-size:18px;border-color:#F9B61F}
+.min{color:#999; background:#fff;}.add{color:#fff;background:#F9B61F}
+.shuliang .join-money{width:40px; height:22px; line-height:22px; font-size:16px; text-align:center; margin:0 3px; border-color:#F9B61F}

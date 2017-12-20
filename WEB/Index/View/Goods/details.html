@@ -23,7 +23,7 @@
 <div class="shangp">
 	<div class="sku-name">{$title}</div>
 	<div class="dt">单价&nbsp;&nbsp;￥<span>{$g.price}</span></div>
-	<if condition="$g[isdis]"><div class="dtt">优惠价&nbsp;&nbsp;￥<span>{$g.memprice}</span></if>
+	<if condition="$g[isdis]"><div class="dtt">优惠价&nbsp;&nbsp;￥<span>{$g.memprice}</span></div></if>
 	<div class="shuliang"><div>数量</div>
 	<div><input class="addBtn min" type="button" value="-" /><input class="join-money" type="text" value="1" readonly><input class="addBtn add" type="button" value="+" /></div>
 	<script>
@@ -113,5 +113,18 @@
 	</script>
 	<!-- Tab切换 E -->
 <!--end main-->
+<div style="height:56px;"></div>
+<div class="bottom" style="height:50px;border:0;">
+	<div class="gw jia">
+	<a href="/index.php/Index/index/index/spread/{$Think.session.userID}">
+	加入购物车
+	</a>
+	</div>
+	<div class="gw">
+	<a href="/index.php/Index/article/index/id/2/spread/{$Think.session.userID}">
+	<p>立即购买</p>
+	</a>
+	</div>
+</div>
 </body>
 </html>
