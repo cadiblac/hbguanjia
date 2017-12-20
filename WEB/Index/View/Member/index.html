@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>会员个人中心</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/head.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/css.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/styles.min.css"/>
+</head>
+<body>
+<!-- html code start -->
+<main class="jumbotron-main">
+    <section class="masthead-section no-padding-layer no-border-layer">
+        <input type="hidden" value="0" id="fromzdh"/>
+
+        <div class="masthead-login">
+            <figure class="masthead-figure">
+				<img src="{$Think.session.userHeadimgurl}" width="64"/>
+            </figure>
+            <div class="masthead-caption">
+                <h3 class="masthead-caption-title line-ellipsis">
+                {$Think.session.userNickname}
+                                </h3>
+
+                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
+
+                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">完善资料<i class="icon icon-right"></i></a></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="masthead-footerSection normal-layer no-padding-layer i-border-image">
+        <div class="clearfix">
+            <a class="item" href="mqqwpa://im/chat?chat_type=wpa&uin=QQ号码&version=1&src_type=web&web_src=oicqzone.com">
+                <div class="sl-item">
+                    <span class="iconWrap">
+                        <i class="advance-icon icon icon-xiaoxi" style="color:#8ad51e;"></i>
+                    
+                    </span>
+                    <span class="text">联系客服</span>
+                </div>
+            </a>
+            <a class="item" href="/index.php/Index/member/cart/">
+                <div class="sl-item">
+                        <span class="iconWrap">
+                            <i class="advance-icon icon icon-gouwuche" style="color:#ffa201;"></i>
+                        </span>
+                    <span class="text">购物车<span id="cart_num"></span></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="service-section normal-layer no-padding-layer i-border-image">
+        <ul class="feature-list interaction-list">
+            <li class="feature-item">                
+                <p class="inner-bar"><span class="order-text">我的订单<em id="orderInfo"></em></span><span class="tip-right text-gray"><a href="/index.php/Index/member/myorder/" id="isRetailOrder">查看全部订单<i class="icon icon-right"></i></a></span></p>
+            </li>
+			<foreach name="orders" item="v">
+			<li>
+				<div class="padding5">
+				<div class="space-b"><p>订单号：{$v.order}</p>
+				<p>状态：<span class="red">
+				<switch name="v.status">
+				<case value="1">待支付</case>
+				<case value="4">已完成</case>
+				<default />处理中
+				</switch></span></p></div>
+				<p>{$v.pname}</p>
+				<div class="space-b"><p>{$v.buytime|date='Y-m-d',###}</p><p>价格：{$v.price}X{$v.num}={$v.sumprice}元</p></div>
+				<p><if condition="$v['status'] eq 1">
+				<a href="{:U('/Index/orders/del',array('id'=>$v['id']))}">删除</a><a class="zd" href="{:U('/Index/orders/pay',array('id'=>$v['id']))}">去支付</a>
+				<else />
+				<a class="zd" href="{:U('/Index/orders/updata',array('id'=>$v['id']))}">完成订单</a>
+				</if></p>
+				</div>
+			</li>
+			</foreach>
+        </ul>        
+    </section>
+
+    <section class="advance-section normal-layer no-padding-layer no-border-layer">
+        <div class="advance-slider" id="advanceSlider">
+            <div class="swiper-wrapper clearfix">
+                <ul class="swiper-slide advance-list clearfix">
+                    <li class="advance-item">
+                        <a href="/index.php/Index/member/ewm">
+                            <div class="advance-cell">
+                                <i class="advance-icon icon icon-vip" style="color:#ffa201;"></i>
+                                <h4 class="advance-text">分享给好友</h4>
+
+                                <p class="advance-tip line-ellipsis">&nbsp;</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="advance-item">
+                        <a href="/index.php/Index/member/fenx">
+                            <div class="advance-cell">
+                                <i class="advance-icon icon icon-yuan2" style="color:#f1624f;"></i>
+                                <h4 class="advance-text">分销提成</h4>
+
+                                <p class="advance-tip line-ellipsis">&nbsp;</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="advance-item">
+                        <a href="/index.php/Index/member/jf">
+                            <div class="advance-cell">
+                                <i class="advance-icon icon icon-youhui" style="color:#33c8b0;"></i>
+                                <h4 class="advance-text">积分记录</h4>
+
+                                <p class="advance-tip line-ellipsis" id="couponInfo">&nbsp;</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="advance-item">
+                        <a href="/index.php/Index/member/ping">
+                            <div class="advance-cell">
+                                <i class="advance-icon icon icon-bofang" style="color:#32bbe5;"></i>
+                                <h4 class="advance-text">我的评论</h4>
+
+                                <p class="advance-tip line-ellipsis" id="sdsp">&nbsp;</p>
+                            </div>
+                        </a>
+                    </li>                   
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="slider-pagination i-border-image"></div>
+    </section>
+
+    <section class="recommend-section normal-layer no-padding-layer no-border-layer">
+        <div class="recommend-header">
+            <h3 class="recommend-title">我的好友</h3>
+        </div>
+        <div style="display:flex;justify-content:space-around;flex-wrap:wrap;">
+			<foreach name="firend" item="v">
+				<img class="masthead-figure" src="{$v.photo}" alt="{$v.username}"/>
+			</foreach>
+		</div>
+    </section>
+
+</main>
+<include file="public/bottom" />
+</body>
+</html>

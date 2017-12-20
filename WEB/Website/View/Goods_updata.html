@@ -20,6 +20,7 @@
   <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
   <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
 <script type="text/javascript">
+	var app="__ROOT__";
 	window.UEDITOR_HOME_URL = "__ROOT__/Data/ueditor/";
 	window.onload = function (){
 	//window.UEDITOR_CONFIG.initialFrameWidth = 1000; 初始化编辑器宽度,默认1000
@@ -106,7 +107,7 @@
 									<span class="help-block" style="color:red">勾选特价才能生效</span>
 									</div>
 									<label for="confirm_password" class="control-label col-lg-1">特价</label>
-									<div class="col-lg-2">
+									<div class="col-lg-1">
 									<label class="checkbox-inline">
 										<input type="radio" name="isdis" <if condition="!$v['isdis']">checked="true"</if> value="0">否&nbsp;&nbsp;<input type="radio" name="isdis" <if condition="$v['isdis']">checked="true"</if> value="1">是</label>
 									</div>

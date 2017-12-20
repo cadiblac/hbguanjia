@@ -14,7 +14,7 @@ class TagLibLj extends TagLib{
 	'pist' => array('attr' => 'id,img,limit,order','close' =>1),// attr 属性列表close 是否闭合（0 默认为1，0表示闭合）
 	'navi' => array('attr' => 'limit,order'),
 	'borl' => array('attr' => 'name,limit,order,type'),
-	'fav' => array('attr' => 'id'),
+	'fav' => array('attr' => 'id,limit'),
 	'gbook' => array('attr' => 'id,limit'),
 	'crumb' => array('attr' => 'id','close'=>0)
 	);
@@ -47,7 +47,7 @@ str;
         $flag = $tag['flag']; //文章还是图集
         $str = '<?php ';
 
-        $str .= '$field=array("id","title","description","content","pic","time","click");';
+        $str .= '$field=array("id","title","description","jf","pic","time","click");';
                 
         if ($attrid){
 
@@ -58,9 +58,9 @@ str;
 	        $str .= 'extract($_list_value);';
 
 	        if ($flag == 'p'){
-	        	$str .= '$url=U("/".MODULE_NAME."/pshow_".$id); ?>';//自定义文章生成路径$url
+	        	$str .= '$url=U("/".MODULE_NAME."/Atlas/shows",array("id"=>$id,"spread"=>session("userID"))); ?>';//自定义文章生成路径$url
 	        }else{
-	        	$str .= '$url=U("/".MODULE_NAME."/ashow_".$id); ?>';
+	        	$str .= '$url=U("/".MODULE_NAME."/article/shows",array("id"=>$id,"spread"=>session("userID"))); ?>';
 	        }
 	        
 	        $str .= $content;
@@ -74,9 +74,9 @@ str;
 	        $str .= 'extract($_list_value);';
 
 	        if ($flag == 'p'){
-	        	$str .= '$url=U("/".MODULE_NAME."/pshow_".$id); ?>';//自定义文章生成路径$url
+	        	$str .= '$url=U("/".MODULE_NAME."/Atlas/shows",array("id"=>$id,"spread"=>session("userID"))); ?>';//自定义文章生成路径$url
 	        }else{
-	        	$str .= '$url=U("/".MODULE_NAME."/ashow_".$id); ?>';
+	        	$str .= '$url=U("/".MODULE_NAME."/article/shows",array("id"=>$id,"spread"=>session("userID"))); ?>';
 	        }
 	        
 	        $str .= $content;
@@ -109,7 +109,7 @@ str;
 
 		$str .= 'extract($_pist_value);';
 		
-		$str .= '$url=U("/".MODULE_NAME."/details_".$id); ?>';//自定义产品生成路径$url
+		$str .= '$url=U("/".MODULE_NAME."/goods/details",array("id"=>$id,"spread"=>session("userID"))); ?>';//自定义产品生成路径$url
 				
 		$str .= $content;
 
@@ -128,19 +128,19 @@ str;
   foreach (\$_navi_cate as \$_navi_v) :
   	extract(\$_navi_v);
   	switch (\$_navi_v['model']){
-		case Article : \$url = U("/".MODULE_NAME."/alist_".\$id);
+		case Article : \$url = U("/".MODULE_NAME."/article/index",array('id'=>$id,'spread'=>session('userID')));
 		 break; 
-		case Info : \$url = U("/".MODULE_NAME."/info_".\$id);
+		case Info : \$url = U("/".MODULE_NAME."/info/index",array('id'=>$id,'spread'=>session('userID')));
 		 break;
-		case Atlas : \$url = U("/".MODULE_NAME."/plist_".\$id);
+		case Atlas : \$url = U("/".MODULE_NAME."/atlas",array('id'=>$id,'spread'=>session('userID')));
 		 break;
-		case Gbook : \$url = U("/".MODULE_NAME."/gbook_".\$id);
+		case Gbook : \$url = U("/".MODULE_NAME."/gbook/index",array('id'=>$id,'spread'=>session('userID')));
 		 break;
 		case Slink : \$url = \$_navi_v['link'];
 		 break;
-		case Jobs : \$url = U("/".MODULE_NAME."/jobs_".\$id);
+		case Jobs : \$url = U("/".MODULE_NAME."/jobs/index",array('id'=>$id,'spread'=>session('userID')));
 		 break;
-		case Goods : \$url = U("/".MODULE_NAME."/goods_".\$id);
+		case Goods : \$url = U("/".MODULE_NAME."/goods/index",array('id'=>$id,'spread'=>session('userID')));
 		 break;
   	}
 ?>
@@ -195,26 +195,27 @@ str;
 //根据父级id返回所有子级
 	public function _fav($tag,$content){
 		$id = $tag['id'];
+		$limit = $tag['limit'];
 		$where = "array('stauts'=>0,'pid'=>".$id.")";
 		$str = <<<str
 <?php
-  \$_fav_cate = M('cate')->where({$where})->order('sort ASC,id ASC')->select();
+  \$_fav_cate = M('cate')->where({$where})->order('sort ASC,id ASC')->limit("{$limit}")->select();
   foreach (\$_fav_cate as \$_fav_v) :
   	extract(\$_fav_v);
   	switch (\$_fav_v['model']){
-		case Article : \$url = U("/".MODULE_NAME."/alist_".\$id);
+		case Article : \$url = U("/".MODULE_NAME."/article/index",array('id'=>$id,'spread'=>session('userID')));
 		 break; 
-		case Info : \$url = U("/".MODULE_NAME."/info_".\$id);
+		case Info : \$url = U("/".MODULE_NAME."/info/index",array('id'=>$id,'spread'=>session('userID')));
 		 break;
-		case Atlas : \$url = U("/".MODULE_NAME."/plist_".\$id);
+		case Atlas : \$url = U("/".MODULE_NAME."/atlas",array('id'=>$id,'spread'=>session('userID')));
 		 break;
-		case Gbook : \$url = U("/".MODULE_NAME."/gbook_".\$id);
+		case Gbook : \$url = U("/".MODULE_NAME."/gbook/index",array('id'=>$id,'spread'=>session('userID')));
 		 break;
 		case Slink : \$url = \$_fav_v['link'];
 		 break;
-		case Jobs : \$url = U("/".MODULE_NAME."/jobs_".\$id);
+		case Jobs : \$url = U("/".MODULE_NAME."/jobs/index",array('id'=>$id,'spread'=>session('userID')));
 		 break;
-		case Goods : \$url = U("/".MODULE_NAME."/goods_".\$id);
+		case Goods : \$url = U("/".MODULE_NAME."/goods/index",array('id'=>$id,'spread'=>session('userID')));
 		 break;
   	}
 ?>

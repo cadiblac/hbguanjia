@@ -36,7 +36,7 @@ class ArticleController extends CommonController{
 			$Page -> setConfig('prev','上一页');
 			$Page -> setConfig('next','下一页');
 			$Page -> setConfig('link','indexpagenumb');//pagenumb 会替换成页码
-			$Page -> setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+			$Page -> setConfig('theme','%FIRST% %UP_PAGE% %DOWN_PAGE% %END%');
 			$show = $Page->show();
 			$this->article = M('article')->field($field,true)->where($where)->order('time DESC,id DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
 			$this->page = $show;
@@ -66,14 +66,12 @@ class ArticleController extends CommonController{
 			$Page -> setConfig('prev','上一页');
 			$Page -> setConfig('next','下一页');
 			$Page -> setConfig('link','indexpagenumb');//pagenumb 会替换成页码
-			$Page -> setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+			$Page -> setConfig('theme','%FIRST% %UP_PAGE% %DOWN_PAGE% %END%');
 			$show = $Page->show();
 			$this->article = M('article')->field($field,true)->where($where)->order('time DESC,id DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
 			$this->page = $show;
-			if(in_array($id,array(19,20,22))){
-				$this->display(index_img);
-			}else if($id == 5){
-				$this->display(index_list);
+			if($id == 1){
+				$this->display(index_cx);
 			}else{
 				$this->display();
 			}
@@ -84,26 +82,41 @@ class ArticleController extends CommonController{
 	}
 
 	public function shows () {
-		$id = I('id','',intval);
+		$id = I('id','',intval);		
 		$db = M('article');
-		$data = $db->where(array('id'=>$id))->select();
+		$data = $db->where(array('id'=>$id,'cid'=>array('neq',1)))->select();
+		//查看是否已购买
+		if($data[0]['jf']==0){
+			$ym=1;
+		}else{
+			$ym=M('jf')->where(array('aid'=>$id,'mid'=>session('userID')))->find();
+		}
+		if(!$data){$this->error('无文章内容！');}
 		$cid = $data[0]['cid'];
 		$this->title = $data[0]['title'];
 		$this->keywords = $data[0]['keywords'];
-		$this->descriptions = $data[0]['description'];
+		$this->description = $data[0]['description'];
 		$this->time = $data[0]['time'];
 		$this->content = $data[0]['content'];
 		$this->timg = $data[0]['pic'];
 		$this->video = $data[0]['video'];
 		$this->author=$data[0]['author'];		
 
+		$fz="Article_".$id;
+		$this->counts=M('ping')->where(array('fz'=>$fz,'dis'=>1))->count();
+		$ping=M('ping')->where(array('fz'=>$fz,'_string'=>'dis=1 or hfid <>0'))->join('LEFT JOIN lj_member ON lj_ping.mid = lj_member.id')->field('lj_ping.*,lj_member.photo,lj_member.username')->order('lj_ping.id DESC')->select();
+		$this->ping = Lib\Category::unlimitedForping($ping);
+		$this->fz=$fz;
+		
 		$cate = Lib\Cate::catetkd($cid);
 		$this->sid = $id;
+		$this->ym = $ym;
 		$this->cid = $cid;
 		$this->fid = $cate[0]['pid'];
 		$this->name = $cate[0]['name'];
 		$this->pic = $cate[0]['pic'];
-
+		//相关新闻
+		$this->xg=$db->field('id,title,description,time,click,pic,jf')->where(array('cid'=>$cid,'del'=>0,'id'=>array('neq',$id)))->limit(5)->order("rand()")->select();
 		$last_rs = $db->where(array('id' => array('GT',$id), 'del' => 0, 'cid' =>$cid))->order(array('id'=>'ASC'))->limit(1)->find(); //GT =>'小于'
 		$next_rs = $db->where(array('id' => array('LT',$id), 'del' => 0, 'cid' =>$cid))->order(array('id'=>'DESC'))->limit(1)->find(); //LT => '大于'
         
@@ -139,5 +152,45 @@ class ArticleController extends CommonController{
 		$click = M('article')->where($where)->getField('click');		
 		echo 'document.write('.$click.')';
 	}
+	
+	public function tel (){
+		if (!IS_POST) $this->error('请输入查询手机号！');
+		$tel=I('tel');
+		$db = M('article');
+		$data = $db->where(array('cid'=>1,'tel'=>$tel))->find();
+		if($data){
+			$this->cid=$data['cid'];
+			$this->data=$data;
+			$this->display();
+		}else{
+			$this->error('查询手机号错误或无数据！');
+		}
+		
+	}
+	
+	public function jfdh (){
+		$id=I('id',intval);
+		$integral=M('member')->field('integral')->where(array('id'=>session('userID')))->find();
+		$jf=M('article')->field('title,jf')->where(array('id'=>$id))->find();
+		if($integral['integral']>=$jf['jf']){
+			$data=array(
+			'mid'=>session('userID'),
+			'stutas'=>0,
+			'jf'=>$jf['jf'],
+			'aid'=>$id,
+			'beizhu'=>"兑换文章".$id.":".jf['title'],
+			'time'=>time()
+			);
+			M('jf')->add($data);
+			if(M('member')->where(array('id'=>session('userID')))->setDec('integral',$jf['jf'])){
+				$this->success('兑换成功', U('/index.php/Index/ashow_'.$id.'.html'));
+			}else{
+				$this->error('兑换失败');
+			}
+		}else{
+			$this->error('您的积分不足,您可以去认证或者邀请好友来获得积分。');
+		}
+	}
+	
 }
 ?>

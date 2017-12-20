@@ -1,9 +1,19 @@
 <?php
 $conf = M('conf')->where(array('id' => 0))->getField('confing');
 $meter=unserialize($conf);
+
+//这里填入的TOKEN
+define("TOKEN", "weixin");
+//这里填入的你域名
+define("_URL_","http://yunguanjia.35xg.com");
+//这里填入你公众号的APPID
+define("_APPID_",$meter['Appid']);
+//这里填入你公众号的APPSECRET
+define('_APPSECRET_',$meter['AppSecret']);
+
 return array(
 	//'配置项'=>'配置值'
-	'TMPL_EXCEPTION_FILE' => './public/error.html', //自定义错误页面和404页面
+	'TMPL_EXCEPTION_FILE' => __ROOT__.'/Public/error.html', //自定义错误页面和404页面
 
 	//定义模板中__Public__路径
 	'TMPL_PARSE_STRING' => array('__public__' => __ROOT__.'/Public'),

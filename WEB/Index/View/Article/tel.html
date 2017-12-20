@@ -1,0 +1,21 @@
+<include file="public/header" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+<div class="main">
+	<div class="m_ctt">
+		<div class="newsshow_title">{$data.title}</div>
+		<div class="newsshow_sm2"> </div>
+		<div class="content">
+		<p>项目进度:<b style="color:red"><switch name="data.jf">
+				<case value="0">项目进行中</case>
+				<case value="1">项目已完成</case>
+				<case value="2">项目暂停</case>
+				<case value="3">项目作废</case>
+			</switch></b></p>
+			{$data.content}
+		</div>
+	</div>
+</div>
+<!--end main-->
+<include file="public/bottom" />
+</body>
+</html>

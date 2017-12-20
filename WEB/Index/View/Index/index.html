@@ -1,9 +1,32 @@
-<include file="public/header" />            
-<div class="main">
-	<a href="weixin://qr/aHUbFAjE_jaFhxl3nyBM">一键关注</a><br />
-	<a href="weixin://profile/gh_122a2ee67fae">weixin://profile/gh_122a2ee67fae</a>
-	<a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI0NDg4MzA0Ng==&scene=124#wechat_redirect">weixin://profile/gh_122a2ee67fae</a><br />
-	<a href="weixin://contacts/profile/gh_34bd692a9835">点击关注微市场</a>
+<include file="public/header" />
+{:W('bann/banner')}
+<div class="one">
+<fav id="3" limit="4">
+	<div><a href="{$url}"><img src="{$pic}" /><p>{$name}</p></a></div>
+</fav>	
 </div>
+<div class="two">
+	<list id='2' limit='3' attrid='1' img='1' order='time desc'>
+	<div class="pw">
+	<a href="{$url}"><img src="{$pic}" /><p>{$title|msubstr=###,0,15,'utf-8',false}</p></a>
+	</div>
+	</list>
+</div>
+<div class="three">
+	<div class="menu"><i></i><span>在线学习</span></div>
+	<ul>
+	<list id='2' limit='8' img='1' order='time desc'>
+	<li><div class="img">
+	<img src="{$pic}" /></div>
+	<div class="zc">
+		<h3><a href="{$url}">{$title|msubstr=###,0,15,'utf-8',false}</a></h3>
+		<p>{$description}</p>
+		<div class="db"><div><span>★★★★★</span>({$click})</div><div class="jf">{$jf}积分</div></div>
+	</div>
+	</li>
+	</list>
+	</ul>
+</div>
+<include file="public/bottom" />
 </body>
 </html>

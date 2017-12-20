@@ -91,6 +91,15 @@
 										</foreach>
 									</div>
 									<if condition="$cid eq 1">
+									<label for="confirm_password" class="control-label col-lg-1">项目进度</label>
+									<div class="col-lg-2">
+										<select class=" form-control" name="jf">
+											<option value="0" <if condition="$v['jf'] eq 0">selected="selected"</if>>进行中</option>
+											<option value="2" <if condition="$v['jf'] eq 2">selected="selected"</if>>项目暂停</option>
+											<option value="1" <if condition="$v['jf'] eq 1">selected="selected"</if>>已完成</option>											
+											<option value="3" <if condition="$v['jf'] eq 3">selected="selected"</if>>项目作废</option>											
+										</select>
+									</div>
 									<label for="confirm_password" class="control-label col-lg-1">查询手机号</label>
 									<div class="col-lg-2">
 										<input class="form-control " type="text" name="tel" value="{$v.tel}" />

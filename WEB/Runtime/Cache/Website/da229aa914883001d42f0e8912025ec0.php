@@ -38,6 +38,7 @@
   <link rel="stylesheet" type="text/css" href="/WEB/Website/public/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
   <link rel="stylesheet" type="text/css" href="/WEB/Website/public/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
 <script type="text/javascript">
+    var app="";
 	window.UEDITOR_HOME_URL = "/Data/ueditor/";
 	window.onload = function (){
 	//window.UEDITOR_CONFIG.initialFrameWidth = 1000; 初始化编辑器宽度,默认1000
@@ -99,7 +100,13 @@
                     </ul>
 				</li>
 				<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Menu/index');?>"><i class="fa fa-th-list"></i> <span>内容管理</span></a></li>
-				
+				<li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Rbac,Member)) && ACTION_NAME == index): ?>nav-active<?php endif; ?>">
+				<a target="_parent" href=""><i class="fa fa-users"></i> <span>用户管理</span></a>
+                    <ul class="sub-menu-list">
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Rbac/index');?>"> 系统用户</a></li>
+                        <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/index');?>"> 会员管理</a></li>
+                    </ul>
+                </li>
                 <li class="menu-list <?php if(CONTROLLER_NAME == Orders): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-book"></i> <span>订单管理</span></a>
                     <ul class="sub-menu-list">
@@ -108,14 +115,7 @@
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>3));?>"> 已发货订单</a></li>
                     </ul>
                 </li>
-
-                <li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Rbac,Member)) && ACTION_NAME == index): ?>nav-active<?php endif; ?>">
-				<a target="_parent" href=""><i class="fa fa-users"></i> <span>用户管理</span></a>
-                    <ul class="sub-menu-list">
-						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Rbac/index');?>"> 系统用户</a></li>
-                        <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/index');?>"> 会员管理</a></li>
-                    </ul>
-                </li>
+				<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Comment/index');?>"><i class="fa fa-comment"></i> <span>评论管理</span></a></li>                
 
                 <li class="menu-list <?php if(CONTROLLER_NAME == Rbac && ACTION_NAME != index): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-sort-amount-asc"></i> <span>权限管理</span></a>
@@ -281,7 +281,7 @@
 									<span class="help-block" style="color:red">勾选特价才能生效</span>
 									</div>
 									<label for="confirm_password" class="control-label col-lg-1">特价</label>
-									<div class="col-lg-2">
+									<div class="col-lg-1">
 									<label class="checkbox-inline">
 										<input type="radio" name="isdis" checked="true" value="0">否&nbsp;&nbsp;<input type="radio" name="isdis" value="1">是</label>
 									</div>

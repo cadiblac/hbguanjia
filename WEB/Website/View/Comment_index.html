@@ -1,0 +1,92 @@
+<include file="Public:common" />
+  <title>评论管理</title>
+  <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+  <!--data table-->
+  <link rel="stylesheet" href="__PUBLIC__/js/data-tables/DT_bootstrap.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                评论管理
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/meter')}">首页</a>
+                </li>
+                <li class="active"> 评论组 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+			   <div class="col-sm-12">
+				<section class="panel">
+				<header class="panel-heading">
+					评论组
+					<span class="tools pull-right">
+						<a href="javascript:;" class="fa fa-chevron-down"></a>
+					 </span>
+				</header>
+				<div class="panel-body">
+				<div class="adv-table editable-table">
+				<table  class="display table table-bordered table-striped" id="editable-sample">
+				<thead>
+				<tr>
+					<th>评论组</th>
+					<th>评论数</th>
+					<th>已审核</th>			
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<foreach name='clist' item='v'>
+				<tr class="gradeX">
+					<td>{$v.fz}</td>
+					<td>{$v.c}</td>
+					<td>{$v.s}</td>
+					<td>
+					<a href="{:U(MODULE_NAME.'/Comment/lists',array('fz'=>$v['fz']))}"><span class="btn btn-success btn-xs">管理</span></a>
+					</td>
+				</tr>
+				</foreach>				   
+				</tbody>
+				</table>
+				</div>
+				</div>
+				</section>
+				</div>
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--data table-->
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/DT_bootstrap.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+<!--script for editable table-->
+<script src="__PUBLIC__/js/editable-table.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function() {
+        EditableTable.init();
+    });
+</script>
+</body>
+</html>

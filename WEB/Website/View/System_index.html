@@ -66,13 +66,33 @@
                                             <input class="form-control " id="email" name="contact" type="text" value="{$data['contact']}"/>
                                         </div>
                                     </div>
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">认证积分</label>
+                                        <div class="col-lg-3 col-sm-6">
+                                            <input class="form-control " name="rz" type="text" value="{$data['rz']}"/>
+                                        </div>
+										首次认证可获得的积分数
+                                    </div>
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">推广积分</label>
+                                        <div class="col-lg-3 col-sm-6">
+                                            <input class="form-control " name="tg" type="text" value="{$data['tg']}"/>
+                                        </div>
+										推荐他人使用可获得的积分数
+                                    </div>
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">分销比例</label>
+                                        <div class="col-lg-3 col-sm-6">
+                                            <input class="form-control " name="fx" type="text" value="{$data['fx']}"/>
+                                        </div>
+										推荐他人购买产品可获得分销奖励的提成比例(百分比数据)
+                                    </div>
                                     <div class="form-group ">
                                         <label for="agree" class="control-label col-lg-2 col-sm-3">首页简介</label>
                                         <div class="col-lg-6 col-sm-9">
                                             <textarea class="wysihtml5 form-control" rows="9" name="spare">{$data['spare']}</textarea>
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
                                             <input class="btn btn-primary" type="submit" value="保存">

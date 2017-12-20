@@ -1,25 +1,19 @@
 <include file="public/header" />
-<include file="public/top" />
 <div class="main">
-    <ul class="crub">
-		<li>当前位置:</li>
-		<li><a href='/index.php'>首页</a></li><crumb id="$cid"/>
-    </ul>
-<include file="public/left" />
-<!--end right-->
- <div class="ld-right">
-    <div class="lanm">
-        <h2>{$title}</h2>
-            <ul>
-            <foreach name="article" item="v">
-            <li><a href="{:U('/'.MODULE_NAME.'/ashow_'.$v['id'])}" title="{$v.title}" target="_blank">{$v.title}</a><span>{$v.time|date='Y-m-d H:i',###}</span></li>
-            </foreach>
-    		</ul>
-        <div class="page">{$page}</div>
-    </div>
-</div>
-<div class="clear"></div>
-<!--left end -->
+	<div class="menu"><i></i><span>{$title}</span></div>
+	<ul class="news">
+	<foreach name="article" item="v">
+	<li><div class="img">
+	<img <if condition="$v['pic']">src="{$v.pic}"<else />src="__PUBLIC__/images/nopic.jpg"</if> /></div>
+	<div class="zc">
+		<h3><a href="{:U('/'.MODULE_NAME.'/article/shows',array('id'=>$v['id'],'spread'=>session('userID')))}">{$v.title|msubstr=###,0,15,'utf-8',false}</a></h3>
+		<p>{$v.description}</p>
+		<div class="db"><div>{$v.time|date='Y-m-d',###}&nbsp;&nbsp;&nbsp;&nbsp;({$v.click})</div><div class="jf">{$v.jf}积分</div></div>
+	</div>
+	</li>
+	</foreach>
+	</ul>
+	<div class="page">{$page}</div>
 </div>
 <!--end main-->
 <include file="public/bottom" />

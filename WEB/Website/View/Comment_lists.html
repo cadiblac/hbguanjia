@@ -1,0 +1,143 @@
+<include file="Public:common" />
+  <title>评论管理</title>
+  <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+  <!--data table-->
+  <link rel="stylesheet" href="__PUBLIC__/js/data-tables/DT_bootstrap.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                评论管理
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/meter')}">首页</a>
+                </li>
+				<li>
+                    <a href="{:U('Comment/index')}">评论组</a>
+                </li>
+                <li class="active"> 评论管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+			   <div class="col-sm-12">
+				<section class="panel">
+				<header class="panel-heading">
+					评论列表
+					<span class="tools pull-right">
+						<a href="javascript:;" class="fa fa-chevron-down"></a>
+					 </span>
+				</header>
+				<div class="panel-body">
+				<div class="adv-table editable-table">
+				<table  class="display table table-bordered table-striped" id="editable-sample">
+				<thead>
+				<tr>
+					<th>ID</th>
+					<th>头像</th>
+					<th>评论人</th>
+					<th>评论内容</th>
+					<th>发布时间</th>
+					<th>审核状态</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<foreach name='ping' item='v'>
+				<tr class="gradeX">
+					<td>{$v.id}</td>
+					<td><img src="{$v.photo}" width="30"/></td>
+					<td>{$v.username}</td>
+					<td>{$v.neir}</td>
+					<td>{$v.time|date='Y-m-d H:i',###}</td>
+					<td><if condition="$v['dis']">已审核<else />未审核</if></td>
+					<td><if condition="!$v['dis']">
+					<a href="{:U(MODULE_NAME.'/Comment/shen',array('fz'=>$v['fz'],'id'=>$v['id']))}"><span class="btn btn-success btn-xs">审核</span></a></if>
+					<span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal" onclick="huifu({$v.id})">回复</span>
+					<a onclick="return confirm('确实要删除吗？')" href="{:U(MODULE_NAME.'/Comment/delte',array('fz'=>$v['fz'],'id'=>$v['id']))}"><span class="btn btn-danger btn-xs">删除</span></a>					
+					</td>
+				</tr>
+				<foreach name="v.hf" item="h">
+				<tr style="background:#e5eecc">
+				<td>{$h.id}</td>
+				<td>回复id：{$h.hfid}</td>				
+				<td  colspan="4"><span class="label label-success">{$h.neir}</span>&nbsp;&nbsp;<span class="label label-info">{$h.time|date='Y-m-d H:i',###}</span></td>				
+				<td><a onclick="return confirm('确实要删除吗？')" href="{:U(MODULE_NAME.'/Comment/delte',array('fz'=>$v['fz'],'id'=>$h['id']))}"><span class="btn btn-danger btn-xs">删除</span></a></td>
+				</tr>
+				</foreach>
+				</foreach>				   
+				</tbody>
+				</table>
+				</div>
+				</div>
+				</section>
+				</div>
+				<!-- 模态框（Modal） -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">
+									回复
+								</h4>
+							</div>
+							<form action="{:U(MODULE_NAME.'/Comment/huif')}" method="post">
+							<div class="modal-body">
+								<textarea name="neir" class="form-control" rows="3"></textarea>
+								<input name="hfid" id="hfid" type="hidden" />
+								<input name="fz" type="hidden" value="{$fz}"/>
+							</div>
+							<div class="modal-footer">								
+								<button type="button" class="btn btn-primary" onclick="submit()">
+									提交
+								</button>
+							</div>
+							</form>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal -->
+				</div>
+				<!-- 模态框（Modal） -->
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+
+<include file="Public:bottom" />
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--data table-->
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/DT_bootstrap.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+<!--script for editable table-->
+<script src="__PUBLIC__/js/editable-table.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function() {
+        EditableTable.init();
+    });
+function huifu(id){
+	$('#myModalLabel').html('回复 id:'+id);
+	$('#hfid').val(id);
+}
+</script>
+</body>
+</html>

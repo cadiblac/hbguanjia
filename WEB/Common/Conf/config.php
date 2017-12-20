@@ -4,7 +4,7 @@ return array(
 	'DEFAULT_MODULE' => 'Index',//默认项目组
 	'DEFAULT_CONTROLLER' => 'Index', //默认控制器
 	'DEFAULT_ACTION' => 'index', // 默认操作名称
-    'MODULE_ALLOW_LIST' => array('Index','Wap','Website'), //模块列表
+    'MODULE_ALLOW_LIST' => array('Index','Website'), //模块列表
 	//数据库连接参数设置
 	'DB_TYPE' => 'mysql',
 	'DB_HOST' => 'localhost',

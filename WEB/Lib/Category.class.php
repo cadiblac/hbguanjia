@@ -69,6 +69,18 @@ class Category {
 		}
 		return $arr;
 	}
+	
+	//评论组合多维数组
+	static public function unlimitedForping($ping,$name='hf',$hf=0){
+		$arr = array();
+		foreach ($ping as $v) {
+			if($v['hfid'] == $hf){
+				$v[$name] = self::unlimitedForping($ping,$name,$v['id']);
+				$arr[] = $v;
+			}
+		}
+		return $arr;
+	}
 }
 
 ?>

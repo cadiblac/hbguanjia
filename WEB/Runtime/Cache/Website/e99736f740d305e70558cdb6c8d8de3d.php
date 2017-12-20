@@ -70,7 +70,13 @@
                     </ul>
 				</li>
 				<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Menu/index');?>"><i class="fa fa-th-list"></i> <span>内容管理</span></a></li>
-				
+				<li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Rbac,Member)) && ACTION_NAME == index): ?>nav-active<?php endif; ?>">
+				<a target="_parent" href=""><i class="fa fa-users"></i> <span>用户管理</span></a>
+                    <ul class="sub-menu-list">
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Rbac/index');?>"> 系统用户</a></li>
+                        <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/index');?>"> 会员管理</a></li>
+                    </ul>
+                </li>
                 <li class="menu-list <?php if(CONTROLLER_NAME == Orders): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-book"></i> <span>订单管理</span></a>
                     <ul class="sub-menu-list">
@@ -79,14 +85,7 @@
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>3));?>"> 已发货订单</a></li>
                     </ul>
                 </li>
-
-                <li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Rbac,Member)) && ACTION_NAME == index): ?>nav-active<?php endif; ?>">
-				<a target="_parent" href=""><i class="fa fa-users"></i> <span>用户管理</span></a>
-                    <ul class="sub-menu-list">
-						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Rbac/index');?>"> 系统用户</a></li>
-                        <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/index');?>"> 会员管理</a></li>
-                    </ul>
-                </li>
+				<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Comment/index');?>"><i class="fa fa-comment"></i> <span>评论管理</span></a></li>                
 
                 <li class="menu-list <?php if(CONTROLLER_NAME == Rbac && ACTION_NAME != index): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-sort-amount-asc"></i> <span>权限管理</span></a>
@@ -289,6 +288,35 @@
 								<label class="col-lg-2 control-label">AppSecret</label>
 								<div class="col-lg-3">
 									<input type="password" placeholder="" id="l-name" name="AppSecret" class="form-control" value="<?php echo ($data['AppSecret']); ?>">
+									<p class="help-block">开发者密码</p>
+								</div>
+							</div>
+							<div class="form-group has-success">
+								<label class="col-lg-2 control-label">MCHID</label>
+								<div class="col-lg-3">
+									<input type="text" placeholder="" id="f-name" name="mchid" class="form-control" value="<?php echo ($data['mchid']); ?>">
+									<p class="help-block">微信支付商户号MCHID</p>
+								</div>
+							</div>
+							<div class="form-group has-error">
+								<label class="col-lg-2 control-label">密匙KEY</label>
+								<div class="col-lg-3">
+									<input type="password" placeholder="" id="l-name" name="mchkey" class="form-control" value="<?php echo ($data['mchkey']); ?>">
+									<p class="help-block">微信支付密匙</p>
+								</div>
+							</div>
+							<div class="alert alert-success alert-block fade in">阿里云短信接口</div>
+							<div class="form-group has-success">
+								<label class="col-lg-2 control-label">Key ID</label>
+								<div class="col-lg-3">
+									<input type="text" placeholder="" id="f-name" name="alid" class="form-control" value="<?php echo ($data['alid']); ?>">
+									<p class="help-block">阿里云开发者ID</p>
+								</div>
+							</div>
+							<div class="form-group has-error">
+								<label class="col-lg-2 control-label">Key Secret</label>
+								<div class="col-lg-3">
+									<input type="password" placeholder="" id="l-name" name="aliSecret" class="form-control" value="<?php echo ($data['aliSecret']); ?>">
 									<p class="help-block">开发者密码</p>
 								</div>
 							</div>

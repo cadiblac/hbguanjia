@@ -41,7 +41,7 @@
 									<th>微信id</th>
 									<th>昵称</th>
 									<th>头像</th>
-									<th>注册日期</th>
+									<th>上次登录</th>
 									<th>认证状态</th>									
 									<th>绑定手机</th>
 									<th>积分</th>	
@@ -56,7 +56,7 @@
 									<td>{$v.openid}</td>
 									<td>{$v.username}</td>
 									<td><img src="{$v.photo}" style="height:40px;" /></td>
-									<td>{$v.regtime|date='Y-m-d H:i:s',###}</td>
+									<td><if condition="$v['logintime']">{$v.logintime|date='Y-m-d H:i:s',###}<else />{$v.regtime|date='Y-m-d H:i:s',###}</if></td>
 									<td><switch name="v['state']" >
 									<case value="0">未认证</case>
 									<case value="1">已认证</case>
@@ -64,7 +64,7 @@
 									</switch></td>
 									<td>{$v.tel}</td>
 									<td>{$v.integral}</td>									
-									<td><if condition="$v['usertype'] eq 1">积分用户<else />付费用户</if></td>
+									<td><if condition="$v['usertype'] eq 0">积分用户<else />付费用户</if></td>
 									<td>
 									<a href="{:U(MODULE_NAME.'/Member/updata',array(id=>$v['id']))}"><span class="btn btn-success btn-xs">详情</span></a>
 									</td>

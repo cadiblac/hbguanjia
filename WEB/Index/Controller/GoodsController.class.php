@@ -45,7 +45,7 @@ class GoodsController extends CommonController{
 			$Page -> setConfig('prev','上一页');
 			$Page -> setConfig('next','下一页');
 			$Page -> setConfig('link','indexpagenumb');//pagenumb 会替换成页码
-			$Page -> setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+			$Page -> setConfig('theme','%FIRST% %UP_PAGE% %DOWN_PAGE% %END%');
 			$show = $Page->show();
 			$this->goods = M('goods')->field($field,true)->where($where)->order('id DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
 			$this->page = $show;
@@ -79,7 +79,7 @@ class GoodsController extends CommonController{
 			$Page -> setConfig('prev','上一页');
 			$Page -> setConfig('next','下一页');
 			$Page -> setConfig('link','indexpagenumb');//pagenumb 会替换成页码
-			$Page -> setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+			$Page -> setConfig('theme','%FIRST% %UP_PAGE% %DOWN_PAGE% %END%');
 			$show = $Page->show();
 			$this->goods = M('goods')->field($field,true)->where($where)->order('id DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
 			$this->page = $show;			
@@ -104,6 +104,11 @@ class GoodsController extends CommonController{
 		$this->g = $data;
 
 		$this->clas = M('class')->where(array('id'=>$clas))->find();
+		$fz="Goods_".$id;
+		$this->counts=M('ping')->where(array('fz'=>$fz,'dis'=>1))->count();
+		$ping=M('ping')->where(array('fz'=>$fz,'_string'=>'dis=1 or hfid <>0'))->join('LEFT JOIN lj_member ON lj_ping.mid = lj_member.id')->order('lj_ping.id DESC')->select();
+		$this->ping = Lib\Category::unlimitedForping($ping);
+		$this->fz=$fz;
 		
 		$cate = Lib\Cate::catetkd($cid);
 		$this->sid = $id;

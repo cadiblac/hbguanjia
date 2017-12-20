@@ -1,17 +1,16 @@
-  <div class="flexslider">
-  <ul class="slides">
-    <borl name='banner' type='0' order='sort ASC,id DESC' limit='5'>
-      <li style="background:url({$img}) 50% 0 no-repeat;"></li>
-    </borl>
-  </ul>
-  </div>
-  <script src="__PUBLIC__/js/jquery.flexslider-min.js"></script>
-  <script>
-  $(function(){
-    $('.flexslider').flexslider({
-      directionNav: true,
-      pauseOnAction: false
-    });
-  });
-  </script>
-  <!--banner end -->
+<!-- banner S -->
+<div class="banner">
+	
+	<div class="bd">
+		<ul>
+			<borl name='banner' type='1' order='sort ASC,id DESC' limit='5'>
+			<li style="background:url({$img}) #BCE0FF center 0 no-repeat;"><a href="<if condition='$url'>{$url}<else />javascript:;</if>"></a></li>
+			</borl>
+		</ul>
+	</div>
+
+	<div class="hd"><ul></ul></div>
+</div>
+
+<script type="text/javascript">jQuery(".banner").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click" });</script>
+<!-- banner E -->

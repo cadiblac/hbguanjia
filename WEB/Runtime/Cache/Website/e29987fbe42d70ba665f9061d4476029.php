@@ -70,7 +70,13 @@
                     </ul>
 				</li>
 				<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Menu/index');?>"><i class="fa fa-th-list"></i> <span>内容管理</span></a></li>
-				
+				<li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Rbac,Member)) && ACTION_NAME == index): ?>nav-active<?php endif; ?>">
+				<a target="_parent" href=""><i class="fa fa-users"></i> <span>用户管理</span></a>
+                    <ul class="sub-menu-list">
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Rbac/index');?>"> 系统用户</a></li>
+                        <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/index');?>"> 会员管理</a></li>
+                    </ul>
+                </li>
                 <li class="menu-list <?php if(CONTROLLER_NAME == Orders): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-book"></i> <span>订单管理</span></a>
                     <ul class="sub-menu-list">
@@ -79,14 +85,7 @@
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>3));?>"> 已发货订单</a></li>
                     </ul>
                 </li>
-
-                <li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Rbac,Member)) && ACTION_NAME == index): ?>nav-active<?php endif; ?>">
-				<a target="_parent" href=""><i class="fa fa-users"></i> <span>用户管理</span></a>
-                    <ul class="sub-menu-list">
-						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Rbac/index');?>"> 系统用户</a></li>
-                        <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/index');?>"> 会员管理</a></li>
-                    </ul>
-                </li>
+				<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Comment/index');?>"><i class="fa fa-comment"></i> <span>评论管理</span></a></li>                
 
                 <li class="menu-list <?php if(CONTROLLER_NAME == Rbac && ACTION_NAME != index): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-sort-amount-asc"></i> <span>权限管理</span></a>
@@ -246,13 +245,33 @@
                                             <input class="form-control " id="email" name="contact" type="text" value="<?php echo ($data['contact']); ?>"/>
                                         </div>
                                     </div>
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">认证积分</label>
+                                        <div class="col-lg-3 col-sm-6">
+                                            <input class="form-control " name="rz" type="text" value="<?php echo ($data['rz']); ?>"/>
+                                        </div>
+										首次认证可获得的积分数
+                                    </div>
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">推广积分</label>
+                                        <div class="col-lg-3 col-sm-6">
+                                            <input class="form-control " name="tg" type="text" value="<?php echo ($data['tg']); ?>"/>
+                                        </div>
+										推荐他人使用可获得的积分数
+                                    </div>
+									<div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">分销比例</label>
+                                        <div class="col-lg-3 col-sm-6">
+                                            <input class="form-control " name="fx" type="text" value="<?php echo ($data['fx']); ?>"/>
+                                        </div>
+										推荐他人购买产品可获得分销奖励的提成比例(百分比数据)
+                                    </div>
                                     <div class="form-group ">
                                         <label for="agree" class="control-label col-lg-2 col-sm-3">首页简介</label>
                                         <div class="col-lg-6 col-sm-9">
                                             <textarea class="wysihtml5 form-control" rows="9" name="spare"><?php echo ($data['spare']); ?></textarea>
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
                                             <input class="btn btn-primary" type="submit" value="保存">

@@ -23,6 +23,7 @@ class MemberController extends CommonController{
 	public function updata () {
 		$id = I('id','',intval);
 		$this->member = M('member')->where(array('id'=>$id))->select();
+		$this->jf = M('jf')->where(array('mid'=>$id))->order('time desc')->select();
 		$this->display();		
 	}
 

@@ -1,1 +1,1 @@
-a:7:{s:5:"title";s:15:"环保云管家";s:8:"keywords";s:0:"";s:11:"description";s:0:"";s:5:"corpy";s:0:"";s:5:"addre";s:0:"";s:7:"contact";s:0:"";s:5:"spare";s:0:"";}
+a:10:{s:5:"title";s:15:"环保云管家";s:8:"keywords";s:0:"";s:11:"description";s:0:"";s:5:"corpy";s:0:"";s:5:"addre";s:0:"";s:7:"contact";s:0:"";s:2:"rz";s:3:"500";s:2:"tg";s:3:"100";s:2:"fx";s:2:"1%";s:5:"spare";s:0:"";}

@@ -1,0 +1,288 @@
+[ 2017-12-15T17:07:34+08:00 ] 127.0.0.1 /index.php/Index/ashow_1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001259s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0050s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001207s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001307s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\WWW\hbguanjia\WEB\Index\Controller\ArticleController.class.php 第 85 行.
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0053s ]
+SQL: SELECT * FROM `lj_article` WHERE `id` = 1 AND `cid` <> 1  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `lj_jf` [ RunTime:0.0285s ]
+SQL: SELECT * FROM `lj_jf` WHERE `aid` = 1 AND `mid` = null LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: video D:\WWW\hbguanjia\WEB\Index\Controller\ArticleController.class.php 第 102 行.
+SQL: SHOW COLUMNS FROM `lj_ping` [ RunTime:0.0127s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lj_ping` WHERE `fz` = 'Article_1' AND `dis` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT lj_ping.*,lj_member.photo,lj_member.username FROM `lj_ping` LEFT JOIN lj_member ON lj_ping.mid = lj_member.id  WHERE `fz` = 'Article_1' AND ( dis=1 or hfid <>0 ) ORDER BY lj_ping.id DESC  [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `lj_cate` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `lj_cate` WHERE `id` = 2  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`title`,`description`,`time`,`click`,`pic`,`jf` FROM `lj_article` WHERE `cid` = 2 AND `del` = 0 AND `id` <> 1 ORDER BY rand() LIMIT 5   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `lj_article` WHERE `id` > 1 AND `del` = 0 AND `cid` = 2 ORDER BY `id` ASC LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `lj_article` WHERE `id` < 1 AND `del` = 0 AND `cid` = 2 ORDER BY `id` DESC LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000128s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000208s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029750s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029846s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001376s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001467s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001822s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001910s ]
+
+[ 2017-12-15T17:07:36+08:00 ] 127.0.0.1 /index.php/Index/Article/getclick/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000995s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0049s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001209s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001298s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0058s ]
+SQL: UPDATE `lj_article` SET `click`=click+1 WHERE `id` = 1 [ RunTime:0.0004s ]
+SQL: SELECT `click` FROM `lj_article` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001249s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001326s ]
+
+[ 2017-12-15T17:07:43+08:00 ] 127.0.0.1 /index.php/Index/Article/jfdh/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001315s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0050s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001122s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001262s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\WWW\hbguanjia\WEB\Index\Controller\ArticleController.class.php 第 172 行.
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0057s ]
+SQL: SELECT `integral` FROM `lj_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0050s ]
+SQL: SELECT `title`,`jf` FROM `lj_article` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000066s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000141s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014020s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014111s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000732s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000790s ]
+
+[ 2017-12-15T17:07:54+08:00 ] 127.0.0.1 /index.php/Index/Article/jfdh/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000978s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0048s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001130s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001220s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\WWW\hbguanjia\WEB\Index\Controller\ArticleController.class.php 第 172 行.
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0060s ]
+SQL: SELECT `integral` FROM `lj_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0049s ]
+SQL: SELECT `title`,`jf` FROM `lj_article` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000069s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000148s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013899s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013985s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000724s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000788s ]
+
+[ 2017-12-15T17:08:18+08:00 ] 127.0.0.1 /index.php/Index/Article/jfdh/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000945s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0049s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001058s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001143s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\WWW\hbguanjia\WEB\Index\Controller\ArticleController.class.php 第 172 行.
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0055s ]
+SQL: SELECT `integral` FROM `lj_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0056s ]
+SQL: SELECT `title`,`jf` FROM `lj_article` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000066s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000139s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013509s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013599s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000725s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000784s ]
+
+[ 2017-12-15T17:08:26+08:00 ] 127.0.0.1 /index.php/Index/Article/jfdh/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000796s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0051s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001132s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001218s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\WWW\hbguanjia\WEB\Index\Controller\ArticleController.class.php 第 172 行.
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0053s ]
+SQL: SELECT `integral` FROM `lj_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0051s ]
+SQL: SELECT `title`,`jf` FROM `lj_article` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000066s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000179s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014022s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014106s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000689s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000750s ]
+
+[ 2017-12-15T17:15:57+08:00 ] 127.0.0.1 /index.php/Index/Article/jfdh/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002774s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0080s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001016s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001119s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\WWW\hbguanjia\WEB\Index\Controller\ArticleController.class.php 第 172 行.
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0075s ]
+SQL: SELECT `integral` FROM `lj_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0063s ]
+SQL: SELECT `title`,`jf` FROM `lj_article` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000083s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000169s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035583s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035672s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000633s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000693s ]
+
+[ 2017-12-15T17:16:05+08:00 ] 127.0.0.1 /index.php/Index/Article/jfdh/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000713s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0054s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000822s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000908s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\WWW\hbguanjia\WEB\Index\Controller\ArticleController.class.php 第 172 行.
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0054s ]
+SQL: SELECT `integral` FROM `lj_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0061s ]
+SQL: SELECT `title`,`jf` FROM `lj_article` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000066s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000146s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011906s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011990s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000483s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000544s ]
+
+[ 2017-12-15T17:19:41+08:00 ] 127.0.0.1 /index.php/Index/Article/jfdh/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001069s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0089s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000994s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001096s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\WWW\hbguanjia\WEB\Index\Controller\ArticleController.class.php 第 172 行.
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0059s ]
+SQL: SELECT `integral` FROM `lj_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0063s ]
+SQL: SELECT `title`,`jf` FROM `lj_article` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000069s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000149s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013039s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013132s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000622s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000690s ]
+
+[ 2017-12-15T17:23:20+08:00 ] 127.0.0.1 /index.php/Member/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000869s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0050s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001015s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001105s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000106s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000188s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.046268s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.046359s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000570s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000640s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001286s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001713s ]
+
+[ 2017-12-15T17:23:22+08:00 ] 127.0.0.1 /index.php/Index/Member/verify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000628s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0055s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\WWW\hbguanjia\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000817s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000897s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\WWW\hbguanjia\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001819s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001961s ]
+
