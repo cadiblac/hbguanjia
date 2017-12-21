@@ -41,6 +41,17 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
 .product li .lll{padding-left:20px; background:url(../images/eye18.png) left center no-repeat; background-size:20px 18px;}
 
 /*商品详情页*/
+/* banner */
+#focus{ width:100%;height:212px; position:relative; overflow:hidden;line-height:0;   }
+#focus .hd{ width:100%; height:15px;  position:absolute; z-index:1; bottom:5px; text-align:center;  }
+#focus .hd ul{}
+#focus .hd ul li{ display:inline-block; width:15px; height:15px;line-height:50px;  background:url(../images/dots.png) left center no-repeat; margin:0 3px;  vertical-align:top; overflow:hidden;filter: Alpha(Opacity=80);opacity: 0.8;   }
+#focus .hd ul .on{ background:url(../images/dots.png) right center no-repeat;  }
+#focus .bd{ position:relative; z-index:0; }
+#focus .bd li{width:100%;text-align:center;}
+#focus .bd li img{height:212px;}
+#focus .bd li a{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0); /* 取消链接高亮 */  }
+/* banner end*/
 .shangp{padding:15px 10px; border-bottom:#eee 3px solid;}
 .sku-name{font-size:16px;line-height:26px;color:#95c62b;}
 .dt{line-height:22px; color:#F9B61F;}
@@ -50,3 +61,20 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
 .shuliang .addBtn{padding:0px 5px; font-size:18px;border-color:#F9B61F}
 .min{color:#999; background:#fff;}.add{color:#fff;background:#F9B61F}
 .shuliang .join-money{width:40px; height:22px; line-height:22px; font-size:16px; text-align:center; margin:0 3px; border-color:#F9B61F}
+
+/*支付页面*/
+.piclist{padding:10px 0;clear:both;}
+.piclist .fl{width:20%;}
+.piclist .fl img{width:99%;padding:1px;border:#eee 1px solid;}
+.piclist .fr{width:76%;font-size:12px;line-height:20px;}
+.piclist .fr h3{color:#95c62b;margin-bottom:6px;}
+.piclist .fr div{color:#F9B61F;}
+.piclist .fr div p{color:#dd1a00;}
+.piclist .cl{clear:both;padding:5px 0; border-bottom:#eee 1px dashed;}
+.piclist .cl span{margin-left:5px;}
+.rad{color:#dd1a00;}.green{color:#95c62b;}
+.piclist .input{padding:10px 0;display:flex; align-items:center;justify-content:space-between;}
+.piclist .input input{width:75%;height:20px; line-height:20px; text-indent:10px; font-size:12px;border-radius:3px;}
+.piclist .input textarea{width:100%;min-height:40px;padding:5px;font-size:12px;border-radius:3px;}
+.fkje{border-top:#efefef 1px solid; margin-top:10px; padding-top:10px; line-height:30px; font-size:16px; text-align:right;}
+.wxzf{display:block;width:100px;height:30px;line-height:28px; text-align:center; margin:15px auto; border-color:#2AA144; color:#fff; background:#2AA144;}

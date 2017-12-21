@@ -13,13 +13,16 @@
 <body>
 <div class="top">
 	<div class="userinfo"><img src="<?php echo (session('userHeadimgurl')); ?>"><?php echo (msubstr(session('userNickname'),0,6,'utf-8',false)); if(session('state')): ?><span class="yrz">已认证</span><?php else: ?><span class="wrz">未认证</span><?php endif; ?></div>
-	<a class="fuwu" href="/index.php/Index/member/cart">购物车</a>
+	<a class="fuwu" href="/index.php/Index/member/cart">购物车<div id="dgm"></div></a>
 </div>
 <div style="height:60px;"></div>
+<script>
+$("#dgm").load('/index.php/Index/member/cart/num/1');
+</script>
 <?php echo W('bann/banner');?>
 <div class="one">
 <?php
- $_fav_cate = M('cate')->where(array('stauts'=>0,'pid'=>3))->order('sort ASC,id ASC')->limit("4")->select(); foreach ($_fav_cate as $_fav_v) : extract($_fav_v); switch ($_fav_v['model']){ case Article : $url = U("/".MODULE_NAME."/article/index",array('id'=>3,'spread'=>session('userID'))); break; case Info : $url = U("/".MODULE_NAME."/info/index",array('id'=>3,'spread'=>session('userID'))); break; case Atlas : $url = U("/".MODULE_NAME."/atlas",array('id'=>3,'spread'=>session('userID'))); break; case Gbook : $url = U("/".MODULE_NAME."/gbook/index",array('id'=>3,'spread'=>session('userID'))); break; case Slink : $url = $_fav_v['link']; break; case Jobs : $url = U("/".MODULE_NAME."/jobs/index",array('id'=>3,'spread'=>session('userID'))); break; case Goods : $url = U("/".MODULE_NAME."/goods/index",array('id'=>3,'spread'=>session('userID'))); break; } ?><div><a href="<?php echo ($url); ?>"><img src="<?php echo ($pic); ?>" /><p><?php echo ($name); ?></p></a></div><?php endforeach;?>	
+ $_fav_cate = M('cate')->where(array('stauts'=>0,'pid'=>3))->order('sort ASC,id ASC')->limit("4")->select(); foreach ($_fav_cate as $_fav_v) : extract($_fav_v); switch ($_fav_v['model']){ case Article : $url = U("/".MODULE_NAME."/article/index",array('id'=>$id,'spread'=>session('userID'))); break; case Info : $url = U("/".MODULE_NAME."/info/index",array('id'=>$id,'spread'=>session('userID'))); break; case Atlas : $url = U("/".MODULE_NAME."/atlas",array('id'=>$id,'spread'=>session('userID'))); break; case Gbook : $url = U("/".MODULE_NAME."/gbook/index",array('id'=>$id,'spread'=>session('userID'))); break; case Slink : $url = $_fav_v['link']; break; case Jobs : $url = U("/".MODULE_NAME."/jobs/index",array('id'=>$id,'spread'=>session('userID'))); break; case Goods : $url = U("/".MODULE_NAME."/goods/index",array('id'=>$id,'spread'=>session('userID'))); break; } ?><div><a href="<?php echo ($url); ?>"><img src="<?php echo ($pic); ?>" /><p><?php echo ($name); ?></p></a></div><?php endforeach;?>	
 </div>
 <div class="two">
 	<?php $field=array("id","title","description","jf","pic","time","click");$_list_news=M("article")->join("lj_article_attr ON lj_article.id = lj_article_attr.artid")->where("cid in (2) and del=0 and pic<>''")->field($field)->limit("3")->order("time desc")->select();foreach ($_list_news as $k=>$_list_value) : extract($_list_value);$url=U("/".MODULE_NAME."/article/shows",array("id"=>$id,"spread"=>session("userID"))); ?><div class="pw">

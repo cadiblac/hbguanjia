@@ -228,6 +228,7 @@ abstract class Driver {
                 return false;
             } else {
                 $this->numRows = $this->PDOStatement->rowCount();
+				//if(preg_match("/^\s*(INSERT\s+INTO|INSERT\s+IGNORE\s+INTO|REPLACE\s+INTO|REPLACE\s+IGNORE\s+INTO)\s+/i", $str)){
                 if(preg_match("/^\s*(INSERT\s+INTO|REPLACE\s+INTO)\s+/i", $str)) {
                     $this->lastInsID = $this->_linkID->lastInsertId();
                 }

@@ -15,7 +15,7 @@ class CommonController extends Controller{
         $this->redirect(MODULE_NAME.'/Redirect/index');
 		}
 		//判断是否验证过
-		if(!(session("?userOpenid")&&session("?userID"))&&!(session("?userOpenid")&&session("?userNickname"))){
+		if(!session("?userOpenid") || !session("?userID")){
 		//进入验证
 			Check();
 		}

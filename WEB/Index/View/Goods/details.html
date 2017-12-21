@@ -1,45 +1,47 @@
 <include file="public/header" />
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+<script src="__PUBLIC__/js/TouchSlide.1.0.js"></script>
 <script src="__PUBLIC__/js/comments.js"></script>
 <script src="__PUBLIC__/js/fenye.js"></script>
 <script src="__PUBLIC__/js/setfenye.js"></script>
-<!-- banner S -->
-<div class="banner">
-	
+<!-- banner -->
+<div id="focus">
 	<div class="bd">
 		<ul>			
-			<foreach name="img" item="v">			
-			<li style="background:url({$v.img}) #BCE0FF center 0 no-repeat;"><a href="javascript:;"></a></li>
+			<foreach name="img" item="v">
+			<li><a class="pic" href="javascript:;"><img src="{$v.img}"/></a></li>			
 			</foreach>
-			<li style="background:url({$timg}) #BCE0FF center 0 no-repeat;"><a href="javascript:;"></a></li>
+			<li><a class="pic" href="javascript:;"><img src="{$timg}"/></a></li>
 		</ul>
 	</div>
-
-	<div class="hd"><ul></ul></div>
+	<div class="hd">
+		<ul></ul>
+	</div>
 </div>
-
-<script type="text/javascript">jQuery(".banner").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click" });</script>
-<!-- banner E -->
+<script type="text/javascript">
+	TouchSlide({ 
+		slideCell:"#focus",
+		titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+		mainCell:".bd ul", 
+		effect:"leftLoop", 
+		autoPlay:true,//自动播放
+		autoPage:true, //自动分页
+		switchLoad:"_src" //切换加载，真实图片路径为"_src" 
+	});
+</script>
+<!-- banner end-->
 <div class="shangp">
 	<div class="sku-name">{$title}</div>
+	<if condition="$g[isdis]">
+	<div class="dt">单价&nbsp;&nbsp;￥<span style="text-decoration:line-through;">{$g.price}</span></div>
+	<div class="dtt">优惠价&nbsp;&nbsp;￥<span>{$g.memprice}</span></div>
+	<else />
 	<div class="dt">单价&nbsp;&nbsp;￥<span>{$g.price}</span></div>
-	<if condition="$g[isdis]"><div class="dtt">优惠价&nbsp;&nbsp;￥<span>{$g.memprice}</span></div></if>
+	</if>
 	<div class="shuliang"><div>数量</div>
-	<div><input class="addBtn min" type="button" value="-" /><input class="join-money" type="text" value="1" readonly><input class="addBtn add" type="button" value="+" /></div>
-	<script>
-	var t = $(".join-money");
-	$(function(){
-	$(".add").click(function() {
-		t.val(parseInt(t.val()) + 1); //点击加号输入框数值加1
-	});
-	$(".min").click(function(){
-		t.val(parseInt(t.val())-1); //点击减号输入框数值减1
-		if(t.val()<=0){
-			t.val(parseInt(t.val())+1); //最小值为1
-		}
-	});
-	});
-	</script>
+	<div><input class="addBtn min" type="button" value="-" /><input class="join-money" type="text" value="1" readonly><input class="addBtn add" type="button" value="+" />
+	<input type="hidden" name="gid" id="gid" value="{$sid}">
+	</div>
 	</div>
 </div>
 <!-- Tab切换 S -->
@@ -116,15 +118,16 @@
 <div style="height:56px;"></div>
 <div class="bottom" style="height:50px;border:0;">
 	<div class="gw jia">
-	<a href="/index.php/Index/index/index/spread/{$Think.session.userID}">
+	<a href="javascript:addcart();">
 	加入购物车
 	</a>
 	</div>
 	<div class="gw">
-	<a href="/index.php/Index/article/index/id/2/spread/{$Think.session.userID}">
+	<a href="javascript:buy();">
 	<p>立即购买</p>
 	</a>
 	</div>
 </div>
+<script src="__PUBLIC__/js/addshop.js"></script>
 </body>
 </html>

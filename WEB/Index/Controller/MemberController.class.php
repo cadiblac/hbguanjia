@@ -74,6 +74,12 @@ class MemberController extends CommonController{
 	
 	//用户购物车
 	public function cart(){
+		$num = I('num');
+		$db=M('orders');
+		if($num){
+			$c =$db->where(array('uid'=>session('userID'),'status'=>0))->count();
+			if($c) echo "<span>".$c."</span>";
+		}
 		
 	}
 	
