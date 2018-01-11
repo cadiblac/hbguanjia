@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>购物车</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/head.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/css.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/styles.min.css"/>
+</head>
+<body>
+<!-- html code start -->
+<main class="jumbotron-main">
+    <section class="masthead-section no-padding-layer no-border-layer">
+        <input type="hidden" value="0" id="fromzdh"/>
+
+        <div class="masthead-login">
+            <figure class="masthead-figure">
+				<img src="{$Think.session.userHeadimgurl}" width="64"/>
+            </figure>
+            <div class="masthead-caption">
+                <h3 class="masthead-caption-title line-ellipsis">
+                {$Think.session.userNickname}
+                </h3>
+
+                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
+
+                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">修改资料<i class="icon icon-right"></i></a></p>
+            </div>
+        </div>
+    </section>
+
+  
+    <section class="service-section normal-layer no-padding-layer i-border-image">
+        <ul class="feature-list interaction-list">
+            <li class="feature-item">                
+                <p class="inner-bar"><span class="order-text">我的购物车<em id="orderInfo"></em></span></p>
+            </li>
+			<foreach name="cert" item="v">
+			<li>
+				<div class="padding5">
+				<p>{$v.pname}</p>
+				<div class="space-b"><p>{$v.buytime|date='Y-m-d',###}</p><p>价格：{$v.price}X{$v.num}={$v.sumprice}元</p></div>
+				<p style="text-align:right;">
+				<a class="zd" href="{:U('/Index/Orders/index',array('id'=>$v['id']))}">购买</a><a href="{:U('/Index/orders/del',array('id'=>$v['id']))}">删除</a>
+				</p>
+				</div>
+			</li>
+			</foreach>		
+        </ul>        
+    </section>
+
+</main>
+<include file="public/bottom" />
+<script type="text/javascript" src="__PUBLIC__/JS/check.js"></script>
+</body>
+</html>

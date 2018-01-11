@@ -3,21 +3,24 @@
 <div class="main">
 	<div class="menu"><i></i><span>确认订单</span></div>
 	<div class="piclist">
-		<form action="{:U(MODULE_NAME.'/Pay/doalipay')}" method="post">
+		<form action="{:U(MODULE_NAME.'/weixinpay/pay/','','',true)}" method="get">
 		<div class="fl"><img src="{$p.pic}" /></div>
-		<div class="fr"><input type="hidden" name="pname" value="{$p.title}" />
+		<div class="fr"><input type="hidden" name="pname" value="{$p.title}" /><input type="hidden" name="pid" value="{$p.id}" />
 		<h3>{$p.title}</h3>{$p.description}
 		<div>单价：{$p.price}元<p><if condition="$p['isdis']">优惠价：{$p.memprice}元</if></p></div></div>
 		<div class="cl">购买数量:X{$v.num}</div>
 		<div class="cl">商品金额:<span class="rad">{$v.sumprice}元</span><input type="hidden" name="sumprice" value="{$v.sumprice}"/></div>
-		<div class="cl">分销提成:<span class="green">-<if condition="$u['fx']">{$u.fx}<else />0.00</if>元</span><input type="hidden" name="ordbody" value="{$p.description}"/><input type="hidden" name="order" value="{$v.order}"/><input type="hidden" name="ordshow_url" value="{:U(MODULE_NAME.'/details_'.$p['id'],'','',true)}"/>
+		<div class="cl">分销提成:<span class="green">-<if condition="$u['fx']">{$u.fx}<else />0.00</if>元</span>
+		<input type="hidden" name="out_trade_no" value="{$v.order}"/>
+		<input type="hidden" name="fx" value="{$u.fx}"/>
 		</div>
 		<div class="input">联系人:<input type="text" name="uname" value="{$u.realname}" /></div>
 		<div class="input">联系电话:<input type="text" name="tel" value="{$u.tel}" /></div>
 		<div class="input">联系地址:<input type="text" name="adress" value="{$u.address}" /></div>
 		<div>备注:</div>
 		<div class="input"><textarea name="remark"></textarea></div>
-		<div class="fkje">实付金额:{$v['sumprice']-$u['fx']}元<input type="hidden" name="total_fee" value="{$v['sumprice']-$u['fx']}"/></div>
+		<div class="fkje">实付金额:<if condition="$u['fx'] lt $v['sumprice']">{$v['sumprice']-$u['fx']}<else />0.00</if>元
+		<input type="hidden" name="total_fee" <if condition="$u['fx'] lt $v['sumprice']">value="{$v['sumprice']-$u['fx']}"<else />value="0.00"</if>/></div>
 		<input type="submit" class="wxzf" value="微信支付"/>
 		</form>
 	</div>

@@ -9,10 +9,11 @@
 <link rel="stylesheet" type="text/css" href="/Public/css/css.css">
 <script type="text/javascript" src="/Public/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="/Public/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 <body>
 <div class="top">
-	<div class="userinfo"><img src="<?php echo (session('userHeadimgurl')); ?>"><?php echo (msubstr(session('userNickname'),0,6,'utf-8',false)); if(session('state')): ?><span class="yrz">已认证</span><?php else: ?><span class="wrz">未认证</span><?php endif; ?></div>
+	<div class="userinfo"><a href="/index.php/Index/member/"><img src="<?php echo (session('userHeadimgurl')); ?>"></a><?php echo (msubstr(session('userNickname'),0,6,'utf-8',false)); if(session('state')): ?><span class="yrz">已认证</span><?php else: ?><span class="wrz">未认证</span><?php endif; ?></div>
 	<a class="fuwu" href="/index.php/Index/member/cart">购物车<div id="dgm"></div></a>
 </div>
 <div style="height:60px;"></div>

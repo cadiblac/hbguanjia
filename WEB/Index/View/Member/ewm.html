@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>会员个人中心</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/head.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/css.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/styles.min.css"/>
+</head>
+<body>
+<!-- html code start -->
+<main class="jumbotron-main">
+    <section class="masthead-section no-padding-layer no-border-layer">
+        <input type="hidden" value="0" id="fromzdh"/>
+
+        <div class="masthead-login">
+            <figure class="masthead-figure">
+				<img src="{$Think.session.userHeadimgurl}" width="64"/>
+            </figure>
+            <div class="masthead-caption">
+                <h3 class="masthead-caption-title line-ellipsis">
+                {$Think.session.userNickname}
+                                </h3>
+
+                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
+
+                <p class="masthead-setting"></p>
+            </div>
+        </div>
+    </section>
+
+  
+    <section class="service-section normal-layer no-padding-layer i-border-image">
+        <ul class="feature-list interaction-list">
+            <li class="feature-item">                
+                <p class="inner-bar"><span class="order-text">我的二维码<em id="orderInfo"></em></span></p>
+            </li>
+			<li>
+				<div class="padding5">
+				<p style="text-align:center;margin:10px 0;"><img src="{$fxewm}" /></p>
+				<p>您可以把上面的二维码保存到手机，分享到朋友圈或者发给好友，您的朋友扫码二维码访问环保云管家，您就可以获得一定的积分奖励。</p>
+				</div>
+			</li>			
+        </ul>        
+    </section>
+
+</main>
+<include file="public/bottom" />
+<script type="text/javascript" src="__PUBLIC__/JS/check.js"></script>
+</body>
+</html>

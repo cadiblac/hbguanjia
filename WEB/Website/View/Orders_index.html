@@ -64,7 +64,7 @@
 					</switch>
 					</td>
 					<td>
-					<a href="{:U(MODULE_NAME.'/Orders/updata',array(id=>$v['id']))}"><span class="btn btn-success btn-xs">修改</span></a>
+					<a href="{:U(MODULE_NAME.'/Orders/updata',array(id=>$v['id']))}"><span class="btn btn-success btn-xs">查看</span></a>
 					<if condition="$v['status'] eq 2">
 					<a onclick="return confirm('确实要发货吗？')" href="{:U(MODULE_NAME.'/Orders/status',array(id=>$v['id']))}"><span class="btn btn-danger btn-xs">发货</span>
 					</if>

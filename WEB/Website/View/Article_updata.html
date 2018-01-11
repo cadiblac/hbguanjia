@@ -91,6 +91,13 @@
 										</foreach>
 									</div>
 									<if condition="$cid eq 1">
+									<label for="confirm_password" class="control-label col-lg-1">类别</label>
+									<div class="col-lg-2">
+										<select class=" form-control" name="del">
+											<option value="0" <if condition="$v['del'] eq 0">selected="selected"</if>>项目进度</option>
+											<option value="1" <if condition="$v['del'] eq 2">selected="selected"</if>>项目报告</option>
+										</select>
+									</div>
 									<label for="confirm_password" class="control-label col-lg-1">项目进度</label>
 									<div class="col-lg-2">
 										<select class=" form-control" name="jf">
@@ -112,7 +119,7 @@
 									</if>
 								</div>
 								<div class="form-group ">
-									<label for="confirm_password" class="control-label col-lg-1">文章作者</label>
+									<label for="confirm_password" class="control-label col-lg-1"><if condition="$cid eq 1">客服QQ<else />文章作者</if></label>
 									<div class="col-lg-2">
 										<input class="form-control " type="text" name="author" value="{$v.author}" />
 									</div>

@@ -28,7 +28,7 @@
 
                 <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
 
-                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">完善资料<i class="icon icon-right"></i></a></p>
+                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">修改资料<i class="icon icon-right"></i></a></p>
             </div>
         </div>
     </section>
@@ -68,13 +68,13 @@
 				<switch name="v.status">
 				<case value="1">待支付</case>
 				<case value="4">已完成</case>
-				<default />处理中
+				<default />已支付
 				</switch></span></p></div>
 				<p>{$v.pname}</p>
 				<div class="space-b"><p>{$v.buytime|date='Y-m-d',###}</p><p>价格：{$v.price}X{$v.num}={$v.sumprice}元</p></div>
 				<p><if condition="$v['status'] eq 1">
-				<a href="{:U('/Index/orders/del',array('id'=>$v['id']))}">删除</a><a class="zd" href="{:U('/Index/orders/pay',array('id'=>$v['id']))}">去支付</a>
-				<else />
+				<a href="{:U('/Index/orders/del',array('id'=>$v['id']))}">删除</a><a class="zd" href="{:U('/Index/Orders/index',array('id'=>$v['id']))}">去支付</a></if>
+				<if condition="$v['status'] eq 2 or $v['status'] eq 3">
 				<a class="zd" href="{:U('/Index/orders/updata',array('id'=>$v['id']))}">完成订单</a>
 				</if></p>
 				</div>
@@ -138,7 +138,7 @@
         <div class="recommend-header">
             <h3 class="recommend-title">我的好友</h3>
         </div>
-        <div style="display:flex;justify-content:space-around;flex-wrap:wrap;">
+        <div style="padding:10px;display:flex;justify-content:space-around;flex-wrap:wrap;background:#fff;">
 			<foreach name="firend" item="v">
 				<img class="masthead-figure" src="{$v.photo}" alt="{$v.username}"/>
 			</foreach>

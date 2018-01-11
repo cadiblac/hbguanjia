@@ -28,12 +28,12 @@ class OrdersController extends CommonController{
 	public function updata () {
 		$id = I('id','',intval);
 		$this->id = $id;
-		$orders = M('orders')->where(array('id'=>$id))->select();
-		$uid=$orders[0]['uid'];
-		$pid=$orders[0]['pid'];
+		$orders = M('orders')->where(array('id'=>$id))->find();
+		$uid=$orders['uid'];
+		$pid=$orders['pid'];
 		
-		$this->u=M('member')->where(array('id'=>$uid))->field('realname,QQ,usertype')->find();
-		$this->p=M('goods')->where(array('id'=>$pid))->field('title,pic,price,brand,unit,weight')->find();
+		$this->u=M('member')->where(array('id'=>$uid))->find();
+		$this->p=M('goods')->where(array('id'=>$pid))->find();
 		$this->orders = $orders;
 		$this->display();		
 	}

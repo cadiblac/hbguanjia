@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>评论管理</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/head.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/css.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/styles.min.css"/>
+</head>
+<body>
+<!-- html code start -->
+<main class="jumbotron-main">
+    <section class="masthead-section no-padding-layer no-border-layer">
+        <input type="hidden" value="0" id="fromzdh"/>
+
+        <div class="masthead-login">
+            <figure class="masthead-figure">
+				<img src="{$Think.session.userHeadimgurl}" width="64"/>
+            </figure>
+            <div class="masthead-caption">
+                <h3 class="masthead-caption-title line-ellipsis">
+                {$Think.session.userNickname}
+                </h3>
+
+                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
+
+                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">修改资料<i class="icon icon-right"></i></a></p>
+            </div>
+        </div>
+    </section>
+
+  
+    <section class="service-section normal-layer no-padding-layer i-border-image">
+        <ul class="feature-list interaction-list">
+            <li class="feature-item">                
+                <p class="inner-bar"><span class="order-text">我的评论<em id="orderInfo"></em></span></p>
+            </li>
+			<foreach name="ping" item="v">
+			<li>
+				<div class="padding5">
+				<p <if condition="$v[dis]">class="green"<else />class="gray"</if>>{$v.neir}</p>
+				<p><a href="{:U(MODULE_NAME.'/'.$v['fz'])}">查看评论文章</a>&nbsp;&nbsp;&nbsp;&nbsp;评论时间：<span style="font-size:12px;color:gray;">{$v.time|date='Y-m-d H:i:s',###}</span></p>
+				<foreach name="v.hf" item="h">
+				<p class="red"><b>回复：</b>{$h.neir}</p>
+				</foreach>
+				</div>
+			</li>
+			</foreach>	
+        </ul>
+		<div class="page">{$page}</div>
+    </section>
+
+</main>
+<include file="public/bottom" />
+<script type="text/javascript" src="__PUBLIC__/JS/check.js"></script>
+</body>
+</html>

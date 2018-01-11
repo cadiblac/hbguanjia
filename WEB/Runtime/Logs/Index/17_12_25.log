@@ -1,0 +1,26 @@
+[ 2017-12-25T03:30:27+08:00 ] 222.42.245.33 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001149s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0107s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001283s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001364s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+
+[ 2017-12-25T15:01:00+08:00 ] 113.57.147.211 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001184s ]
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0130s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Common\functions.php 第 1003 行.
+NOTIC: [8] Use of undefined constant __APP__ - assumed '__APP__' D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Common\functions.php 第 1003 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001429s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001521s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+

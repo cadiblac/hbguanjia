@@ -8,9 +8,8 @@
 			$data=session('userOpenid');
 		}
 		if($rst=M('member')->where(array('openid'=>$data))->find()){
-			//设置SESSION
-			$t=time();
-			M('member')->where(array('openid'=>$data))->setField('logintime',$t);
+			M('member')->where(array('openid'=>$data))->setField('logintime',time());
+			//设置SESSION			
 			setSession($rst);
 			return true;
 		}else{
@@ -21,14 +20,18 @@
 			}
 			//获取用户所以信息
 			getUserInfo();
-		}
+		}		
 	}
 
 	//获取用户openid
 	function getOpenid(){
 		if(!$_GET['code']){
 			//获取当前的url地址
-			$rUrl=_URL_.__ACTION__.'/id/'.I('id').'.html';
+			if(I('id')){
+				$rUrl=_URL_.__ACTION__.'/id/'.I('id').'.html';
+			}else{
+				$rUrl=_URL_.__ACTION__.'.html';
+			}
 			$url="https://open.weixin.qq.com/connect/oauth2/authorize?appid="._APPID_."&redirect_uri=".$rUrl."&response_type=code&scope=snsapi_base&state=123456#wechat_redirect";
 			//跳转页面
 			redirect($url,0);
@@ -44,7 +47,7 @@
 	function getUserInfo(){
 		if(!$_GET['code']){
 			//获取当前的url地址
-			$rUrl=_URL_.__ACTION__.'/id/'.I('id').'.html';
+			$rUrl=_URL_.__ACTION__.'/id/'.I('id',0,intval).'.html';
 			$url="https://open.weixin.qq.com/connect/oauth2/authorize?appid="._APPID_."&redirect_uri=".$rUrl."&response_type=code&scope=snsapi_userinfo&state=123456#wechat_redirect";
 			//跳转页面
 			redirect($url,0);
@@ -57,30 +60,20 @@
 			//获取用户数据
 			$json=file_get_contents($getUserInfoUrl);
 			$userInfo=json_decode($json,true);
-			//默认设置头像是132*132的
-			$userInfo['headimgurl']=substr($userInfo['headimgurl'],0,strlen($userInfo['headimgurl'])-1);
-			$userInfo['headimgurl']=$userInfo['headimgurl'].'132';
+			//默认设置头像是132*132的			
+			//$userInfo['headimgurl']=substr($userInfo['headimgurl'],0,strlen($userInfo['headimgurl'])-1);
+			//$userInfo['headimgurl']=$userInfo['headimgurl'].'132';
 			// 将信息插入数据库
-			$mode=M('member');$spread=cookie('spread');
+			$mode=M('member');
+			$spread=cookie('spread');			
 			if($stu=$mode->field('id')->where(array('openid'=>$userInfo['openid']))->find()){
 				$sj=array('openid'=>$userInfo['openid'],'username'=>$userInfo['nickname'],'sex'=>$userInfo['sex'],'photo'=>$userInfo['headimgurl'],'logintime'=>time());
-				$mode->save($sj);
+				$mode->where('id='.$stu['id'])->save($sj);
 				$mid=$stu['id'];
 			}else{
 				$sj=array('openid'=>$userInfo['openid'],'username'=>$userInfo['nickname'],'sex'=>$userInfo['sex'],'photo'=>$userInfo['headimgurl'],'yqrid'=>$spread,'regtime'=>time());
-				$mid=$mode->data($sj)->add();
-				$conf=F('Site','',APP_PATH.'/Data/');
-				if($spread){
-				$jf=array(
-				'mid'=>$spread,
-				'stutas'=>1,
-				'jf'=>$conf['jf'],
-				'beizhu'=>"邀请用户id：".$mid,
-				'time'=>time()
-				);
-				M('jf')->data($jf)->add();
-				$mode->where(array('id'=>$spread))->setInc('integral',$conf['jf']);
-				}
+				$mid=$mode->data($sj)->add();				
+				fxjf($mid);
 			}
 			if($mid){
 			$userInfo['stuID'] = $mid;
@@ -143,20 +136,35 @@
 		$jsonInfo=json_decode($data,true);
 		return $jsonInfo;
 	}
+	//增加推广员积分
+	function fxjf ($id){
+		$conf=F('Site','',APP_PATH.'/Data/');
+		if(cookie('spread')){
+			$jf=array(
+			'mid'=>cookie('spread'),
+			'stutas'=>1,
+			'jf'=>$conf['tg'],
+			'beizhu'=>"邀请用户id：".$id,
+			'time'=>time()
+			);
+			M('jf')->data($jf)->add();
+			M('member')->where(array('id'=>cookie('spread')))->setInc('integral',$conf['tg']);
+		}
+	}
 
-function orderhandle($parameter){
-	if($parameter['trade_status']){
-		$data=array(
-		'order' => $parameter['out_trade_no'],
-		'trade' => $parameter['trade_no'],
-		'buyer_alipay' => $parameter['buyer_email'],
-		'total_fee' => $parameter['total_fee'],
-		'trade_status' => $parameter['trade_status'],
-		'status' => 2,
-		'paytime' => $parameter['notify_time']
-		);
-	}	
-	
-	M('orders')->where(array('order'=>$parameter['out_trade_no']))->save($data);
-} 
+	function orderhandle($parameter){
+		if($parameter['trade_status']){
+			$data=array(
+			'order' => $parameter['out_trade_no'],
+			'trade' => $parameter['trade_no'],
+			'buyer_alipay' => $parameter['buyer_email'],
+			'total_fee' => $parameter['total_fee'],
+			'trade_status' => $parameter['trade_status'],
+			'status' => 2,
+			'paytime' => $parameter['notify_time']
+			);
+		}	
+		
+		M('orders')->where(array('order'=>$parameter['out_trade_no']))->save($data);
+	} 
 ?>

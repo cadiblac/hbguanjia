@@ -142,6 +142,8 @@ class ArticleController extends CommonController{
         }
         $this->prev = $last;
         $this->next = $next;
+		$wxconfig = wx_share_init();  
+		$this->assign('wxconfig', $wxconfig);
 		$this->display();
 	}
 
@@ -156,8 +158,9 @@ class ArticleController extends CommonController{
 	public function tel (){
 		if (!IS_POST) $this->error('请输入查询手机号！');
 		$tel=I('tel');
+		$del=I('leim');
 		$db = M('article');
-		$data = $db->where(array('cid'=>1,'tel'=>$tel))->find();
+		$data = $db->where(array('cid'=>1,'tel'=>$tel,'del'=>$del))->find();
 		if($data){
 			$this->cid=$data['cid'];
 			$this->data=$data;
@@ -170,6 +173,8 @@ class ArticleController extends CommonController{
 	
 	public function jfdh (){
 		$id=I('id',intval);
+		$res=M('jf')->where(array('mid'=>session('userID'),'aid'=>$id))->find();
+		if($res){$this->error('您已兑换过，请勿重复兑换！');}
 		$integral=M('member')->field('integral')->where(array('id'=>session('userID')))->find();
 		$jf=M('article')->field('title,jf')->where(array('id'=>$id))->find();
 		if($integral['integral']>=$jf['jf']){
@@ -178,18 +183,18 @@ class ArticleController extends CommonController{
 			'stutas'=>0,
 			'jf'=>$jf['jf'],
 			'aid'=>$id,
-			'beizhu'=>"兑换文章".$id.":".jf['title'],
+			'beizhu'=>"兑换文章id:".$id.",标题:".$jf['title'],
 			'time'=>time()
 			);
 			M('jf')->add($data);
 			if(M('member')->where(array('id'=>session('userID')))->setDec('integral',$jf['jf'])){
-				$this->success('兑换成功', U('/index.php/Index/ashow_'.$id.'.html'));
+				$this->success('兑换成功', U('/Index/ashow_'.$id.'.html'));
 			}else{
 				$this->error('兑换失败');
 			}
 		}else{
 			$this->error('您的积分不足,您可以去认证或者邀请好友来获得积分。');
-		}
+		}		
 	}
 	
 }

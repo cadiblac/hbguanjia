@@ -1,0 +1,783 @@
+[ 2017-12-22T11:21:05+08:00 ] 111.178.7.207 /index.php/website
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000865s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000924s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001010s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+
+[ 2017-12-22T11:21:05+08:00 ] 111.178.7.207 /index.php/Website/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000766s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000885s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000964s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000104s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000179s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019812s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019893s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001209s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001274s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001544s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001614s ]
+
+[ 2017-12-22T11:21:06+08:00 ] 111.178.7.207 /index.php/Website/Login/verify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000868s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000983s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001073s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001682s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001776s ]
+
+[ 2017-12-22T11:21:13+08:00 ] 111.178.7.207 /index.php/Website/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001077s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001204s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001287s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant md5 - assumed 'md5' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\LoginController.class.php 第 48 行.
+SQL: SHOW COLUMNS FROM `lj_user` [ RunTime:0.0115s ]
+SQL: SELECT * FROM `lj_user` WHERE ( username = "lj_admin" ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `lj_user` SET `logintime`='1513912873',`loginip`='111.178.7.207' WHERE `id` = 1 [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000143s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017983s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018063s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001172s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001231s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001520s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001586s ]
+
+[ 2017-12-22T11:21:16+08:00 ] 111.178.7.207 /index.php/Website/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000801s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000995s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001088s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lj_article` WHERE `del` = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lj_goods` [ RunTime:0.0118s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lj_goods` WHERE `del` = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0116s ]
+SQL: SELECT `id`,`cid`,`title`,`time` FROM `lj_article` WHERE `del` = 0 ORDER BY time desc LIMIT 9   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000342s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000417s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 84 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 84 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 91 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 94 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 95 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 96 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 101 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 109 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 109 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.043324s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.043405s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001242s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001306s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001533s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001603s ]
+
+[ 2017-12-22T11:21:22+08:00 ] 111.178.7.207 /index.php/Website/Orders/index/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000810s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000941s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001028s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 8 行.
+SQL: SHOW COLUMNS FROM `lj_orders` [ RunTime:0.0121s ]
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 23 行.
+SQL: SELECT * FROM `lj_orders` WHERE `status` = 1  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000256s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000336s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 83 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 87 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 88 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 93 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034813s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034881s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001428s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001493s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001552s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001620s ]
+
+[ 2017-12-22T11:21:26+08:00 ] 111.178.7.207 /index.php/Website/Orders/updata/id/5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000843s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001053s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001139s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 29 行.
+SQL: SHOW COLUMNS FROM `lj_orders` [ RunTime:0.0121s ]
+SQL: SELECT * FROM `lj_orders` WHERE `id` = 5  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0121s ]
+SQL: SELECT `realname`,`QQ`,`usertype` FROM `lj_member` WHERE `id` = 10002 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `lj_goods` [ RunTime:0.0119s ]
+SQL: SELECT `title`,`pic`,`price`,`brand`,`unit`,`weight` FROM `lj_goods` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000324s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000395s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 74 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 74 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 81 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 84 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 85 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 86 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 91 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 99 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 99 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 211 行.
+NOTIC: [8] Undefined index: isdis D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 248 行.
+NOTIC: [8] Undefined index: QQ D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 296 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.044067s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044139s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001235s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001300s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001524s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001593s ]
+
+[ 2017-12-22T11:22:00+08:00 ] 111.178.7.207 /index.php/Website/Orders/index/id/5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000786s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001045s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001137s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 8 行.
+SQL: SHOW COLUMNS FROM `lj_orders` [ RunTime:0.0120s ]
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 23 行.
+SQL: SELECT * FROM `lj_orders` WHERE `status` = 5  [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: msg D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 24 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000256s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000327s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 83 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 87 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 88 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 93 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033375s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033445s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001245s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001305s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001468s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001535s ]
+
+[ 2017-12-22T11:22:06+08:00 ] 111.178.7.207 /index.php/Website/Orders/index/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000824s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000912s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000995s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 8 行.
+SQL: SHOW COLUMNS FROM `lj_orders` [ RunTime:0.0120s ]
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 23 行.
+SQL: SELECT * FROM `lj_orders` WHERE `status` = 1  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000256s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000328s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 83 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 87 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 88 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 93 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035282s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035366s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001183s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001241s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001488s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001555s ]
+
+[ 2017-12-22T11:36:26+08:00 ] 111.178.7.207 /index.php/Website/Orders/index/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000810s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000951s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001036s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 8 行.
+SQL: SHOW COLUMNS FROM `lj_orders` [ RunTime:0.0100s ]
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 23 行.
+SQL: SELECT * FROM `lj_orders` WHERE `status` = 1  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000256s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000348s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 83 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 87 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 88 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 93 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034150s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034219s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000592s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000650s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000888s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000952s ]
+
+[ 2017-12-22T16:11:37+08:00 ] 111.178.7.207 /index.php/Website/Orders/index/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001171s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001145s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001231s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+
+[ 2017-12-22T16:11:37+08:00 ] 111.178.7.207 /index.php/Website/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000816s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000943s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001026s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000130s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000209s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.044186s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044263s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000884s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000944s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001420s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001491s ]
+
+[ 2017-12-22T16:11:37+08:00 ] 111.178.7.207 /index.php/Website/Login/verify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000747s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000909s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001009s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000963s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001057s ]
+
+[ 2017-12-22T16:11:45+08:00 ] 111.178.7.207 /index.php/Website/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000915s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000924s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001006s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant md5 - assumed 'md5' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\LoginController.class.php 第 48 行.
+SQL: SHOW COLUMNS FROM `lj_user` [ RunTime:0.0119s ]
+SQL: SELECT * FROM `lj_user` WHERE ( username = "lj_admin" ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `lj_user` SET `logintime`='1513930305',`loginip`='111.178.7.207' WHERE `id` = 1 [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000148s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015373s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015460s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000669s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000735s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000977s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001045s ]
+
+[ 2017-12-22T16:11:49+08:00 ] 111.178.7.207 /index.php/Website/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000826s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000934s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001019s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lj_article` WHERE `del` = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lj_goods` [ RunTime:0.0121s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lj_goods` WHERE `del` = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0119s ]
+SQL: SELECT `id`,`cid`,`title`,`time` FROM `lj_article` WHERE `del` = 0 ORDER BY time desc LIMIT 9   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000338s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000411s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 72 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 84 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 84 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 91 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 94 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 95 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 96 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 101 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 109 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\ae74629993cfa41cc96b9b04cbd4e0ee.php 第 109 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.063620s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.063696s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000672s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000739s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000955s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001025s ]
+
+[ 2017-12-22T16:11:54+08:00 ] 111.178.7.207 /index.php/Website/Orders/index/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000809s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000949s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001031s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 8 行.
+SQL: SHOW COLUMNS FROM `lj_orders` [ RunTime:0.0121s ]
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 23 行.
+SQL: SELECT * FROM `lj_orders` WHERE `status` = 1  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000249s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000325s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 83 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 87 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 88 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 93 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031980s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032051s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000616s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000674s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000936s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000999s ]
+
+[ 2017-12-22T16:12:00+08:00 ] 111.178.7.207 /index.php/Website/Orders/updata/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000800s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000943s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001025s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 29 行.
+SQL: SHOW COLUMNS FROM `lj_orders` [ RunTime:0.0123s ]
+SQL: SELECT * FROM `lj_orders` WHERE `id` = 7  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0121s ]
+SQL: SELECT `realname`,`QQ`,`usertype` FROM `lj_member` WHERE `id` = 10002 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `lj_goods` [ RunTime:0.0124s ]
+SQL: SELECT `title`,`pic`,`price`,`brand`,`unit`,`weight` FROM `lj_goods` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000321s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000393s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 74 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 74 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 81 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 84 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 85 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 86 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 91 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 99 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 99 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 211 行.
+NOTIC: [8] Undefined index: isdis D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 248 行.
+NOTIC: [8] Undefined index: QQ D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 296 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.040617s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.040687s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000601s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000662s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000914s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000979s ]
+
+[ 2017-12-22T16:12:12+08:00 ] 111.178.7.207 /index.php/Website/Cate/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000800s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000925s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001007s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `lj_cate` [ RunTime:0.0121s ]
+SQL: SELECT * FROM `lj_cate` ORDER BY sort ASC  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000261s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000331s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 74 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 74 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 81 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 84 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 85 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 86 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 91 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 99 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 99 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033655s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033728s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000559s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000617s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000896s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000962s ]
+
+[ 2017-12-22T16:12:14+08:00 ] 111.178.7.207 /index.php/Website/Cate/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000796s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000948s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001029s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `lj_cate` [ RunTime:0.0122s ]
+SQL: SELECT * FROM `lj_cate` ORDER BY sort ASC  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000256s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000325s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 62 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 74 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 74 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 81 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 84 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 85 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 86 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 91 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 99 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\28eafa1c949e317ac20caf9c0bdfccb4.php 第 99 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033139s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033214s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000664s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000939s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001009s ]
+
+[ 2017-12-22T16:12:15+08:00 ] 111.178.7.207 /index.php/Website/System/meter
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000805s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000959s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001042s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `lj_conf` [ RunTime:0.0114s ]
+SQL: SELECT `confing` FROM `lj_conf` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000342s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000420s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 61 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 61 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 61 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 61 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 61 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 73 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 73 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 80 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 83 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 84 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 85 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 90 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 98 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\e99736f740d305e70558cdb6c8d8de3d.php 第 98 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033212s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033284s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000627s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000684s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000975s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001050s ]
+
+[ 2017-12-22T17:43:35+08:00 ] 111.178.7.207 /index.php/Website/Menu/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000811s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000941s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001029s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `lj_article` [ RunTime:0.0106s ]
+SQL: SELECT `id`,`cid`,`title`,`time` FROM `lj_article` WHERE `del` = 0 ORDER BY time desc LIMIT 15   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `lj_goods` [ RunTime:0.0105s ]
+SQL: SELECT `id`,`cid`,`title`,`time` FROM `lj_goods` WHERE `del` = 0 ORDER BY time desc LIMIT 15   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000325s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000400s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 65 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 65 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 65 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 65 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 65 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 77 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 77 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 84 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 87 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 88 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 89 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 94 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 102 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 102 行.
+SQL: SHOW COLUMNS FROM `lj_cate` [ RunTime:0.0104s ]
+SQL: SELECT `id`,`pid`,`name`,`model` FROM `lj_cate` ORDER BY sort ASC,id ASC  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000067s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.030537s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010444s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010524s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000600s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000657s ]
+NOTIC: [8] Undefined variable: searchg D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 218 行.
+NOTIC: [8] Undefined index: attr D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 230 行.
+NOTIC: [8] Undefined index: attr D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 230 行.
+NOTIC: [8] Undefined index: attr D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\dcf670a0d8ae9eae59c5b9074dcec17c.php 第 230 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011731s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010524s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000016s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000614s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000964s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001030s ]
+
+[ 2017-12-22T17:43:40+08:00 ] 111.178.7.207 /index.php/Website/Orders/index/id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000770s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000900s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000985s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 8 行.
+SQL: SHOW COLUMNS FROM `lj_orders` [ RunTime:0.0107s ]
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 23 行.
+SQL: SELECT * FROM `lj_orders` WHERE `status` = 1  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000252s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000325s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 64 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 76 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 83 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 87 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 88 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 93 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 101 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\8e71fdb2aa4e2b03fd58d08625176ea9.php 第 243 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036071s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000628s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000685s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000966s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001033s ]
+
+[ 2017-12-22T17:43:44+08:00 ] 111.178.7.207 /index.php/Website/Orders/updata/id/13
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000809s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000908s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000994s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wwwroot\yunguanjia_y81sj9\web\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+NOTIC: [8] Use of undefined constant intval - assumed 'intval' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Website\Controller\OrdersController.class.php 第 29 行.
+SQL: SHOW COLUMNS FROM `lj_orders` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `lj_orders` WHERE `id` = 13  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `lj_member` [ RunTime:0.0120s ]
+SQL: SELECT `realname`,`QQ`,`usertype` FROM `lj_member` WHERE `id` = 10003 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lj_goods` [ RunTime:0.0119s ]
+SQL: SELECT `title`,`pic`,`price`,`brand`,`unit`,`weight` FROM `lj_goods` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000328s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000399s ]
+NOTIC: [8] Use of undefined constant System - assumed 'System' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Cate - assumed 'Cate' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Assort - assumed 'Assort' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Attr - assumed 'Attr' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Link - assumed 'Link' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 62 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 74 行.
+NOTIC: [8] Use of undefined constant Member - assumed 'Member' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 74 行.
+NOTIC: [8] Use of undefined constant Orders - assumed 'Orders' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 81 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 84 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 85 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 86 行.
+NOTIC: [8] Use of undefined constant Rbac - assumed 'Rbac' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 91 行.
+NOTIC: [8] Use of undefined constant Collect - assumed 'Collect' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 99 行.
+NOTIC: [8] Use of undefined constant Bak - assumed 'Bak' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 99 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 211 行.
+NOTIC: [8] Undefined index: isdis D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 248 行.
+NOTIC: [8] Undefined index: QQ D:\wwwroot\yunguanjia_y81sj9\web\WEB\Runtime\Cache\Website\1922b491da10f0439a1598265eee91b5.php 第 296 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.044942s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.045011s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000605s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000665s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000934s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001002s ]
+

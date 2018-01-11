@@ -86,6 +86,7 @@
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>1));?>"> 待付款订单</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>2));?>"> 已付款订单</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>3));?>"> 已发货订单</a></li>
+                        <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>4));?>"> 已完成订单</a></li>
                     </ul>
                 </li>
 				<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Comment/index');?>"><i class="fa fa-comment"></i> <span>评论管理</span></a></li>                
@@ -240,7 +241,7 @@
 					<?php case "4": ?>已收货<?php break; endswitch;?>
 					</td>
 					<td>
-					<a href="<?php echo U(MODULE_NAME.'/Orders/updata',array(id=>$v['id']));?>"><span class="btn btn-success btn-xs">修改</span></a>
+					<a href="<?php echo U(MODULE_NAME.'/Orders/updata',array(id=>$v['id']));?>"><span class="btn btn-success btn-xs">查看</span></a>
 					<?php if($v['status'] == 2): ?><a onclick="return confirm('确实要发货吗？')" href="<?php echo U(MODULE_NAME.'/Orders/status',array(id=>$v['id']));?>"><span class="btn btn-danger btn-xs">发货</span><?php endif; ?>
 					</td>
 				</tr><?php endforeach; endif; ?>				   

@@ -104,7 +104,7 @@ class GoodsController extends CommonController{
 		$this->g = $data;
 
 		$this->clas = M('class')->where(array('id'=>$clas))->find();
-		$fz="Goods_".$id;
+		$fz="details_".$id;
 		$this->counts=M('ping')->where(array('fz'=>$fz,'dis'=>1))->count();
 		$ping=M('ping')->where(array('fz'=>$fz,'_string'=>'dis=1 or hfid <>0'))->join('LEFT JOIN lj_member ON lj_ping.mid = lj_member.id')->field('lj_ping.*,lj_member.photo,lj_member.username')->order('lj_ping.id DESC')->select();
 		$this->ping = Lib\Category::unlimitedForping($ping);
@@ -119,25 +119,10 @@ class GoodsController extends CommonController{
 		$this->model = $cate[0]['model'];
 		$this->img = M('atlas')->where(array('gid'=>$id))->select();
 
-		$last_rs = $db->where(array('id' => array('GT',$id), 'del' => 0, 'cid' =>$cid))->order(array('id'=>'ASC'))->limit(1)->find(); //GT =>'小于'
-		$next_rs = $db->where(array('id' => array('LT',$id), 'del' => 0, 'cid' =>$cid))->order(array('id'=>'DESC'))->limit(1)->find(); //LT => '大于'
-        
-        if ( !empty($last_rs) ){
-            $last = "上一篇:<a href=";
-            $last .= U(MODULE_NAME.'/details_'.$last_rs['id']);
-            $last .= "'>{$last_rs['title']}</a>";
-        }else{
-            $last = "上一篇:已是第一篇";
-        }
-        if ( !empty($next_rs) ){
-            $next = "下一篇:<a href='";
-            $next .= U(MODULE_NAME.'/details_'.$next_rs['id']);
-            $next .= "'>{$next_rs['title']}</a>";
-        }else{
-            $next = "下一篇:已是最后一篇";
-        }
-        $this->prev = $last;
-        $this->next = $next;
+		$this->gmc=M('orders')->where('pid ='.$id.' and status >=2')->count();
+		$this->gmjl=M('orders')->where('pid ='.$id.' and status >=2')->join('LEFT JOIN lj_member ON lj_orders.uid = lj_member.id')->field('lj_orders.uname,lj_orders.paytime,lj_member.photo')->order('lj_orders.paytime DESC')->limit('20')->select();
+		$wxconfig = wx_share_init();  
+		$this->assign('wxconfig', $wxconfig);
 		$this->display();
 	}
 

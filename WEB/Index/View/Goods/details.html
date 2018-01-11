@@ -65,7 +65,7 @@
 			</div>
 			<div class="panel-body">
 				<form id="ping" style="margin-bottom:20px;">
-				<input type="hidden" name="fz" value="{:CONTROLLER_NAME}_{$sid}" id="fz">
+				<input type="hidden" name="fz" value="{:ACTION_NAME}_{$sid}" id="fz">
 				<div><textarea type="textarea" rows="3" placeholder="还可以输入140个字" class="form-control" id="nei"></textarea></div>
 				<span class="comment_tip" id="comment_tip" data-top="11" data-foot="36"></span>
 				<div style="margin-top: 7px;"><button type="button" class="btn ant-btn" onclick="subcomment()"><i class="glyphicon glyphicon-send"></i><span style="margin-left:10px;">发布评论</span></button></div>
@@ -87,14 +87,13 @@
 				<div id="page_navigation"></div>
 			</div>
 			</ul>
-			<ul id="con_one_42" style="display: none" class="news">
-			<foreach name="xg" item="x">
+			<ul id="con_one_42" style="display: none" class="gmjl">
+			<foreach name="gmjl" item="g">
 			<li><div class="img">
-			<img <if condition="$x['pic']">src="{$x.pic}"<else />src="__PUBLIC__/images/nopic.jpg"</if> /></div>
+			<img src="{$g.photo}" /></div>
 			<div class="zc">
-				<h3><a href="{:U('/'.MODULE_NAME.'/ashow_'.$x['id'])}">{$x.title|msubstr=###,0,15,'utf-8',false}</a></h3>
-				<p>{$x.description}</p>
-				<div class="db"><div>{$x.time|date='Y-m-d',###}&nbsp;&nbsp;&nbsp;&nbsp;({$x.click})</div><div class="jf">{$x.jf}积分</div></div>
+				<h3>{$g.uname|cut_name=###}</h3>
+				<p>购买时间:{$g.paytime|date='Y-m-d H:i:s',###}</p>
 			</div>
 			</li>
 			</foreach>				
@@ -115,7 +114,10 @@
 	</script>
 	<!-- Tab切换 E -->
 <!--end main-->
-<div style="height:56px;"></div>
+<div style="height:56px;">
+<p style="display:none;">
+<script type="text/javascript" src="{:U(MODULE_NAME.'/Goods/getclick',array('id'=>$sid))}"></script></p>
+</div>
 <div class="bottom" style="height:50px;border:0;">
 	<div class="gw jia">
 	<a href="javascript:addcart();">

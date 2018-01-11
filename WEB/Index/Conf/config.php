@@ -24,6 +24,7 @@ return array(
 	//'info/:id\d' => 'Info/index', //其中\d表示数字 正常配置c/9/
 	'/^alist_(\d+)$/'=> 'Article/index?id=:1', //正则路由 c_9
 	'/^ashow_(\d+)$/'=> 'Article/shows?id=:1',
+	'/^Article_(\d+)$/'=> 'Article/shows?id=:1',
 	'/^plist_(\d+)$/'=> 'Atlas/index?id=:1',
 	'/^pshow_(\d+)$/'=> 'Atlas/shows?id=:1',
 	'/^info_(\d+)$/'=> 'Info/index?id=:1',
@@ -62,7 +63,16 @@ return array(
     'MAIL_PASSWORD' =>$meter['MAIL_PASSWORD'],//邮箱密码
     'MAIL_CHARSET' =>$meter['MAIL_CHARSET'],//设置邮件编码
     'MAIL_ISHTML' =>$meter['MAIL_ISHTML'], // 是否HTML格式邮件	
-		
+	
+	//微信支付配置参数
+	'WEIXINPAY_CONFIG' => array(
+    'APPID'              => $meter['Appid'], // 微信支付APPID
+    'MCHID'              => $meter['mchid'], // 微信支付MCHID 商户收款账号
+    'KEY'                => $meter['mchkey'], // 微信支付KEY
+    'APPSECRET'          => $meter['AppSecret'], // 公众帐号secert (公众号支付专用)
+    'NOTIFY_URL'         => 'http://yunguanjia.35xg.com/index.php/Index/weixinpay/notify', // 接收支付状态的连接
+    ),
+	
 	//支付宝配置参数
 	'alipay_config'=>array(
 		'partner' =>$meter['partner'],   //这里是你在成功申请支付宝接口后获取到的PID；

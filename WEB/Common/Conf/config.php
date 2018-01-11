@@ -8,9 +8,9 @@ return array(
 	//数据库连接参数设置
 	'DB_TYPE' => 'mysql',
 	'DB_HOST' => 'localhost',
-	'DB_USER' => 'root',
-	'DB_PWD' => 'root',
-	'DB_NAME' => 'hbguanjia',
+	'DB_USER' => 'yunguanjia',
+	'DB_PWD' => 'V26GD2WkjTDFU0O',
+	'DB_NAME' => 'yunguanjia',
 	'DB_PREFIX' => 'lj_',
 	'DB_CHARSET' => 'utf8',
 	'DB_FIELDS_CACHE' => false,
