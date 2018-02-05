@@ -99,6 +99,7 @@
                 <li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Collect,Bak))): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-cogs"></i> <span>系统工具</span></a>
 					<ul class="sub-menu-list">
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/message');?>"> 信息群发</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/index');?>"> 采集设置</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/note');?>"> 采集记录</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Bak/index');?>"> 数据备份</a></li>
@@ -229,7 +230,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label for="password" class="control-label col-lg-2">版权信息</label>
+                                        <label for="password" class="control-label col-lg-2">QQ客服</label>
                                         <div class="col-lg-3">
                                             <input class="form-control " id="password" name="corpy" type="text" value="<?php echo ($data['corpy']); ?>"/>
                                         </div>
@@ -241,7 +242,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label for="email" class="control-label col-lg-2">联系方式</label>
+                                        <label for="email" class="control-label col-lg-2">联系电话</label>
                                         <div class="col-lg-3">
                                             <input class="form-control " id="email" name="contact" type="text" value="<?php echo ($data['contact']); ?>"/>
                                         </div>

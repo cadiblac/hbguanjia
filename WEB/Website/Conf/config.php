@@ -1,4 +1,17 @@
 <?php
+$conf = M('conf')->where(array('id' => 0))->getField('confing');
+$meter=unserialize($conf);
+
+//这里填入的TOKEN
+define("TOKEN", "weixin");
+//这里填入的你域名
+define("_URL_","http://yunguanjia.35xg.com");
+//这里填入你公众号的APPID
+define("_APPID_",$meter['Appid']);
+//这里填入你公众号的APPSECRET
+define('_APPSECRET_',$meter['AppSecret']);
+
+
 return array(
 	//定义模板中__public__路径
 	'TMPL_PARSE_STRING'	=> array(

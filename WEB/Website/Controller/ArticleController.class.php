@@ -49,7 +49,7 @@ class ArticleController extends CommonController {
     		'time' => strtotime($_POST['time']),
     		'cid' => (int) $_POST['cid'],
     		'pic' => $_POST['pic'],
-			'tel' => I('tel','',intval),
+			'tel' => I('tel'),
 			'del' => I('del','',intval),
 			'jf' => I('jf','',intval)
     		);
@@ -95,7 +95,7 @@ class ArticleController extends CommonController {
     		'content' =>$_POST['content'],
     		'cid' => (int) $_POST['cid'],
     		'pic' => $_POST['pic'],
-			'tel' => I('tel','',intval),
+			'tel' => I('tel'),
 			'del' => I('del','',intval),
 			'jf' => I('jf','',intval)
     		);

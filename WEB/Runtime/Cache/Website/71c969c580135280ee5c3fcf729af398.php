@@ -100,6 +100,7 @@
                 <li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Collect,Bak))): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-cogs"></i> <span>系统工具</span></a>
 					<ul class="sub-menu-list">
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/message');?>"> 信息群发</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/index');?>"> 采集设置</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/note');?>"> 采集记录</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Bak/index');?>"> 数据备份</a></li>
@@ -218,10 +219,11 @@
 								<thead>								
 								<tr role="row">
 									<th>ID</th>
-									<th>微信id</th>
 									<th>昵称</th>
 									<th>头像</th>
-									<th>上次登录</th>
+									<th>姓名</th>
+									<th>邀请人id</th>
+									<th>最近登录</th>
 									<th>认证状态</th>									
 									<th>绑定手机</th>
 									<th>积分</th>	
@@ -231,10 +233,11 @@
 								</thead>
 								<tbody>
 								<?php if(is_array($member)): foreach($member as $key=>$v): ?><tr class="">
-									<td><?php echo ($v["id"]); ?></td>
-									<td><?php echo ($v["openid"]); ?></td>
+									<td><?php echo ($v["id"]); ?></td>									
 									<td><?php echo ($v["username"]); ?></td>
 									<td><img src="<?php echo ($v["photo"]); ?>" style="height:40px;" /></td>
+									<td><?php echo ($v["realname"]); ?></td>
+									<td><?php echo ($v["yqrid"]); ?></td>
 									<td><?php if($v['logintime']): echo (date('Y-m-d H:i:s',$v["logintime"])); else: echo (date('Y-m-d H:i:s',$v["regtime"])); endif; ?></td>
 									<td><?php switch($v['state']): case "0": ?>未认证<?php break;?>
 									<?php case "1": ?>已认证<?php break;?>
@@ -243,7 +246,8 @@
 									<td><?php echo ($v["integral"]); ?></td>									
 									<td><?php if($v['usertype'] == 0): ?>积分用户<?php else: ?>付费用户<?php endif; ?></td>
 									<td>
-									<a href="<?php echo U(MODULE_NAME.'/Member/updata',array(id=>$v['id']));?>"><span class="btn btn-success btn-xs">详情</span></a>
+									<a href="<?php echo U(MODULE_NAME.'/Member/updata',array('id'=>$v['id']));?>"><span class="btn btn-success btn-xs">详情</span></a>
+									<a href="<?php echo U(MODULE_NAME.'/Member/mail',array('openid'=>$v['openid']));?>"><span class="btn btn-success btn-xs">发信息</span></a>
 									</td>
 								</tr><?php endforeach; endif; ?>
 								</tbody>								

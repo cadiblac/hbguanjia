@@ -1,5 +1,5 @@
 <include file="Public:common" />
-<title>会员管理</title>
+<title>群发消息</title>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
 </head>
 
@@ -8,13 +8,13 @@
         <!-- page heading start-->
         <div class="page-heading">
             <h3>
-                会员管理
+                群发消息
             </h3>
             <ul class="breadcrumb">
                 <li>
                     <a href="{:U('Index/index')}">首页</a>
                 </li>
-                <li class="active"> 会员管理 </li>
+                <li class="active"> 群发消息 </li>
             </ul>
         </div>
         <!-- page heading end-->
@@ -25,7 +25,7 @@
                 <div class="col-md-12">
                     <section class="panel">
                         <header class="panel-heading">
-                           会员管理
+                           群发消息
                             <span class="tools pull-right">
                                 <a class="fa fa-chevron-down" href="javascript:;"></a>
                              </span>
@@ -37,42 +37,25 @@
 								
 								<thead>								
 								<tr role="row">
-									<th>ID</th>
 									<th>昵称</th>
 									<th>头像</th>
-									<th>姓名</th>
-									<th>邀请人id</th>
-									<th>最近登录</th>
-									<th>认证状态</th>									
-									<th>绑定手机</th>
-									<th>积分</th>	
-									<th>用户组</th>
+									<th>姓名</th>									
 									<th>操作</th>
 								</tr>
 								</thead>
 								<tbody>
 								<foreach name='member' item='v'>							
-								<tr class="">
-									<td>{$v.id}</td>									
+								<tr class="">								
 									<td>{$v.username}</td>
 									<td><img src="{$v.photo}" style="height:40px;" /></td>
 									<td>{$v.realname}</td>
-									<td>{$v.yqrid}</td>
-									<td><if condition="$v['logintime']">{$v.logintime|date='Y-m-d H:i:s',###}<else />{$v.regtime|date='Y-m-d H:i:s',###}</if></td>
-									<td><switch name="v['state']" >
-									<case value="0">未认证</case>
-									<case value="1">已认证</case>
-									<case value="2">锁定</case>
-									</switch></td>
-									<td>{$v.tel}</td>
-									<td>{$v.integral}</td>									
-									<td><if condition="$v['usertype'] eq 0">积分用户<else />付费用户</if></td>
 									<td>
-									<a href="{:U(MODULE_NAME.'/Member/updata',array('id'=>$v['id']))}"><span class="btn btn-success btn-xs">详情</span></a>
-									<a href="{:U(MODULE_NAME.'/Member/mail',array('openid'=>$v['openid']))}"><span class="btn btn-success btn-xs">发信息</span></a>
+									<span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal" onclick="huifu('{$v.openid}','{$v.username}')">发送</span>
 									</td>
 								</tr>
 								</foreach>
+								<if condition="$p ELT 1">
+								<tr><td colspan='3'></td><td><span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal" onclick="huifu(0,'所有人')">发送给所有人</span></td></tr></if>
 								</tbody>								
 								</table>
 								<div class="form-group">
@@ -83,6 +66,42 @@
                     </section>
                 </div>
             </div>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								发送消息
+							</h4>
+						</div>
+						<form action="{:U(MODULE_NAME.'/member/sendmail')}" method="post">
+						<div class="modal-body">
+						<div class="form-group ">
+							<input class="form-control" name="title" type="text" value="" placeholder="信息标题如：您申请的检测项目已完成"></div>
+						<div class="form-group ">
+							<input class="form-control" name="keyword1" type="text" value="" placeholder="检测产品如：噪音检测"></div>
+						<div class="form-group ">
+							<input class="form-control" name="keyword2" type="text" value="" placeholder="服务类型如：实地检测"></div>
+						<div class="form-group ">
+							<input class="form-control" name="url" type="text" value="" placeholder="点击消息跳转地址：必须是http://开头的完整地址"></div>
+						<div class="form-group ">
+							<textarea name="remark" class="form-control" rows="3" placeholder="详细信息(50字内)"></textarea>
+							<input name="openid" id="openid" type="hidden" /></div>
+						</div>
+						<div class="modal-footer">								
+							<button type="button" class="btn btn-primary" onclick="submit()">
+								提交
+							</button>
+						</div>
+						</form>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+			<!-- 模态框（Modal） -->
         </div>
         <!--body wrapper end-->
 <include file="Public:bottom" />
@@ -97,6 +116,11 @@
 
 <!--common scripts for all pages-->
 <script src="__PUBLIC__/js/scripts.js"></script>
-
+<script>
+function huifu(id,name){
+	$('#myModalLabel').html('发送消息到:'+name);
+	$('#openid').val(id);
+}
+</script>
 </body>
 </html>

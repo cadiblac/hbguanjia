@@ -49,7 +49,8 @@ class MemberController extends CommonController{
 				'time'=>time()
 				);
 				M('jf')->data($jf)->add();
-			}
+				$rzjf=$conf['rz'];
+			}else{$rzjf=0;}
 			$date=array(
 			'id'=>$member['id'],
 			'realname'=>I('realname'),
@@ -57,7 +58,7 @@ class MemberController extends CommonController{
 			'address'=>I('address'),
 			'QQ'=>I('QQ'),
 			'email'=>I('email'),
-			'integral'=>array('exp', 'integral+'.$conf['rz']),
+			'integral'=>array('exp', 'integral+'.$rzjf),
 			'state'=>1
 			);
 			$rs=M('member')->save($date);			

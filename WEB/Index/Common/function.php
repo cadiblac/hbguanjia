@@ -71,7 +71,7 @@
 				$mode->where('id='.$stu['id'])->save($sj);
 				$mid=$stu['id'];
 			}else{
-				$sj=array('openid'=>$userInfo['openid'],'username'=>$userInfo['nickname'],'sex'=>$userInfo['sex'],'photo'=>$userInfo['headimgurl'],'yqrid'=>$spread,'regtime'=>time());
+				$sj=array('openid'=>$userInfo['openid'],'username'=>$userInfo['nickname'],'sex'=>$userInfo['sex'],'photo'=>$userInfo['headimgurl'],'yqrid'=>$spread,'logintime'=>time(),'regtime'=>time());
 				$mid=$mode->data($sj)->add();				
 				fxjf($mid);
 			}
@@ -112,6 +112,8 @@
 		//设置传输地址
 		curl_setopt($ch, CURLOPT_URL, $url);
 		//设置以文件流形式输出
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		//接收返回数据
 		$data=curl_exec($ch);
@@ -136,6 +138,27 @@
 		$jsonInfo=json_decode($data,true);
 		return $jsonInfo;
 	}
+	
+	function request_post($url = '', $param = '')  
+    {  
+        if (empty($url) || empty($param)) {  
+            return false;  
+        }  
+        $postUrl = $url;  
+        $curlPost = $param;  
+        $ch = curl_init(); //初始化curl  
+        curl_setopt($ch, CURLOPT_URL, $postUrl); //抓取指定网页  
+        curl_setopt($ch, CURLOPT_HEADER, 0); //设置header  
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //要求结果为字符串且输出到屏幕上  
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);  
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);  
+        curl_setopt($ch, CURLOPT_POST, 1); //post提交方式  
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);  
+        $data = curl_exec($ch); //运行curl  
+        curl_close($ch);  
+        return $data;  
+    }  
+	
 	//增加推广员积分
 	function fxjf ($id){
 		$conf=F('Site','',APP_PATH.'/Data/');
@@ -167,4 +190,25 @@
 		
 		M('orders')->where(array('order'=>$parameter['out_trade_no']))->save($data);
 	} 
+	/** 
+     * 发送自定义的模板消息 
+     */  
+    function doSend($touser, $template_id, $url, $data, $topcolor = '#7B68EE'){  
+        $template = array(  
+            'touser' => $touser,  
+            'template_id' => $template_id,  
+            'url' => $url,  
+            'topcolor' => $topcolor,  
+            'data' => $data  
+        );  
+        $json_template = json_encode($template);
+		if(S('access_token')){$accessToken=S('access_token');}else{$accessToken=getAccess_token();}
+        $url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$accessToken;  
+        $dataRes = request_post($url, urldecode($json_template));
+        if ($dataRes['errcode'] == 0) {  
+            return true;  
+        } else {  
+            return false;  
+        }  
+    }  
 ?>

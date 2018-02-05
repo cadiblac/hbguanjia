@@ -17,7 +17,8 @@
   <script src="/WEB/Website/public/js/respond.min.js"></script>
   <![endif]-->
 
-<title>网站扩展参数设置</title>
+<title>群发消息</title>
+<link rel="stylesheet" type="text/css" href="/WEB/Website/public/css/userdefind.css" />
 </head>
 
 <body class="sticky-header">
@@ -99,6 +100,7 @@
                 <li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Collect,Bak))): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-cogs"></i> <span>系统工具</span></a>
 					<ul class="sub-menu-list">
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/message');?>"> 信息群发</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/index');?>"> 采集设置</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/note');?>"> 采集记录</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Bak/index');?>"> 数据备份</a></li>
@@ -187,151 +189,97 @@
         <!-- page heading start-->
         <div class="page-heading">
             <h3>
-                网站扩展参数设置
+                群发消息
             </h3>
             <ul class="breadcrumb">
                 <li>
-                    <a href="<?php echo U('Index/meter');?>">首页</a>
+                    <a href="<?php echo U('Index/index');?>">首页</a>
                 </li>
-                <li class="active"> 网站参数 </li>
+                <li class="active"> 群发消息 </li>
             </ul>
         </div>
         <!-- page heading end-->
 
         <!--body wrapper start-->
         <div class="wrapper">
-            
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-12">
                     <section class="panel">
-					<form class="cmxform form-horizontal adminex-form" method="post" action="<?php echo U(MODULE_NAME.'/System/meter');?>">
                         <header class="panel-heading">
-                            扩展参数设置
+                           群发消息
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                             </span>
                         </header>
                         <div class="panel-body">
-                            <div class="form">
-								<div class="alert alert-success alert-block fade in">PHPMailer邮件发送设置</div>
-                                    <div class="form-group ">
-                                        <label for="firstname" class="control-label col-lg-2">smtp服务器</label>
-                                        <div class="col-lg-3">
-                                            <input class=" form-control" id="firstname" name="MAIL_HOST" type="text" value="<?php echo ($data['MAIL_HOST']); ?>" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="lastname" class="control-label col-lg-2">是否启用smtp认证</label>
-                                        <div class="col-lg-3">
-										<label class="checkbox-inline"><input type="radio" name="MAIL_SMTPAUTH" id="optionsRadios1" value="true" <?php if($data['MAIL_SMTPAUTH'] != 'false'): ?>checked=""<?php endif; ?>>是&nbsp;&nbsp;&nbsp;&nbsp;</label>
-										<label class="checkbox-inline"><input type="radio" name="MAIL_SMTPAUTH" id="optionsRadios1" value="false" <?php if($data['MAIL_SMTPAUTH'] == 'false'): ?>checked=""<?php endif; ?>>否</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="username" class="control-label col-lg-2">邮箱账号</label>
-                                        <div class="col-lg-3">
-                                            <input class="form-control " id="username" name="MAIL_USERNAME" type="text" value="<?php echo ($data['MAIL_USERNAME']); ?>"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="password" class="control-label col-lg-2">邮箱密码</label>
-                                        <div class="col-lg-3">
-                                            <input class="form-control " id="password" name="MAIL_PASSWORD" type="password" value="<?php echo ($data['MAIL_PASSWORD']); ?>"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="confirm_password" class="control-label col-lg-2">发件人姓名</label>
-                                        <div class="col-lg-3">
-                                            <input class="form-control " id="confirm_password" name="MAIL_FROMNAME" type="text" value="<?php echo ($data['MAIL_FROMNAME']); ?>"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="email" class="control-label col-lg-2">发件人email</label>
-                                        <div class="col-lg-3">
-                                            <input class="form-control " id="email" name="MAIL_FROM" type="text" value="<?php echo ($data['MAIL_FROM']); ?>"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="agree" class="control-label col-lg-2 col-sm-3">设置邮件编码</label>
-                                        <div class="col-lg-3">
-                                            <input class="form-control " name="MAIL_CHARSET" type="text" placeholder="utf-8或者gb2312" value="<?php echo ($data['MAIL_CHARSET']); ?>"/>
-                                        </div>
-                                    </div> 
-									<div class="form-group ">
-                                        <label for="agree" class="control-label col-lg-2 col-sm-3">是否HTML格式邮件</label>
-                                        <div class="col-lg-3">
-                                        <label class="checkbox-inline"><input type="radio" name="MAIL_ISHTML" id="optionsRadios1" value="true" <?php if($data['MAIL_ISHTML'] != 'false'): ?>checked=""<?php endif; ?>>是&nbsp;&nbsp;&nbsp;&nbsp;</label>
-										<label class="checkbox-inline"><input type="radio" name="MAIL_ISHTML" id="optionsRadios1" value="false" <?php if($data['MAIL_ISHTML'] == 'false'): ?>checked=""<?php endif; ?>>否</label>
-                                        </div>
-                                    </div>
-                            
-							<div class="alert alert-success alert-block fade in">支付宝参数</div>
-							<div class="form-group has-success">
-								<label class="col-lg-2 control-label">PID</label>
-								<div class="col-lg-3">
-									<input type="text" placeholder="" id="f-name" name="partner" class="form-control" value="<?php echo ($data['partner']); ?>">
-									<p class="help-block">成功申请支付宝接口后获取到的PID</p>
+                            <div class="adv-table editable-table ">
+								<div class="space15"></div>
+								<table class="table table-bordered table-striped dataTable">
+								
+								<thead>								
+								<tr role="row">
+									<th>昵称</th>
+									<th>头像</th>
+									<th>姓名</th>									
+									<th>操作</th>
+								</tr>
+								</thead>
+								<tbody>
+								<?php if(is_array($member)): foreach($member as $key=>$v): ?><tr class="">								
+									<td><?php echo ($v["username"]); ?></td>
+									<td><img src="<?php echo ($v["photo"]); ?>" style="height:40px;" /></td>
+									<td><?php echo ($v["realname"]); ?></td>
+									<td>
+									<span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal" onclick="huifu('<?php echo ($v["openid"]); ?>','<?php echo ($v["username"]); ?>')">发送</span>
+									</td>
+								</tr><?php endforeach; endif; ?>
+								<?php if($p <= 1): ?><tr><td colspan='3'></td><td><span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal" onclick="huifu(0,'所有人')">发送给所有人</span></td></tr><?php endif; ?>
+								</tbody>								
+								</table>
+								<div class="form-group">
+									<div class="col-lg-offset-6 col-lg-6" id="page"><?php echo ($page); ?></div>
 								</div>
-							</div>
-							<div class="form-group has-error">
-								<label class="col-lg-2 control-label">Key</label>
-								<div class="col-lg-3">
-									<input type="password" placeholder="" id="l-name" name="key" class="form-control" value="<?php echo ($data['key']); ?>">
-									<p class="help-block">成功申请支付宝接口后获取到的Key</p>
-								</div>
-							</div>
-							<div class="alert alert-success alert-block fade in">微信登录参数</div>
-							<div class="form-group has-success">
-								<label class="col-lg-2 control-label">Appid</label>
-								<div class="col-lg-3">
-									<input type="text" placeholder="" id="f-name" name="Appid" class="form-control" value="<?php echo ($data['Appid']); ?>">
-									<p class="help-block">微信开发者信息开发者ID</p>
-								</div>
-							</div>
-							<div class="form-group has-error">
-								<label class="col-lg-2 control-label">AppSecret</label>
-								<div class="col-lg-3">
-									<input type="password" placeholder="" id="l-name" name="AppSecret" class="form-control" value="<?php echo ($data['AppSecret']); ?>">
-									<p class="help-block">开发者密码</p>
-								</div>
-							</div>
-							<div class="form-group has-success">
-								<label class="col-lg-2 control-label">MCHID</label>
-								<div class="col-lg-3">
-									<input type="text" placeholder="" id="f-name" name="mchid" class="form-control" value="<?php echo ($data['mchid']); ?>">
-									<p class="help-block">微信支付商户号MCHID</p>
-								</div>
-							</div>
-							<div class="form-group has-error">
-								<label class="col-lg-2 control-label">密匙KEY</label>
-								<div class="col-lg-3">
-									<input type="password" placeholder="" id="l-name" name="mchkey" class="form-control" value="<?php echo ($data['mchkey']); ?>">
-									<p class="help-block">微信支付密匙</p>
-								</div>
-							</div>
-							<div class="alert alert-success alert-block fade in">阿里云短信接口</div>
-							<div class="form-group has-success">
-								<label class="col-lg-2 control-label">Key ID</label>
-								<div class="col-lg-3">
-									<input type="text" placeholder="" id="f-name" name="alid" class="form-control" value="<?php echo ($data['alid']); ?>">
-									<p class="help-block">阿里云开发者ID</p>
-								</div>
-							</div>
-							<div class="form-group has-error">
-								<label class="col-lg-2 control-label">Key Secret</label>
-								<div class="col-lg-3">
-									<input type="password" placeholder="" id="l-name" name="aliSecret" class="form-control" value="<?php echo ($data['aliSecret']); ?>">
-									<p class="help-block">开发者密码</p>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-lg-offset-2 col-lg-10">
-									<button class="btn btn-primary" type="submit">保存</button>
-								</div>
-							</div>   
 							</div>
                         </div>
-						</form>
                     </section>
                 </div>
             </div>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								发送消息
+							</h4>
+						</div>
+						<form action="<?php echo U(MODULE_NAME.'/member/sendmail');?>" method="post">
+						<div class="modal-body">
+						<div class="form-group ">
+							<input class="form-control" name="title" type="text" value="" placeholder="信息标题如：您申请的检测项目已完成"></div>
+						<div class="form-group ">
+							<input class="form-control" name="keyword1" type="text" value="" placeholder="检测产品如：噪音检测"></div>
+						<div class="form-group ">
+							<input class="form-control" name="keyword2" type="text" value="" placeholder="服务类型如：实地检测"></div>
+						<div class="form-group ">
+							<input class="form-control" name="url" type="text" value="" placeholder="点击消息跳转地址：必须是http://开头的完整地址"></div>
+						<div class="form-group ">
+							<textarea name="remark" class="form-control" rows="3" placeholder="详细信息(50字内)"></textarea>
+							<input name="openid" id="openid" type="hidden" /></div>
+						</div>
+						<div class="modal-footer">								
+							<button type="button" class="btn btn-primary" onclick="submit()">
+								提交
+							</button>
+						</div>
+						</form>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+			<!-- 模态框（Modal） -->
         </div>
         <!--body wrapper end-->
 <!--footer section start-->
@@ -353,11 +301,13 @@
 <script src="/WEB/Website/public/js/modernizr.min.js"></script>
 <script src="/WEB/Website/public/js/jquery.nicescroll.js"></script>
 
-<script type="text/javascript" src="/WEB/Website/public/js/jquery.validate.min.js"></script>
-<script src="/WEB/Website/public/js/validation-init.js"></script>
-
 <!--common scripts for all pages-->
 <script src="/WEB/Website/public/js/scripts.js"></script>
-
+<script>
+function huifu(id,name){
+	$('#myModalLabel').html('发送消息到:'+name);
+	$('#openid').val(id);
+}
+</script>
 </body>
 </html>

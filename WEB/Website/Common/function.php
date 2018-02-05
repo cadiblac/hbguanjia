@@ -80,4 +80,57 @@
           return round($size / $tb, 2) . " TB";
       }
   }
+  
+  //获取access_token
+	function getAccess_token(){
+		//URL
+		$url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="._APPID_."&secret="._APPSECRET_;
+		//get请求
+		$data=getHttp($url);
+		//缓存access_token
+		S('access_token',$data['access_token'],7000);
+		return $data['access_token'];
+	}
+	
+	function request_post($url = '', $param = '')  
+    {  
+        if (empty($url) || empty($param)) {  
+            return false;  
+        }  
+        $postUrl = $url;  
+        $curlPost = $param;  
+        $ch = curl_init(); //初始化curl  
+        curl_setopt($ch, CURLOPT_URL, $postUrl); //抓取指定网页  
+        curl_setopt($ch, CURLOPT_HEADER, 0); //设置header  
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //要求结果为字符串且输出到屏幕上  
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);  
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);  
+        curl_setopt($ch, CURLOPT_POST, 1); //post提交方式  
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);  
+        $data = curl_exec($ch); //运行curl  
+        curl_close($ch);  
+        return $data;  
+    }  
+  
+	/** 
+     * 发送自定义的模板消息 
+     */  
+    function doSend($touser, $template_id, $url, $data, $topcolor = '#7B68EE'){  
+        $template = array(  
+            'touser' => $touser,  
+            'template_id' => $template_id,  
+            'url' => $url,  
+            'topcolor' => $topcolor,  
+            'data' => $data  
+        );  
+        $json_template = json_encode($template);
+		if(S('access_token')){$accessToken=S('access_token');}else{$accessToken=getAccess_token();}
+        $url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$accessToken;  
+        $dataRes = request_post($url, urldecode($json_template));
+        if ($dataRes['errcode'] == 0) {  
+            return true;  
+        } else {  
+            return false;  
+        }  
+    }  
 ?>

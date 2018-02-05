@@ -121,6 +121,7 @@
                 <li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Collect,Bak))): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-cogs"></i> <span>系统工具</span></a>
 					<ul class="sub-menu-list">
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/message');?>"> 信息群发</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/index');?>"> 采集设置</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/note');?>"> 采集记录</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Bak/index');?>"> 数据备份</a></li>
@@ -265,7 +266,14 @@
 												<input type="checkbox" name="aid[]" value="<?php echo ($value["id"]); ?>" <?php if(is_array($v["attr"])): foreach($v["attr"] as $key=>$a): if($value['id'] == $a['id']): ?>checked="checked"<?php endif; endforeach; endif; ?>><?php echo ($value["name"]); ?>&nbsp;
 											</label><?php endforeach; endif; ?>
 									</div>
-									<?php if($cid == 1): ?><label for="confirm_password" class="control-label col-lg-1">项目进度</label>
+									<?php if($cid == 1): ?><label for="confirm_password" class="control-label col-lg-1">类别</label>
+									<div class="col-lg-2">
+										<select class=" form-control" name="del">
+											<option value="0" <?php if($v['del'] == 0): ?>selected="selected"<?php endif; ?>>项目进度</option>
+											<option value="1" <?php if($v['del'] == 2): ?>selected="selected"<?php endif; ?>>项目报告</option>
+										</select>
+									</div>
+									<label for="confirm_password" class="control-label col-lg-1">项目进度</label>
 									<div class="col-lg-2">
 										<select class=" form-control" name="jf">
 											<option value="0" <?php if($v['jf'] == 0): ?>selected="selected"<?php endif; ?>>进行中</option>
@@ -285,7 +293,7 @@
 									</div><?php endif; ?>
 								</div>
 								<div class="form-group ">
-									<label for="confirm_password" class="control-label col-lg-1">文章作者</label>
+									<label for="confirm_password" class="control-label col-lg-1"><?php if($cid == 1): ?>客服QQ<?php else: ?>文章作者<?php endif; ?></label>
 									<div class="col-lg-2">
 										<input class="form-control " type="text" name="author" value="<?php echo ($v["author"]); ?>" />
 									</div>

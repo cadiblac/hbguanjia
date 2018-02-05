@@ -12,6 +12,7 @@
 		<div class="cl">商品金额:<span class="rad">{$v.sumprice}元</span><input type="hidden" name="sumprice" value="{$v.sumprice}"/></div>
 		<div class="cl">分销提成:<span class="green">-<if condition="$u['fx']">{$u.fx}<else />0.00</if>元</span>
 		<input type="hidden" name="out_trade_no" value="{$v.order}"/>
+		<input type="hidden" name="oid" value="{$v.id}"/>
 		<input type="hidden" name="fx" value="{$u.fx}"/>
 		</div>
 		<div class="input">联系人:<input type="text" name="uname" value="{$u.realname}" /></div>

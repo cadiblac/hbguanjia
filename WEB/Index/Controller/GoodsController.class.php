@@ -136,6 +136,8 @@ class GoodsController extends CommonController{
 	
 	//放入购物车页面
 	public function cart (){
+		$spread=cookie('spread');
+		if($spread&&$spread<>session('userID')){$trade=$spread;}
 		$uid=session('userID');
 		$pid=I('id','',intval);
 		$num=I('num','',intval);
@@ -152,6 +154,7 @@ class GoodsController extends CommonController{
 			'num' => $num,
 			'sumprice' => $price*$num,
 			'buytime' => $h,
+			'trade'=>$trade,
 			'status' => 0
 		);
 		if(M('orders')->data($data)->add()){
@@ -166,6 +169,8 @@ class GoodsController extends CommonController{
 	public function buy (){
 		$h=time();
 		$dh="B".date("y",time()).substr($h, -8).date("md",time());
+		$spread=cookie('spread');
+		if($spread&&$spread<>session('userID')){$trade=$spread;}
 		$uid=session('userID');
 		$pid=I('id','',intval);
 		$num=I('num','',intval);
@@ -182,6 +187,7 @@ class GoodsController extends CommonController{
 			'num' => $num,
 			'sumprice' => $price*$num,
 			'buytime' => $h,
+			'trade'=>$trade,
 			'status' => 1
 		);
 		if($rs=M('orders')->add($data)){

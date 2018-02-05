@@ -105,6 +105,7 @@
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>1));?>"> 待付款订单</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>2));?>"> 已付款订单</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>3));?>"> 已发货订单</a></li>
+                        <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Orders/index',array(id=>4));?>"> 已完成订单</a></li>
                     </ul>
                 </li>
 				<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Comment/index');?>"><i class="fa fa-comment"></i> <span>评论管理</span></a></li>                
@@ -120,6 +121,7 @@
                 <li class="menu-list <?php if(in_array(CONTROLLER_NAME,array(Collect,Bak))): ?>nav-active<?php endif; ?>">
 				<a target="_parent" href=""><i class="fa fa-cogs"></i> <span>系统工具</span></a>
 					<ul class="sub-menu-list">
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/message');?>"> 信息群发</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/index');?>"> 采集设置</a></li>
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Collect/note');?>"> 采集记录</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Bak/index');?>"> 数据备份</a></li>
@@ -256,7 +258,14 @@
 												<input type="checkbox" name="aid[]" value="<?php echo ($v["id"]); ?>"><?php echo ($v["name"]); ?>&nbsp;
 											</label><?php endforeach; endif; ?>
 									</div>
-									<?php if($cid == 1): ?><label for="confirm_password" class="control-label col-lg-1">项目进度</label>
+									<?php if($cid == 1): ?><label for="confirm_password" class="control-label col-lg-1">类别</label>
+									<div class="col-lg-2">
+										<select class=" form-control" name="del">
+											<option value="0" selected="selected">项目进度</option>
+											<option value="1">项目报告</option>
+										</select>
+									</div>
+									<label for="confirm_password" class="control-label col-lg-1">项目进度</label>
 									<div class="col-lg-2">
 										<select class=" form-control" name="jf">
 											<option value="0" selected="selected">进行中</option>
@@ -276,9 +285,9 @@
 									</div><?php endif; ?>
 								</div>
 								<div class="form-group ">
-									<label for="confirm_password" class="control-label col-lg-1">文章作者</label>
+									<label for="confirm_password" class="control-label col-lg-1"><?php if($cid == 1): ?>客服QQ<?php else: ?>文章作者<?php endif; ?></label>
 									<div class="col-lg-2">
-										<input class="form-control " type="text" name="author" value="<?php echo session('name');?>" />
+										<input class="form-control " type="text" name="author" <?php if($cid != 1): ?>value="<?php echo session('name');?>"<?php endif; ?> />
 									</div>
 								</div>
 								<div class="form-group ">
