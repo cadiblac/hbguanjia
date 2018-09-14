@@ -1,6 +1,7 @@
 <include file="Public:common" />
 <title>会员管理</title>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+<link rel="stylesheet" href="__PUBLIC__/js/data-tables/DT_bootstrap.css" />
 </head>
 
 <body class="sticky-header">
@@ -28,12 +29,13 @@
                            会员管理
                             <span class="tools pull-right">
                                 <a class="fa fa-chevron-down" href="javascript:;"></a>
+                                <a class="fa fa-share" title="导出excel" href="{:U(MODULE_NAME.'/Member/daochu')}"></a>
                              </span>
                         </header>
                         <div class="panel-body">
                             <div class="adv-table editable-table ">
 								<div class="space15"></div>
-								<table class="table table-bordered table-striped dataTable">
+								<table  class="display table table-bordered table-striped" id="editable-sample">
 								
 								<thead>								
 								<tr role="row">
@@ -41,6 +43,7 @@
 									<th>昵称</th>
 									<th>头像</th>
 									<th>姓名</th>
+									<th>公司</th>
 									<th>邀请人id</th>
 									<th>最近登录</th>
 									<th>认证状态</th>									
@@ -51,33 +54,9 @@
 								</tr>
 								</thead>
 								<tbody>
-								<foreach name='member' item='v'>							
-								<tr class="">
-									<td>{$v.id}</td>									
-									<td>{$v.username}</td>
-									<td><img src="{$v.photo}" style="height:40px;" /></td>
-									<td>{$v.realname}</td>
-									<td>{$v.yqrid}</td>
-									<td><if condition="$v['logintime']">{$v.logintime|date='Y-m-d H:i:s',###}<else />{$v.regtime|date='Y-m-d H:i:s',###}</if></td>
-									<td><switch name="v['state']" >
-									<case value="0">未认证</case>
-									<case value="1">已认证</case>
-									<case value="2">锁定</case>
-									</switch></td>
-									<td>{$v.tel}</td>
-									<td>{$v.integral}</td>									
-									<td><if condition="$v['usertype'] eq 0">积分用户<else />付费用户</if></td>
-									<td>
-									<a href="{:U(MODULE_NAME.'/Member/updata',array('id'=>$v['id']))}"><span class="btn btn-success btn-xs">详情</span></a>
-									<a href="{:U(MODULE_NAME.'/Member/mail',array('openid'=>$v['openid']))}"><span class="btn btn-success btn-xs">发信息</span></a>
-									</td>
-								</tr>
-								</foreach>
+								
 								</tbody>								
 								</table>
-								<div class="form-group">
-									<div class="col-lg-offset-6 col-lg-6" id="page">{$page}</div>
-								</div>
 							</div>
                         </div>
                     </section>
@@ -94,9 +73,56 @@
 <script src="__PUBLIC__/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__/js/modernizr.min.js"></script>
 <script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
-
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/DT_bootstrap.js"></script>
 <!--common scripts for all pages-->
 <script src="__PUBLIC__/js/scripts.js"></script>
-
+<script>
+var url1="{:U(MODULE_NAME.'/Member/updata')}";
+var url2="{:U('Member/del')}";
+jQuery(document).ready(function() {
+	$('#editable-sample').dataTable({
+	"bServerSide": true,
+	"bStateSave": true,
+	"bPaginate": true, //是否分页
+	"bAutoWidth": false,
+	"bProcessing": true, //datatable获取数据时候是否显示正在处理提示信息。
+	"iDisplayLength": 10, //每页显示10条记录
+	"aaSorting": [[ 6, "desc" ]],
+	'bFilter': true, //是否使用内置的过滤功能
+	"sAjaxSource": "{:U(MODULE_NAME.'/Member/fpage')}",
+	"aoColumns": [
+		{"mData": "id","bSortable": true},
+		{"mData": "username","bSortable": false,"bSearchable": true},
+		{"mData": "photo","bSortable": false,"mRender": function(data){return "<img style='height:40px;' src='"+data+"'>";}},
+		{"mData": "realname","bSortable": false,"bSearchable": true},
+		{"mData": "company","bSortable": false,"bSearchable": true},
+		{"mData": "yqrid","bSortable": true},
+		{"mData": "logintimes","bSortable": true},
+		{"mData": "state","bSortable": true,"mRender": function(data){if(data==0){return "未认证";}else{return "已认证";}}},
+		{"mData": "tel","bSortable": false},
+		{"mData": "integral","bSortable": true},
+		{"mData": "usertype","bSortable": true,"mRender": function(data){if(data==0){return "积分用户";}else{return "付费用户";}}},
+		{"mData": "id","bSortable": false,"mRender": function(data) {
+				return "<a href='"+url1+"/id/"+ data +"'><span class='btn btn-success btn-xs'>修改</span></a>&nbsp;&nbsp;<a onclick='return confirm(`确定要删除吗？`)' href='"+url2+"/id/"+ data +"'><span class='btn btn-warning btn-xs'>删除</span>";
+			}
+		}
+	],
+	"aLengthMenu": [
+				[10, 20, 50, -1],
+				[10, 20, 50, "All"] // change per page values here
+			],
+	"sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
+	"sPaginationType": "bootstrap",
+	"oLanguage": {
+		"sLengthMenu": "_MENU_ 条记录每页显示",
+		"oPaginate": {
+			"sPrevious": "上一页",
+			"sNext": "下一页"
+		}
+	}
+	});
+});
+</script>
 </body>
 </html>

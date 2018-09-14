@@ -81,6 +81,7 @@
                     <ul class="sub-menu-list">
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Rbac/index');?>"> 系统用户</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/index');?>"> 会员管理</a></li>
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Staff/index');?>"> 员工管理</a></li>
                     </ul>
                 </li>
                 <li class="menu-list <?php if(CONTROLLER_NAME == Orders): ?>nav-active<?php endif; ?>">

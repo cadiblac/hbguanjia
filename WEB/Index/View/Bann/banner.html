@@ -1,16 +1,26 @@
-<!-- banner S -->
-<div class="banner">
-	
+<!-- banner -->
+<script src="__PUBLIC__/js/TouchSlide.1.0.js"></script>
+<div id="focus" class="focus">
 	<div class="bd">
 		<ul>
 			<borl name='banner' type='1' order='sort ASC,id DESC' limit='5'>
-			<li style="background:url({$img}) #BCE0FF center 0 no-repeat;"><a href="<if condition='$url'>{$url}<else />javascript:;</if>"></a></li>
+			<li><a class="pic" href="javascript:;"><img src="{$img}"/></a></li>
 			</borl>
 		</ul>
 	</div>
-
-	<div class="hd"><ul></ul></div>
+	<div class="hd">
+		<ul></ul>
+	</div>
 </div>
-
-<script type="text/javascript">jQuery(".banner").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click" });</script>
-<!-- banner E -->
+<script type="text/javascript">
+	TouchSlide({ 
+		slideCell:"#focus",
+		titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+		mainCell:".bd ul", 
+		effect:"leftLoop", 
+		autoPlay:true,//自动播放
+		autoPage:true, //自动分页
+		switchLoad:"_src" //切换加载，真实图片路径为"_src" 
+	});
+</script>
+<!-- banner end-->

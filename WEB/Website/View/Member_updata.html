@@ -55,6 +55,18 @@
                                             <div class="title">性别</div>
                                             <div class="desk"><if condition="$v['sex']">男<else />女</if></div>
                                         </li>
+										<li>
+                                            <div class="title">生日</div>
+                                            <div class="desk">{$v.birthday}</div>
+                                        </li>
+										<li>
+                                            <div class="title">公司名称</div>
+                                            <div class="desk">{$v.company}</div>
+                                        </li>
+										<li>
+                                            <div class="title">职务</div>
+                                            <div class="desk">{$v.position}</div>
+                                        </li>
                                         <li>
                                             <div class="title">绑定电话</div>
                                             <div class="desk">{$v.tel}</div>
@@ -95,6 +107,25 @@
                                             <div class="title">上次登录时间</div>
                                             <div class="desk"><if condition="$v['logintime']">{$v.logintime|date='Y-m-d H:i:s',###}<else />{$v.regtime|date='Y-m-d H:i:s',###}</if></div>
                                         </li>
+										<form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Member/runUpdata')}">
+										<li>
+                                            <div class="title">专属客服</div>
+                                            <div class="desk">
+											<select class=" form-control" name="kf">
+											<option value="">请选择</option>
+											<foreach name="staff" item="s">											
+												<option value="{$s.id}" <if condition="$v['kf'] eq $s['id']">selected="selected"</if>>{$s.name}</option>	
+											</foreach>
+											</select>
+											</div>
+                                        </li>
+										<li>
+                                            <div class="title">备注信息</div>
+                                            <div class="desk"><textarea class="wysihtml5 form-control" rows="9" name="remark">{$v.remark}</textarea></div>
+											<input type="hidden" name="id" value="{$v.id}">
+                                        </li>
+										<li><input class="btn btn-primary" style="margin:0 auto;" type="submit" value="保存"></li>
+										</form>
                                     </ul>
                                 </div>
                             </div>

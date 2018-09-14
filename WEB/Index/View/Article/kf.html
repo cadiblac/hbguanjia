@@ -1,0 +1,24 @@
+<include file="public/header" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+<div class="main">
+	<div class="m_ctt">
+		<div class="newsshow_title">您的专属客服</div>
+		<div class="newsshow_sm2"> </div>
+		<div class="content">
+		<if condition="$v['photo']">
+		<img style="display:block;width:50%;border-radius:50%;margin:10px auto;" src="{$v.photo}" />
+		</if>
+		<p>姓名：{$v.name}</p>
+		<p>电话：<a href="tel://{$v.tel}">{$v.tel}</a></p>
+		<p>QQ：<a href="http://wpa.qq.com/msgrd?v=3&uin={$v.QQ}&site=qq&menu=yes" target="_blank">{$v.QQ}</a></p>
+		<p>微信号：{$v.wxh}</p>
+		<if condition="$v['wxm']">
+		<p>微信二维码：<br/><img src="{$v.wxm}" /></p>
+		</if>
+		</div>
+	</div>
+</div>
+<!--end main-->
+<include file="public/bottom" />
+</body>
+</html>

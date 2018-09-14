@@ -19,16 +19,16 @@
 
         <div class="masthead-login">
             <figure class="masthead-figure">
-				<img src="{$Think.session.userHeadimgurl}" width="64"/>
+				<a href="/index.php/Index/member/index/spread/{$Think.session.userID}"><img src="{$Think.session.userHeadimgurl}" width="64"/></a>
             </figure>
             <div class="masthead-caption">
                 <h3 class="masthead-caption-title line-ellipsis">
-                {$Think.session.userNickname}
-                </h3>
+                <a href="/index.php/Index/member/index/spread/{$Think.session.userID}">{$Think.session.userNickname}</a>
+                                </h3>
 
-                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
+                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}<!--<span style="color:red;margin-left:20px;">分销提成：{$member.fx}元</span>--></p>
 
-                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">修改资料<i class="icon icon-right"></i></a></p>
+                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">完善资料<i class="icon icon-right"></i></a></p>
             </div>
         </div>
     </section>
@@ -43,7 +43,7 @@
 			<li>
 				<div class="padding5">
 				<p>{$v.pname}</p>
-				<div class="space-b"><p>{$v.buytime|date='Y-m-d',###}</p><p>价格：{$v.price}X{$v.num}={$v.sumprice}元</p></div>
+				<div class="space-b"><p>{$v.buytime|date='Y-m-d',###}</p><p>价格：<if condition="$v['pcid'] eq 5">{$v.price|intval=###}X{$v.num}={$v.sumprice|intval=###}积分<else />{$v.price}X{$v.num}={$v.sumprice}元</if></p></div>
 				<p style="text-align:right;">
 				<a class="zd" href="{:U('/Index/Orders/index',array('id'=>$v['id']))}">购买</a><a href="{:U('/Index/orders/del',array('id'=>$v['id']))}">删除</a>
 				</p>
@@ -55,6 +55,5 @@
 
 </main>
 <include file="public/bottom" />
-<script type="text/javascript" src="__PUBLIC__/JS/check.js"></script>
 </body>
 </html>

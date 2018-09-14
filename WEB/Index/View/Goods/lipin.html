@@ -1,0 +1,22 @@
+<include file="public/header" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+<div class="cpfl"><h3>礼品兑换</h3>
+</div>
+<div class="main">	
+	<ul class="product">
+	<foreach name="goods" item="v">
+	<li><a href="{:U('/'.MODULE_NAME.'/goods/details',array('id'=>$v['id'],'spread'=>session('userID')))}" title="{$v.title}" >
+	<img <if condition="$v['pic']">src="{$v.pic}"<else />src="__PUBLIC__/images/nopic.jpg"</if> /></a>
+	<div class="zc">
+		<h3><a href="{:U('/'.MODULE_NAME.'/goods/details',array('id'=>$v['id'],'spread'=>session('userID')))}">{$v.title}</a></h3>
+		<div class="db"><div class="lll">{$v.click}</div><div class="jf">{$v.price|intval=###}积分</div></div>
+	</div>
+	</li>
+	</foreach>
+	</ul>
+	<div class="page">{$page}</div>
+</div>
+<!--end main-->
+<include file="public/bottom" />
+</body>
+</html>

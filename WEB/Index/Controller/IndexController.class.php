@@ -12,6 +12,8 @@ class IndexController extends CommonController {
       $this->keywords = $data['keywords'];
       $this->description = $data['description'];
       $this->aboutus = $data['spare'];
+	  $wxconfig = wx_share_init();		//微信分享jssdk初始化
+	  $this->assign('wxconfig', $wxconfig); //微信分享参数
       $this->display();  
     }
 

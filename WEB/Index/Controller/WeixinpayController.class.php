@@ -15,10 +15,11 @@ class WeixinpayController extends Controller{
 		Vendor('Weixinpay.Weixinpay');
 		$wxpay=new \Weixinpay();
 		// 获取jssdk需要用到的数据
-		$order=I('out_trade_no');		
-		if(I('sumprice')<I('fx')){
+		$order=I('out_trade_no');
+		if(I('dk')){$dk=I('fx');}else{$dk=0;}
+		if(I('dk')&&I('sumprice')<=I('fx')){
 			$dd= array(
-			'sumprice'=>0,
+			'sumprice'=>I('sumprice'),
 			'dk'=>I('sumprice'),
 			'paytime'=>time(),
 			'status'=>2,
@@ -32,7 +33,7 @@ class WeixinpayController extends Controller{
 				M('member')->where('id='.session('userID'))->setDec('fx',I('sumprice'));
 				$jf=array('mid'=>session('userID'),'stutas'=>0,'jf'=>I('sumprice'),'gid'=>I('pid'),'beizhu'=>"购买商品：".I('pname')."抵扣",'time'=>time());
 				M('jf')->data($jf)->add();
-				redirect(MODULE_NAME.'/member/orders');
+				$this->success('交易成功',U(MODULE_NAME.'/member/myorder'));
 			}else{
 				$this->error('交易失败');
 			}
@@ -45,7 +46,7 @@ class WeixinpayController extends Controller{
 			'tel'=>I('tel'),
 			'adress'=>I('adress'),
 			'remark'=>I('remark'),
-			'dk'=> I('fx'),			
+			'dk'=> $dk,			
 			'total_fee'=>I('total_fee')
 			);
 			M('orders')->where(array('id'=>I('oid'),'order'=>$order))->save($dd);
@@ -101,6 +102,7 @@ class WeixinpayController extends Controller{
 			doSend($open,'zJ3zwVzMUmTL5s6zWcQ5XcxH2jzulDFCOU1ABrK86jQ','http://yunguanjia.35xg.com/',$data2); 			
 			if($or['dk']>0){//分销提成抵扣
 				M('member')->where('id='.$or['uid'])->setDec('fx',$or['dk']);
+				M('member')->where('id='.$or['uid'])->setField('usertype',1);
 				$jf=array('mid'=>$or['uid'],'stutas'=>0,'jf'=>$or['dk'],'gid'=>$or['pid'],'beizhu'=>"购买商品：".$or['pname']."抵扣",'time'=>time());
 				M('jf')->data($jf)->add();
 			}

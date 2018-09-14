@@ -59,5 +59,24 @@ class CommentController extends CommonController {
 			$this->error('删除失败');
 		}
 	}
+	
+	public function xm(){
+		$count = M('pingfen')->count();
+		$Page = new \Think\Page($count,20);// 实例化分页类 传入总记录数和每页显示的记录数
+		$Page -> setConfig('header','共%TOTAL_ROW%条');
+		$Page -> setConfig('first','首页');
+		$Page -> setConfig('last','共%TOTAL_PAGE%页');
+		$Page -> setConfig('prev','上一页');
+		$Page -> setConfig('next','下一页');
+		$Page -> setConfig('link','indexpagenumb');//pagenumb 会替换成页码
+		$Page -> setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+		$show = $Page->show();
+		$this->pingf = M('pingfen')->JOIN('lj_article on lj_pingfen.xmid=lj_article.id')
+		->field('lj_article.title,lj_pingfen.*')->order('lj_pingfen.id desc')
+		->limit($Page->firstRow.','.$Page->listRows)->select();
+		$this->st=M('staff')->field('id,name')->select();
+ 		$this->page = $show;
+		$this->display();
+	}
    
 }

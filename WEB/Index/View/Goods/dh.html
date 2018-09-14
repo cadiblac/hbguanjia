@@ -1,0 +1,129 @@
+<include file="public/header" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+<script src="__PUBLIC__/js/TouchSlide.1.0.js"></script>
+<script src="__PUBLIC__/js/comments.js"></script>
+<script src="__PUBLIC__/js/fenye.js"></script>
+<script src="__PUBLIC__/js/setfenye.js"></script>
+<!-- banner -->
+<div id="focus">
+	<div class="bd">
+		<ul>			
+			<foreach name="img" item="v">
+			<li><a class="pic" href="javascript:;"><img src="{$v.img}"/></a></li>			
+			</foreach>
+			<li><a class="pic" href="javascript:;"><img src="{$timg}"/></a></li>
+		</ul>
+	</div>
+	<div class="hd">
+		<ul></ul>
+	</div>
+</div>
+<script type="text/javascript">
+	TouchSlide({ 
+		slideCell:"#focus",
+		titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+		mainCell:".bd ul", 
+		effect:"leftLoop", 
+		autoPlay:true,//自动播放
+		autoPage:true, //自动分页
+		switchLoad:"_src" //切换加载，真实图片路径为"_src" 
+	});
+</script>
+<!-- banner end-->
+<div class="shangp">
+	<div class="sku-name">{$title}</div>
+	<div class="dt">单价&nbsp;&nbsp;<span>{$g.price|intval=###}积分</span></div>
+	<div class="dtt">库存&nbsp;&nbsp;<span>{$g.stock}</span></div>
+	<div class="shuliang"><div>数量</div>
+	<div><input class="addBtn min" type="button" value="-" /><input class="join-money" type="text" value="1" readonly><input class="addBtn add" type="button" value="+" />
+	<input type="hidden" name="gid" id="gid" value="{$sid}">
+	<input type="hidden" name="cid" id="cid" value="{$cid}">
+	</div>
+	</div>
+</div>
+<!-- Tab切换 S -->
+	<div class="slideTxtBox">
+		<div class="hd">
+			<ul>
+				<li class="hover" id="one40" onclick="setTab(&#39;one&#39;,40,42)"><a href="#">详情</a></li>
+				<li id="one41" onclick="setTab(&#39;one&#39;,41,42)"><a href="#">评论<small style="font-size:12px;">(<if condition="$counts">{$counts}<else />0</if>)</small></a></li>
+				<li id="one42" onclick="setTab(&#39;one&#39;,42,42)"><a href="#">已兑换<small style="font-size:12px;">(<if condition="$gmc">{$gmc}<else />0</if>)</small></a></li>
+			</ul>
+		</div>
+		<div class="bd">
+			<ul id="con_one_40">
+			<div class="content">{$content}</div>	
+			</ul>
+			<ul id="con_one_41" style="display: none">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					评论列表
+				</h3>
+			</div>
+			<div class="panel-body">
+				<form id="ping" style="margin-bottom:20px;">
+				<input type="hidden" name="fz" value="{:ACTION_NAME}_{$sid}" id="fz">
+				<div><textarea type="textarea" rows="3" placeholder="还可以输入140个字" class="form-control" id="nei"></textarea></div>
+				<span class="comment_tip" id="comment_tip" data-top="11" data-foot="36"></span>
+				<div style="margin-top: 7px;"><button type="button" class="btn ant-btn" onclick="subcomment()"><i class="glyphicon glyphicon-send"></i><span style="margin-left:10px;">发布评论</span></button></div>
+				</form>
+				<input type='hidden' id='current_page' />
+				<input type='hidden' id='show_per_page' />
+				<div id="content">
+				<foreach name="ping" item="v" key="k">
+				<div class="story">
+				<p class="story_t"><span><img src="{$v.photo}" width="30" />&nbsp;{$v.username}</span><span class="time">{$v.time|date='Y-m-d H:i:s',###}</span></p>
+				<p class="story_m">{$v.neir}</p> 
+				<foreach name="v.hf" item="h">
+				<p class="story_hf">
+				<span>回复：</span>{$h.neir}</p>
+				</foreach>
+				</div>
+				</foreach>
+				</div>
+				<div id="page_navigation"></div>
+			</div>
+			</ul>
+			<ul id="con_one_42" style="display: none" class="gmjl">
+			<foreach name="gmjl" item="g">
+			<li><div class="img">
+			<img src="{$g.photo}" /></div>
+			<div class="zc">
+				<h3>{$g.uname|cut_name=###}</h3>
+				<p>兑换时间:{$g.paytime|date='Y-m-d H:i:s',###}</p>
+			</div>
+			</li>
+			</foreach>				
+			</ul>
+		</div>
+	</div>
+	<script language="javascript">
+	<!--
+	function setTab(name,cursel,n){
+	for(i=40;i<=n;i++){
+	var menu=document.getElementById(name+i);
+	var con=document.getElementById("con_"+name+"_"+i);
+	menu.className=i==cursel?"hover":"";
+	con.style.display=i==cursel?"block":"none";
+	}
+	}
+	//-->
+	</script>
+	<!-- Tab切换 E -->
+<!--end main-->
+<div style="height:56px;">
+<p style="display:none;">
+<script type="text/javascript" src="{:U(MODULE_NAME.'/Goods/getclick',array('id'=>$sid))}"></script></p>
+</div>
+<div class="bottom" style="height:50px;border:0;">
+	<div class="gw jia">
+	</div>
+	<div class="gw">
+	<a href="javascript:buy();">
+	<p>立即兑换</p>
+	</a>
+	</div>
+</div>
+<script src="__PUBLIC__/js/addshop.js"></script>
+</body>
+</html>

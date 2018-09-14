@@ -19,23 +19,23 @@
 
         <div class="masthead-login">
             <figure class="masthead-figure">
-				<img src="{$Think.session.userHeadimgurl}" width="64"/>
+				<a href="/index.php/Index/member/index/spread/{$Think.session.userID}"><img src="{$Think.session.userHeadimgurl}" width="64"/></a>
             </figure>
             <div class="masthead-caption">
                 <h3 class="masthead-caption-title line-ellipsis">
-                {$Think.session.userNickname}
+                <a href="/index.php/Index/member/index/spread/{$Think.session.userID}">{$Think.session.userNickname}</a>
                                 </h3>
 
-                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
+                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}<!--<span style="color:red;margin-left:20px;">分销提成：{$member.fx}元</span>--></p>
 
-                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">修改资料<i class="icon icon-right"></i></a></p>
+                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">完善资料<i class="icon icon-right"></i></a></p>
             </div>
         </div>
     </section>
 
     <section class="masthead-footerSection normal-layer no-padding-layer i-border-image">
         <div class="clearfix">
-            <a class="item" href="http://wpa.qq.com/msgrd?v=3&uin=<com name='corpy' />&site=qq&menu=yes">
+            <a class="item" href="{:U('Article/kf',array('id'=>$member['kf']))}">
                 <div class="sl-item">
                     <span class="iconWrap">
                         <i class="advance-icon icon icon-xiaoxi" style="color:#8ad51e;"></i>
@@ -54,36 +54,7 @@
             </a>
         </div>
     </section>
-
-    <section class="service-section normal-layer no-padding-layer i-border-image">
-        <ul class="feature-list interaction-list">
-            <li class="feature-item">                
-                <p class="inner-bar"><span class="order-text">我的订单<em id="orderInfo"></em></span><span class="tip-right text-gray"><a href="/index.php/Index/member/myorder/" id="isRetailOrder">查看全部订单<i class="icon icon-right"></i></a></span></p>
-            </li>
-			<foreach name="orders" item="v">
-			<li>
-				<div class="padding5">
-				<div class="space-b"><p>订单号：{$v.order}</p>
-				<p>状态：<span class="red">
-				<switch name="v.status">
-				<case value="1">待支付</case>
-				<case value="4">已完成</case>
-				<default />已支付
-				</switch></span></p></div>
-				<p>{$v.pname}</p>
-				<div class="space-b"><p>{$v.buytime|date='Y-m-d',###}</p><p>价格：{$v.price}X{$v.num}={$v.sumprice}元</p></div>
-				<p><if condition="$v['status'] eq 1">
-				<a href="{:U('/Index/orders/del',array('id'=>$v['id']))}">删除</a><a class="zd" href="{:U('/Index/Orders/index',array('id'=>$v['id']))}">去支付</a></if>
-				<if condition="$v['status'] eq 2 or $v['status'] eq 3">
-				<a class="zd" href="{:U('/Index/orders/updata',array('id'=>$v['id']))}">完成订单</a>
-				</if></p>
-				</div>
-			</li>
-			</foreach>
-        </ul>        
-    </section>
-
-    <section class="advance-section normal-layer no-padding-layer no-border-layer">
+	<section class="advance-section normal-layer no-padding-layer no-border-layer">
         <div class="advance-slider" id="advanceSlider">
             <div class="swiper-wrapper clearfix">
                 <ul class="swiper-slide advance-list clearfix">
@@ -97,6 +68,7 @@
                             </div>
                         </a>
                     </li>
+					<!--
                     <li class="advance-item">
                         <a href="/index.php/Index/member/fenx">
                             <div class="advance-cell">
@@ -106,7 +78,7 @@
                                 <p class="advance-tip line-ellipsis">&nbsp;</p>
                             </div>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="advance-item">
                         <a href="/index.php/Index/member/jf">
                             <div class="advance-cell">
@@ -132,7 +104,34 @@
             </div>
         </div>
         <div class="slider-pagination i-border-image"></div>
-    </section>
+    </section><!--
+    <section class="service-section normal-layer no-padding-layer i-border-image">
+        <ul class="feature-list interaction-list">
+            <li class="feature-item">                
+                <p class="inner-bar"><span class="order-text">我的订单<em id="orderInfo"></em></span><span class="tip-right text-gray"><a href="/index.php/Index/member/myorder/" id="isRetailOrder">查看全部订单<i class="icon icon-right"></i></a></span></p>
+            </li>
+			<foreach name="orders" item="v">
+			<li>
+				<div class="padding5">
+				<div class="space-b"><p>订单号：{$v.order}</p>
+				<p>状态：<span class="red">
+				<switch name="v.status">
+				<case value="1">待支付</case>
+				<case value="4">已完成</case>
+				<default />已支付
+				</switch></span></p></div>
+				<p>{$v.pname}</p>
+				<div class="space-b"><p>{$v.buytime|date='Y-m-d',###}</p><p>价格：<if condition="$v['pcid'] eq 5">{$v.price|intval=###}X{$v.num}={$v.sumprice|intval=###}积分<else />{$v.price}X{$v.num}={$v.sumprice}元</if></p></div>
+				<p><if condition="$v['status'] eq 1">
+				<a href="{:U('/Index/orders/del',array('id'=>$v['id']))}">删除</a><a class="zd" href="{:U('/Index/Orders/index',array('id'=>$v['id']))}">去支付</a></if>
+				<if condition="$v['status'] eq 2 or $v['status'] eq 3">
+				<a class="zd" href="{:U('/Index/orders/updata',array('id'=>$v['id']))}">完成订单</a>
+				</if></p>
+				</div>
+			</li>
+			</foreach>
+        </ul>        
+    </section>-->
 
     <section class="recommend-section normal-layer no-padding-layer no-border-layer">
         <div class="recommend-header">
@@ -140,7 +139,10 @@
         </div>
         <div style="padding:10px;display:flex;justify-content:space-around;flex-wrap:wrap;background:#fff;">
 			<foreach name="firend" item="v">
-				<img class="masthead-figure" src="{$v.photo}" alt="{$v.username}"/>
+			<div style="margin-bottom:15px;width:20%;text-align:center;">
+				<img style="width:100%;border-radius:50%;" src="{$v.photo}" alt="{$v.username}"/>
+				<p>{$v.username}</p>
+			</div>
 			</foreach>
 		</div>
     </section>

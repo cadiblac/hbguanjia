@@ -35,15 +35,17 @@ class ArticleController extends CommonController {
 		$this->cate=M('cate')->where(array('id'=>$id))->field('name')->find();
 		$this->cid = $id;
     	$this->attr = M('attr')->select();
+		$this->staff=M('staff')->field('id,name')->select();
     	$this->display();
     }
 
     /*添加文章表单处理*/
     public function runAdd () {
+		$ms=$_POST['description'] ? $_POST['description'] : cutStr(strip_tags($_POST['content']),100);
     	$data = array(
     		'title' => $_POST['title'],
     		'keywords' => $_POST['keywords'],
-    		'description' => $_POST['description'],
+    		'description' => $ms,
     		'content' =>$_POST['content'],
 			'author' =>$_POST['author'],
     		'time' => strtotime($_POST['time']),
@@ -51,6 +53,7 @@ class ArticleController extends CommonController {
     		'pic' => $_POST['pic'],
 			'tel' => I('tel'),
 			'del' => I('del','',intval),
+			'jsr' => I('jsr','',intval),
 			'jf' => I('jf','',intval)
     		);
     	//p($data); die;
@@ -79,6 +82,7 @@ class ArticleController extends CommonController {
     	$this->cid=$cid;
     	$this->attr = M('attr')->select();
     	$this->cate = M('cate')->where(array('model'=>"Article"))->select();
+		$this->staff=M('staff')->field('id,name')->select();
     	$this->article = D('article')->where(array('id'=>$id))->relation(true)->select();
     	$this->display();
     }
@@ -97,6 +101,7 @@ class ArticleController extends CommonController {
     		'pic' => $_POST['pic'],
 			'tel' => I('tel'),
 			'del' => I('del','',intval),
+			'jsr' => I('jsr','',intval),
 			'jf' => I('jf','',intval)
     		);
     	$res = M('article')->save($data);

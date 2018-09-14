@@ -2,13 +2,16 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
 <div class="main">
 	<div class="m_ctt">
-		<div class="newsshow_title">欢迎使用项目进度查询</div>
+		<div class="newsshow_title">欢迎使用环保云管家查询系统</div>
 		<div class="newsshow_sm2"> </div>
 		<div class="newsshow_ctt">
 			<form id="contact" method="post" name="GBookAdd" action="/index.php/Index/Article/tel" target="_self">
+				<p>请选择查询类别：</p>
+				<p><input type="radio" name="leim" value='0' checked /><label style="margin-right:20px;">进度查询</label>
+				<input type="radio" name="leim" value='1'/><label>报告下载</label></p>
 				<input type="text" name="tel" size="30" value="" class="text-input" placeholder="请输入查询手机号"/>
 				<p class="contact-button-house">
-					<input type="submit" name="submit" class="full-screen-button contactButton button black" id="submit" value="进度查询"/>
+					<input type="submit" name="submit" class="full-screen-button contactButton button black" id="submit" value="查询"/>
 				</p>
 			</form>
 		</div>

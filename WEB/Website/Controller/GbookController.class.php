@@ -35,11 +35,32 @@ class GbookController extends CommonController{
 	public function runUpdata () {
 		$id = I('id','',intval);
 		$cid = I('cid','',intval);
-		$data = array(
+		$gb=M('gbook')->where('id ='.$id)->find();
+		if($cid==8 && $gb['retime']>0){
+			$this->error('已处理无需重复处理');
+		}else if($cid==8){
+			$jf=array(
+				'mid'=>$gb['ip'],
+				'stutas'=>0,
+				'jf'=>$gb['jine'],
+				'beizhu'=>"提现消费",
+				'gid'=>3,
+				'time'=>time()
+				);
+			M('jf')->data($jf)->add();
+			M('member')->where('id='.$gb['ip'])->setDec('fx',$gb['jine']);
+			$data = array(
+			'retime' => time(),
+			'reuser' => session('username'),
+			'reply' => '提现已通过'
+			);
+		}else{
+			$data = array(
 			'retime' => time(),
 			'reuser' => session('username'),
 			'reply' => I('reply')
 			);
+		}		
 		if (M('gbook')->where('id ='.$id)->save($data)){
 			$this->success('回复成功',U(MODULE_NAME.'/Gbook/index',array('id'=>$cid)));
 		}else{

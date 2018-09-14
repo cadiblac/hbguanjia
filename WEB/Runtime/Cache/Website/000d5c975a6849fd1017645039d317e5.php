@@ -97,6 +97,7 @@
                     <ul class="sub-menu-list">
 						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Rbac/index');?>"> 系统用户</a></li>
                         <li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Member/index');?>"> 会员管理</a></li>
+						<li><a target="_parent" href="<?php echo U(MODULE_NAME.'/Staff/index');?>"> 员工管理</a></li>
                     </ul>
                 </li>
                 <li class="menu-list <?php if(CONTROLLER_NAME == Orders): ?>nav-active<?php endif; ?>">
@@ -293,9 +294,14 @@
 									</div><?php endif; ?>
 								</div>
 								<div class="form-group ">
-									<label for="confirm_password" class="control-label col-lg-1"><?php if($cid == 1): ?>客服QQ<?php else: ?>文章作者<?php endif; ?></label>
+									<label for="confirm_password" class="control-label col-lg-1"><?php if($cid == 1): ?>项目负责人<?php else: ?>文章作者<?php endif; ?></label>
 									<div class="col-lg-2">
-										<input class="form-control " type="text" name="author" value="<?php echo ($v["author"]); ?>" />
+									<?php if($cid == 1): ?><select class=" form-control" name="author">
+											<option value="">请选择</option>
+										<?php if(is_array($staff)): foreach($staff as $key=>$s): ?><option value="<?php echo ($s["id"]); ?>" <?php if($v['author'] == $s['id']): ?>selected="selected"<?php endif; ?>><?php echo ($s["name"]); ?></option><?php endforeach; endif; ?>
+										</select>
+									<?php else: ?>
+										<input class="form-control " type="text" name="author" value="<?php echo ($v["author"]); ?>" /><?php endif; ?>
 									</div>
 								</div>
 								<div class="form-group ">

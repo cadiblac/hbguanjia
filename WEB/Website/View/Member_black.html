@@ -1,0 +1,95 @@
+<include file="Public:common" />
+<title>会员管理</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+<link rel="stylesheet" href="__PUBLIC__/js/data-tables/DT_bootstrap.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                会员管理
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 会员管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                           会员管理
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                                <a class="fa fa-share" title="导出excel" href="{:U(MODULE_NAME.'/Member/daochu')}"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+								<div class="space15"></div>
+								<table  class="display table table-bordered table-striped" id="editable-sample">
+								
+								<thead>								
+								<tr role="row">
+									<th>ID</th>
+									<th>昵称</th>
+									<th>头像</th>
+									<th>姓名</th>
+									<th>公司</th>
+									<th>邀请人id</th>
+									<th>最近登录</th>
+									<th>认证状态</th>									
+									<th>绑定手机</th>
+									<th>积分</th>	
+									<th>操作</th>
+								</tr>
+								</thead>
+								<tbody>
+									<foreach name='member' item='v'>
+									<tr>
+									<td>{$v.id}</td>
+									<td>{$v.username}</td>
+									<td><if condition="$v['photo']"><img width='40' src='{$v.photo}' /></if></td>
+									<td>{$v.realname}</td>
+									<td>{$v.company}</td>
+									<td>{$v.yqrid}</td>
+									<td>{$v.logintime|date='Y-m-d H:i',###}</td>
+									<td><if condition="$v['state']">已认证<else />未认证</if></td>
+									<td>{$v.tel}</td>
+									<td>{$v.integral}</td>
+									<td><a href="{:U('member/del',array('qx'=>$v['id']))}"><span class='btn btn-success btn-xs'>取消黑名单</span></a></td>
+									</tr>
+									</foreach>
+								</tbody>								
+								</table>
+							</div>
+							<div class="page">{$page}</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/DT_bootstrap.js"></script>
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+</body>
+</html>

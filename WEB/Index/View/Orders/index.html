@@ -1,5 +1,20 @@
 <include file="public/header" />
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+<script>
+function change(){
+var s=$("input[name='sumprice']").val();
+var f=$("input[name='fx']").val();
+var t;
+if($('#dk').is(':checked')) {
+	if(s>=f){t=s-f;}else{t=0.00;}
+	$('#sf').html(t);
+	$("#total_fee").attr("value",t);
+}else{
+	$("#sf").html(s);
+	$("#total_fee").attr("value",s);
+}
+}
+</script>
 <div class="main">
 	<div class="menu"><i></i><span>确认订单</span></div>
 	<div class="piclist">
@@ -10,7 +25,8 @@
 		<div>单价：{$p.price}元<p><if condition="$p['isdis']">优惠价：{$p.memprice}元</if></p></div></div>
 		<div class="cl">购买数量:X{$v.num}</div>
 		<div class="cl">商品金额:<span class="rad">{$v.sumprice}元</span><input type="hidden" name="sumprice" value="{$v.sumprice}"/></div>
-		<div class="cl">分销提成:<span class="green">-<if condition="$u['fx']">{$u.fx}<else />0.00</if>元</span>
+		<div class="cl">分销提成:<span class="green"><if condition="$u['fx']">{$u.fx}<else />0.00</if>元</span>
+		<div class="cl"><input name="dk" id="dk" type="checkbox" value="1" onclick="change();"/>使用分销提成抵扣</span>
 		<input type="hidden" name="out_trade_no" value="{$v.order}"/>
 		<input type="hidden" name="oid" value="{$v.id}"/>
 		<input type="hidden" name="fx" value="{$u.fx}"/>
@@ -20,8 +36,8 @@
 		<div class="input">联系地址:<input type="text" name="adress" value="{$u.address}" /></div>
 		<div>备注:</div>
 		<div class="input"><textarea name="remark"></textarea></div>
-		<div class="fkje">实付金额:<if condition="$u['fx'] lt $v['sumprice']">{$v['sumprice']-$u['fx']}<else />0.00</if>元
-		<input type="hidden" name="total_fee" <if condition="$u['fx'] lt $v['sumprice']">value="{$v['sumprice']-$u['fx']}"<else />value="0.00"</if>/></div>
+		<div class="fkje">实付金额:<span id="sf">{$v.sumprice}</span>元
+		<input type="hidden" name="total_fee" id="total_fee" value="{$v.sumprice}"/></div>
 		<input type="submit" class="wxzf" value="微信支付"/>
 		</form>
 	</div>

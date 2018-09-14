@@ -14,9 +14,11 @@
 <body>
 <div class="top">
 	<div class="userinfo"><a href="/index.php/Index/member/"><img src="{$Think.session.userHeadimgurl}"></a>{$Think.session.userNickname|msubstr=###,0,6,'utf-8',false}<if condition="session('state')"><span class="yrz">已认证</span><else /><span class="wrz">未认证</span></if></div>
-	<a class="fuwu" href="/index.php/Index/member/cart">购物车<div id="dgm"></div></a>
+	<if condition="!session('state')">
+	<a class="fuwu" href="/index.php/Index/member/person/">认证<div id="dgm"></div></a>
+	</if>
 </div>
 <div style="height:60px;"></div>
 <script>
-$("#dgm").load('/index.php/Index/member/cart/num/1');
+//$("#dgm").load('/index.php/Index/member/cart/num/1');
 </script>

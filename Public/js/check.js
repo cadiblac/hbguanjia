@@ -5,6 +5,9 @@ var b3 = document.getElementById("inpt3").value;
 var b4 = document.getElementById("inpt4").value;
 var b5 = document.getElementById("inpt5").value;
 var b6 = document.getElementById("inpt6").value;
+var b7 = document.getElementById("inpt7").value;
+var b8 = document.getElementById("inpt8").value;
+var b9 = document.getElementById("inpt9").value;
 $.post("/index.php/Index/member/yanz",{'tel':b2,'code':b3},function(result){
     if(result==0){
 		$("#label7").html("验证码错误");
@@ -17,11 +20,11 @@ $.post("/index.php/Index/member/yanz",{'tel':b2,'code':b3},function(result){
 	}
 });
 
-if(b1 == "" || b2 == "" || b3 == ""){
+if(b1 == "" || b2 == "" || b3 == "" || b7 == ""){
 alert("请填写完整必填项！");
 return false;
 }else{
-$.post("/index.php/Index/member/fab",{'realname':b1,'tel':b2,'code':b3,'address':b4,'QQ':b5,'email':b6},function(result){
+$.post("/index.php/Index/member/fab",{'realname':b1,'tel':b2,'code':b3,'address':b4,'QQ':b5,'email':b6,'company':b7,'position':b8,'birthday':b9},function(result){
 alert(result);
 });
 }

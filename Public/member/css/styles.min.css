@@ -2578,7 +2578,7 @@ body {
 .advance-section .advance-list .advance-item {
 	background-color: #fff;
 	float: left;
-	width: 25%;
+	width: 33.3%;
 	height: .88rem;
 	box-sizing: border-box;
 	border-bottom: 1px solid rgba(211,211,211,.4);
@@ -5758,4 +5758,4 @@ body {
 .green{color:#95c62b;}
 .gray{color:#aaa;}
 .red{color:rgb(199, 37, 78);}
-.masthead-figure{width:30px;height:30px; border-radius:15px; margin-top:10px;}
+.masthead-figure{width:30px;height:30px; border-radius:15px; margin:0 auto 3px auto;}

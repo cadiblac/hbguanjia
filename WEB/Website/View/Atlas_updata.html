@@ -21,12 +21,6 @@
   <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
 <script type="text/javascript">
 	var app="__ROOT__";
-	window.UEDITOR_HOME_URL = "__ROOT__/Data/ueditor/";
-	window.onload = function (){
-	//window.UEDITOR_CONFIG.initialFrameWidth = 1000; 初始化编辑器宽度,默认1000
-	window.UEDITOR_CONFIG.initialFrameHeight = 500; //初始化编辑器高度,默认320
-		UE.getEditor('content',{ initialFrameWidth: null });
-	}
 	function deli (id) {
 			var handleUrl = '{:U(MODULE_NAME."/Atlas/deli")}'
 			$.post(handleUrl,{id:id},function(data){
@@ -36,8 +30,6 @@
 			},'json');
 		}
 </script>
-<js file="__ROOT__/Data/ueditor/ueditor.config.js" />
-<js file="__ROOT__/Data/ueditor/ueditor.all.min.js" />
 </head>
 
 <body class="sticky-header left-side-collapsed">
@@ -52,99 +44,360 @@
                    <div class="col-sm-12">
 					<section class="panel">
 					<header class="panel-heading">
-						{$cates['name']}<span class="text-muted">——修改图集</span>
+						{$cates['name']}<span class="text-muted">——修改项目</span>
 						<span class="tools pull-right">
 							<a class="fa fa-rotate-left" href="javascript:history.go(-1)"> 返回</a>
 						 </span>
-					</header>
+					</header>					
 					<div class="panel-body">
 						<div class="form">
+						<h2><if condition="$v['jf']">博创检测<else />黄环咨询</if></h2>
 							<form class="cmxform form-horizontal adminex-form" method="post" action="{:U(MODULE_NAME.'/Atlas/runUpdata')}">
-							<foreach name='article' item='v'>
-								<div class="form-group ">
-									<label for="firstname" class="control-label col-lg-1">图集标题</label>
-									<div class="col-lg-6">
-										<input class=" form-control" id="firstname" name="title" type="text" value="{$v.title}"/>
+							<if condition="$v['jf']">
+							<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">合同编号</label>
+									<div class="col-lg-2">
+										<input class=" form-control" name="keywords" type="text" value="{$v.keywords}"/>
+									</div>
+									<label for="lastname" class="control-label col-lg-1">项目名称</label>
+									<div class="col-lg-2">
+										<input class=" form-control" name="title" type="text" value="{$v.title}"/>
+									</div>
+									<label for="lastname" class="control-label col-lg-1">建设单位</label>
+									<div class="col-lg-2">
+										<input class=" form-control" name="jsdw" type="text" value="{$c.jsdw}" />
+									</div>
+									<label for="lastname" class="control-label col-lg-1">合同金额</label>
+									<div class="col-lg-2"><div class="input-group m-bot15">
+										<input class=" form-control" name="jine" type="text" value="{$v.pic}"/><span class="input-group-addon">元</span></div>
+									</div>
+									<label for="lastname" class="control-label col-lg-1">查询电话</label>
+									<div class="col-lg-2">
+										<input class=" form-control" name="tel" type="text" value="{$v.tel}" />
 									</div>
 								</div>
 								<div class="form-group ">
-									<label for="username" class="control-label col-lg-1">题图</label>
-									<div class="col-lg-6">
-										<a class="btn btn-primary upimgs" id="btn">选择图片</a> 最大2M，支持jpg，gif，png格式。
-										 <dl id="ul_pics" class="ul_pics clearfix"><dd id='slt'><if condition="$v['pic']"><img src="{$v.pic}"></if></dd></dl>
-										 <input name="pic" id="picsa" value="{$v.pic}" style="display: none;">
+									<label for="lastname" class="control-label col-lg-1">合同签订日期</label>
+									<div class="col-lg-3">
+										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="{$v.time|default=time()|date='Y-m-d',###}"  class="input-append date dpYears" style="width:100%;">										  
+										  <input type="text" name="time" value="{$v.time|date='Y-m-d',###}" size="16" class="form-control">
+											<span class="input-group-btn add-on"><button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>			</span>
+										</div>
+									</div>
+									<label for="confirm_password" class="control-label col-lg-1">市场负责人</label>
+									<div class="col-lg-3">
+										<select class=" form-control" name="author">
+										<option value="">请选择</option>
+										<foreach name="scb" item="s">											
+											<option value="{$s.id}" <if condition='$s["id"] eq $v["author"]'>selected = "selected"</if>>{$s.name}</option>	
+										</foreach>
+										</select>
+									</div>
+									<label for="confirm_password" class="control-label col-lg-1">技术负责人</label>
+									<div class="col-lg-3">
+										<select class=" form-control" name="jsr">
+										<option value="">请选择</option>
+										<foreach name="jsb" item="s">											
+											<option value="{$s.id}" <if condition='$s["id"] eq $v["jsr"]'>selected = "selected"</if>>{$s.name}</option>	
+										</foreach>
+										</select>
+									</div>
+								</div>
+								<header class="panel-heading">检测分析完成时限承诺</header>
+								<div class="panel-body">
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">现场采样</label>
+									<div class="col-lg-3">
+									<div class="input-group m-bot15">
+										<input class=" form-control" name="chn1" type="text" value="{$c.chn1}" /><span class="input-group-addon">天</span></div>
+									</div>
+									<label for="lastname" class="control-label col-lg-1">样品分析</label>
+									<div class="col-lg-3">
+									<div class="input-group m-bot15">
+										<input class=" form-control" name="chn2" type="text" value="{$c.chn2}" /><span class="input-group-addon">天</span></div>
+									</div>
+									<label for="lastname" class="control-label col-lg-1">数据审核</label>
+									<div class="col-lg-3">
+									<div class="input-group m-bot15">
+										<input class=" form-control" name="chn3" type="text" value="{$c.chn3}" /><span class="input-group-addon">天</span></div>
 									</div>
 								</div>
 								<div class="form-group ">
-									<label for="lastname" class="control-label col-lg-1">图集关键字</label>
-									<div class="col-lg-6">
-										<input class=" form-control" id="lastname" name="keywords" type="text" value="{$v.keywords}"/>
+									<label for="lastname" class="control-label col-lg-1">报告编制</label>
+									<div class="col-lg-3">
+									<div class="input-group m-bot15">
+										<input class=" form-control" name="chn4" type="text" value="{$c.chn4}" /><span class="input-group-addon">天</span></div>
 									</div>
+									<label for="lastname" class="control-label col-lg-1">报告存档</label>
+									<div class="col-lg-3">
+									<div class="input-group m-bot15">
+										<input class=" form-control" name="chn5" type="text" value="{$c.chn5}" /><span class="input-group-addon">天</span></div>
+									</div>
+									<label for="lastname" class="control-label col-lg-1">合计</label>
+									<div class="col-lg-3">
+									<div class="input-group m-bot15">
+										<input class=" form-control" name="chn6" type="text" value="{$c.chn6}" /><span class="input-group-addon">天</span></div>
+									</div>
+								</div></div>
+								<header class="panel-heading">项目进度及概况</header>
+								<div class="panel-body">
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">现场踏勘</label>
+									<div class="col-lg-10">
+										<input class=" form-control" name="jind1" type="text" value="{$c.jind1}"/>
+										<input name="jind0" type="hidden" value="{$c.jind0}"/>
+									</div>
+								</div>								
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">采样日期</label>
+									<div class="col-lg-2">
+										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="{$v.time|default=time()|date='Y-m-d',###}"  class="input-append date dpYears" style="width:100%;">										  
+										  <input type="text" name="jind2" value="{$c.jind2}" size="16" class="form-control">
+											<span class="input-group-btn add-on"><button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>			</span>
+										</div>
+									</div>
+									<label for="username" class="control-label col-lg-1">采样图片</label>
+									<div class="col-lg-6">
+										<a class="btn btn-primary upimgs" id="btn">选择图片</a> 最大2M，支持jpg，gif，png格式。按CTRL多选(最多传10张)
+										 <dl id="ul_pics" class="ul_pics clearfix">
+										<foreach name='sy' item='p'>
+										<dd id="p_{$p.id}"><img src="{$p.img}"><p><a href="javascript:void(0);" onclick="deli({$p.id});">删除</a></p></dd>
+										</foreach>
+										 </dl>
+									</div>
+									<if condition="$c['jind3']">
+									<label for="username" class="control-label col-lg-1">采样完成</label>
+									<div class="col-lg-1 form-control-static">
+									<input type="hidden" name="jind3" value="{$c.jind3}" />
+									{$c.jind3}
+									</div>
+									</if>
 								</div>
 								<div class="form-group ">
-									<label for="lastname" class="control-label col-lg-1">图集描述</label>
-									<div class="col-lg-6">
-										<input class=" form-control" id="lastname" name="description" type="text" value="{$v.description}"/>
+									<label for="lastname" class="control-label col-lg-1">实验分析日期</label>
+									<div class="col-lg-2">
+										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="{$v.time|default=time()|date='Y-m-d',###}"  class="input-append date dpYears" style="width:100%;">										  
+										  <input type="text" name="jind4" value="{$c.jind4}" size="16" class="form-control">
+											<span class="input-group-btn add-on"><button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>			</span>
+										</div>
 									</div>
-								</div>
-								<div class="form-group ">
-									<label for="username" class="control-label col-lg-1">图集</label>
+									<label for="username" class="control-label col-lg-1">实验分析图片</label>
 									<div class="col-lg-6">
-										<a class="btn btn-primary upimgs" class="upimgs" id="bte">选择图片</a> 最大2M，支持jpg，gif，png格式。按CTRL多选(一次最多传30张)
+										<a class="btn btn-primary upimgs" class="upimgs" id="bte">选择图片</a> 最大2M，支持jpg，gif，png格式。按CTRL多选(最多传10张)
 										<dl id="ul_pic" class="ul_pic clearfix">
 										<foreach name='atlas' item='p'>
 										<dd id="p_{$p.id}"><img src="{$p.img}"><p><a href="javascript:void(0);" onclick="deli({$p.id});">删除</a></p></dd>
 										</foreach>
 										</dl>
 									</div>
+									<if condition="$c['jind5']">
+									<label for="username" class="control-label col-lg-1">采样完成</label>
+									<div class="col-lg-1 form-control-static">{$c.jind5}
+									<input type="hidden" name="jind5" value="{$c.jind5}" />
+									</div>
+									</if>
 								</div>
 								<div class="form-group ">
-									<label for="password" class="control-label col-lg-1">图集移动到</label>
+									<label for="firstname" class="control-label col-lg-1">数据审核</label>									
+									<if condition="$c['jind6'] eq 2">
+									<div class="col-lg-3 form-control-static">
+									完成日期:{$c.time6}
+									<input type="hidden" name="jind6" value="{$c.jind6}" />
+									<input type="hidden" name="time6" value="{$c.time6}" />
+									<else />
+									<div class="col-lg-3">
+									<label class="checkbox-inline"><input type="radio" value="1" <notempty name="c.jind6">checked</notempty> name="jind6">进行中</label>
+									<label class="checkbox-inline"><input type="radio" value="2" name="jind6">已完成</label>
+									</if>
+									</div>
+									<label for="firstname" class="control-label col-lg-1">报告编制</label>									
+									<if condition="$c['jind7'] eq 2">
+									<div class="col-lg-3 form-control-static">
+									完成日期:{$c.time7}
+									<input type="hidden" name="jind7" value="{$c.jind7}" />
+									<input type="hidden" name="time7" value="{$c.time7}" />
+									<else />
+									<div class="col-lg-3">
+									<label class="checkbox-inline"><input type="radio" value="1" <notempty name="c.jind7">checked</notempty> name="jind7">进行中</label>
+									<label class="checkbox-inline"><input type="radio" value="2" name="jind7">已完成</label>
+									</if>
+									</div>
+									<label for="firstname" class="control-label col-lg-1">报告存档</label>									
+									<if condition="$c['jind8'] eq 2">
+									<div class="col-lg-3 form-control-static">
+									完成日期:{$c.time8}
+									<input type="hidden" name="jind8" value="{$c.jind8}" />
+									<input type="hidden" name="time8" value="{$c.time8}" />
+									<else />
+									<div class="col-lg-3">
+									<label class="checkbox-inline"><input type="radio" value="1" <notempty name="c.jind8">checked</notempty> name="jind8">进行中</label>
+									<label class="checkbox-inline"><input type="radio" value="2" name="jind8">已完成</label>
+									</if>
+									</div>
+								</div>
+								</div>
+							<else />
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">合同编号</label>
 									<div class="col-lg-2">
-										<select class=" form-control" name="cid">
-											<foreach name='cate' item='c'>
-											<option value="{$c.id}" <if condition='$c["id"] eq $v["cid"]'>selected = "selected"</if>>{$c.name}</option>
-											</foreach>
+									<input class=" form-control" name="keywords" type="text" value="{$v.keywords}"/>										
+									</div>
+									<label for="lastname" class="control-label col-lg-1">项目名称</label>
+									<div class="col-lg-2">
+										<input class=" form-control" name="title" type="text" value="{$v.title}"/>
+									</div>
+									<label for="lastname" class="control-label col-lg-1">建设单位</label>
+									<div class="col-lg-2">
+										<input class=" form-control" name="jsdw" type="text" value="{$c.jsdw}" />
+									</div>
+									<label for="lastname" class="control-label col-lg-1">合同金额</label>
+									<div class="col-lg-2"><div class="input-group m-bot15">
+										<input class=" form-control" name="jine" type="text" value="{$v.pic}"/><span class="input-group-addon">元</span></div>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">报告类别</label>
+									<div class="col-lg-3">
+										<label class="checkbox-inline"><input type="radio" value="报告书" <if condition="$v['description'] eq '报告书'">checked</if> name="description">报告书</label>
+										<label class="checkbox-inline"><input type="radio" value="报告表" <if condition="$v['description'] eq '报告表'">checked</if> name="description">报告表</label>
+										<label class="checkbox-inline"><input type="radio" value="验收报告" <if condition="$v['description'] eq '验收报告'">checked</if> name="description">验收报告</label>
+									</div>
+									<label for="lastname" class="control-label col-lg-1">启动预付款</label>
+									<div class="col-lg-3"><div class="input-group m-bot15">
+										<input class=" form-control" name="yfk" type="text" value="{$c.yfk}"/><span class="input-group-addon">元</span></div>
+									</div>
+									<label for="lastname" class="control-label col-lg-1">查询电话</label>
+									<div class="col-lg-3">
+										<input class=" form-control" name="tel" type="text" value="{$v.tel}"/>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="lastname" class="control-label col-lg-1">合同签订日期</label>
+									<div class="col-lg-3">
+										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="{$v.time|default=time()|date='Y-m-d',###}"  class="input-append date dpYears" style="width:100%;">										  
+										  <input type="text" name="time" value="{$v.time|date='Y-m-d',###}" size="16" class="form-control">
+											<span class="input-group-btn add-on"><button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>			</span>
+										</div>
+									</div>
+									<label for="confirm_password" class="control-label col-lg-1">市场负责人</label>
+									<div class="col-lg-3">
+										<select class=" form-control" name="author">
+										<option value="">请选择</option>
+										<foreach name="scb" item="s">											
+											<option value="{$s.id}" <if condition='$s["id"] eq $v["author"]'>selected = "selected"</if>>{$s.name}</option>	
+										</foreach>
+										</select>
+									</div>
+									<label for="confirm_password" class="control-label col-lg-1">技术负责人</label>
+									<div class="col-lg-3">
+										<select class=" form-control" name="jsr">
+										<option value="">请选择</option>
+										<foreach name="jsb" item="s">											
+											<option value="{$s.id}" <if condition='$s["id"] eq $v["jsr"]'>selected = "selected"</if>>{$s.name}</option>	
+										</foreach>
 										</select>
 									</div>
 								</div>
-
+								<header class="panel-heading">报告服务完成时限承诺</header>
+								<div class="panel-body">
 								<div class="form-group ">
-									<label for="email" class="control-label col-lg-1">发布时间</label>
-									<div class="col-lg-2">
-										<div data-date-viewmode="years" data-date-format="yyyy-mm-dd hh:mm" data-date="{$v.time|default=time()|date='Y-m-d H:i',###}"  class="input-append date dpYears" style="width:200px;">
-										  
-										  <input type="text" name="time" value="{$v.time|default=time()|date='Y-m-d H:i',###}" size="16" class="form-control">
-														<span class="input-group-btn add-on">
-														  <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
-														</span>
-										</div>                                         
+									<label for="lastname" class="control-label col-lg-2">报告服务承诺完成时间</label>
+									<div class="col-lg-3">
+									<div class="input-group m-bot15">
+										<input class=" form-control" name="chn1" type="text" value="{$c.chn1}" /><span class="input-group-addon">天</span></div>
 									</div>
-									
-									<label for="password" class="control-label col-lg-1">属性</label>
-									<div class="col-lg-2">
-										<foreach name='attr' item='value'>
-											<label class="checkbox-inline">
-												<input type="checkbox" name="aid[]" value="{$value.id}" <foreach name='v.attr' item='a'><if condition="$value['id'] eq $a['id']">checked="checked"</if></foreach>>{$value.name}&nbsp;
-											</label>
+								</div>
+								</div>
+								<header class="panel-heading">项目进度及概况</header>	
+								<div class="panel-body">
+								<div class="form-group ">									
+									<label for="username" class="control-label col-lg-1">现场踏勘</label>
+									<div class="col-lg-9">
+										<a class="btn btn-primary upimgs" id="btn">选择图片</a> 最大2M，支持jpg，gif，png格式。按CTRL多选(最多传10张)
+										 <dl id="ul_pics" class="ul_pics clearfix">
+										<foreach name='sy' item='p'>
+										<dd id="p_{$p.id}"><img src="{$p.img}"><p><a href="javascript:void(0);" onclick="deli({$p.id});">删除</a></p></dd>
 										</foreach>
+										 </dl>
 									</div>
-									
-								</div>
-								<div class="form-group">
-									<label for="email" class="control-label col-lg-1">图集内容</label>
-									<div class="col-lg-10">
-										<textarea name="content" id="content">{$v.content}</textarea>
+									<label for="username" class="control-label col-lg-1">踏勘完成日期</label>
+									<div class="col-lg-1 form-control-static">{$c.jind1}
+									<input type="hidden" name="jind1" value="{$c.jind1}" />
+									</div>									
+								</div>								
+								<div class="form-group ">
+									<label for="firstname" class="control-label col-lg-1">报告编制</label>									
+									<if condition="$c['jind2'] eq 2">
+									<div class="col-lg-3 form-control-static">
+									完成日期:{$c.time2}
+									<input type="hidden" name="jind2" value="{$c.jind2}" />
+									<input type="hidden" name="time2" value="{$c.time2}" />
+									<else />
+									<div class="col-lg-3">
+									<label class="checkbox-inline"><input type="radio" value="1" <notempty name="c.jind2">checked</notempty> name="jind2">进行中</label>
+									<label class="checkbox-inline"><input type="radio" value="2" name="jind2">已完成</label>
+									</if>
+									</div>
+									<label for="firstname" class="control-label col-lg-1">报告审核</label>									
+									<if condition="$c['jind3'] eq 2">
+									<div class="col-lg-3 form-control-static">
+									完成日期:{$c.time3}
+									<input type="hidden" name="jind3" value="{$c.jind3}" />
+									<input type="hidden" name="time3" value="{$c.time3}" />
+									<else />
+									<div class="col-lg-3">
+									<label class="checkbox-inline"><input type="radio" value="1" <notempty name="c.jind3">checked</notempty> name="jind3">进行中</label>
+									<label class="checkbox-inline"><input type="radio" value="2" name="jind3">已完成</label>
+									</if>
+									</div>
+									<label for="firstname" class="control-label col-lg-1">报告送审</label>									
+									<if condition="$c['jind4'] eq 2">
+									<div class="col-lg-3 form-control-static">
+									完成日期:{$c.time4}
+									<input type="hidden" name="jind4" value="{$c.jind4}" />
+									<input type="hidden" name="time4" value="{$c.time4}" />
+									<else />
+									<div class="col-lg-3">
+									<label class="checkbox-inline"><input type="radio" value="1" <notempty name="c.jind4">checked</notempty> name="jind4">进行中</label>
+									<label class="checkbox-inline"><input type="radio" value="2" name="jind4">已完成</label>
+									</if>
 									</div>
 								</div>
-								
-								<div class="form-group">
-									<div class="col-lg-offset-1 col-lg-10">
-										<input type="hidden" name="id" value="{$v.id}">
-										<input class="btn btn-primary" type="submit" value="保&nbsp;&nbsp;存">
+								<div class="form-group ">
+									<label for="firstname" class="control-label col-lg-1">报告报批</label>									
+									<if condition="$c['jind5'] eq 2">
+									<div class="col-lg-3 form-control-static">
+									完成日期:{$c.time5}
+									<input type="hidden" name="jind5" value="{$c.jind5}" />
+									<input type="hidden" name="time5" value="{$c.time5}" />
+									<else />
+									<div class="col-lg-3">
+									<label class="checkbox-inline"><input type="radio" value="1" <notempty name="c.jind5">checked</notempty> name="jind5">进行中</label>
+									<label class="checkbox-inline"><input type="radio" value="2" name="jind5">已完成</label>
+									</if>
 									</div>
+									<label for="firstname" class="control-label col-lg-1">报告存档</label>									
+									<if condition="$c['jind6'] eq 2">
+									<div class="col-lg-3 form-control-static">
+									完成日期:{$c.time6}
+									<input type="hidden" name="jind6" value="{$c.jind6}" />
+									<input type="hidden" name="time6" value="{$c.time6}" />
+									<else />
+									<div class="col-lg-3">
+									<label class="checkbox-inline"><input type="radio" value="1" <notempty name="c.jind6">checked</notempty> name="jind6">进行中</label>
+									<label class="checkbox-inline"><input type="radio" value="2" name="jind6">已完成</label>
+									</if>
+									</div>
+								</div>								
+							</if>
+							<div class="form-group">
+								<div class="col-lg-offset-1 col-lg-10">
+								<input type="hidden" name="id" value="{$v.id}">
+								<input type="hidden" value="{$v.jf}" name="jf">
+									<input class="btn btn-primary" type="submit" value="保&nbsp;&nbsp;存">
 								</div>
-							</foreach>
+							</div>
+							</div>
 							</form>
 						</div>
 					</div>
@@ -182,7 +435,7 @@
 <script src="__PUBLIC__/js/pickers-init.js"></script>
 
 <script type="text/javascript" src="__PUBLIC__/plupload/plupload.full.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/js/upload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/upload2.js"></script>
 
 <!--common scripts for all pages-->
 <script src="__PUBLIC__/js/scripts.js"></script>

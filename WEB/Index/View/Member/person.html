@@ -19,16 +19,16 @@
 
         <div class="masthead-login">
             <figure class="masthead-figure">
-				<img src="{$Think.session.userHeadimgurl}" width="64"/>
+				<a href="/index.php/Index/member/index/spread/{$Think.session.userID}"><img src="{$Think.session.userHeadimgurl}" width="64"/></a>
             </figure>
             <div class="masthead-caption">
                 <h3 class="masthead-caption-title line-ellipsis">
-                {$Think.session.userNickname}
+                <a href="/index.php/Index/member/index/spread/{$Think.session.userID}">{$Think.session.userNickname}</a>
                                 </h3>
 
-                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
+                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}<!--<span style="color:red;margin-left:20px;">分销提成：{$member.fx}元</span>--></p>
 
-                <p class="masthead-setting"></p>
+                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">完善资料<i class="icon icon-right"></i></a></p>
             </div>
         </div>
     </section>
@@ -41,6 +41,9 @@
             </li>
 			<form class="form">
 			<li class="padding5"><label><span style="color:red;">*</span>姓名:</label><input name="realname" type="text" id="inpt1" value="{$member.realname}" /></li>
+			<li class="padding5"><label><span style="color:red;">*</span>公司:</label><input name="company" class="l80" type="text" id="inpt7" value="{$member.company}" /></li>
+			<li class="padding5"><label>职务:</label><input name="position" type="text" id="inpt8" value="{$member.position}" /></li>
+			<li class="padding5"><label>生日:</label><input name="birthday" type="text" id="inpt9" value="{$member.birthday}" /></li>
 			<li class="padding5"><label><span style="color:red;">*</span>手机:</label><input name="tel" type="text" id="inpt2" value="{$member.tel}" /><span id="label6"></span>
 			<input type="button" class="hqyzm" id="hq" value="获取验证码" onclick="yzm()" /></li>
 			<li class="padding5"><label><span style="color:red;">*</span>验证码:</label><input name="code" type="text" id="inpt3" value="" /><span id="label7"></span></li>

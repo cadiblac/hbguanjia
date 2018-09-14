@@ -1,0 +1,126 @@
+<include file="Public:common" />
+<title>群发消息</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                群发消息
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 群发消息 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                           群发消息
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+								<div class="space15"></div>
+								<table class="table table-bordered table-striped dataTable">
+								
+								<thead>								
+								<tr role="row">
+									<th>昵称</th>
+									<th>头像</th>
+									<th>姓名</th>									
+									<th>操作</th>
+								</tr>
+								</thead>
+								<tbody>
+								<foreach name='member' item='v'>							
+								<tr class="">								
+									<td>{$v.username}</td>
+									<td><img src="{$v.photo}" style="height:40px;" /></td>
+									<td>{$v.realname}</td>
+									<td>
+									<span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal" onclick="huifu('{$v.openid}','{$v.username}')">发送</span>
+									</td>
+								</tr>
+								</foreach>
+								<if condition="$p ELT 1">
+								<tr><td colspan='3'></td><td><span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal" onclick="huifu(0,'所有人')">发送给所有人</span></td></tr></if>
+								</tbody>								
+								</table>
+								<div class="form-group">
+									<div class="col-lg-offset-6 col-lg-6" id="page">{$page}</div>
+								</div>
+							</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								发送消息
+							</h4>
+						</div>
+						<form action="{:U(MODULE_NAME.'/member/sendmail')}" method="post">
+						<div class="modal-body">
+						<div class="form-group ">
+							<input class="form-control" name="title" type="text" value="" placeholder="信息标题（必填） 如：您申请的检测项目已完成"></div>
+						<!--<div class="form-group ">
+							<input class="form-control" name="keyword1" type="text" value="" placeholder="图片地址（选填）必须是http://开头的完整地址"></div>
+						<div class="form-group ">
+							<input class="form-control" name="keyword2" type="text" value="" placeholder="服务类型如：实地检测"></div>-->						
+						<div class="form-group ">
+							<textarea name="remark" class="form-control" rows="3" placeholder="详细信息(50字内)"></textarea>
+							<input name="openid" id="openid" type="hidden" /></div>
+						<div class="form-group ">
+							<input class="form-control" name="url" type="text" value="" placeholder="点击消息跳转地址：必须是http://开头的完整地址"></div>
+						</div>						
+						<div class="modal-footer">								
+							<button type="button" class="btn btn-primary" onclick="submit()">
+								提交
+							</button>
+						</div>
+						</form>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+			<!-- 模态框（Modal） -->
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+<script>
+function huifu(id,name){
+	$('#myModalLabel').html('发送消息到:'+name);
+	$('#openid').val(id);
+}
+</script>
+</body>
+</html>

@@ -1,21 +1,25 @@
 <include file="public/header" />
 {:W('bann/banner')}
-<div class="one">
-<fav id="3" limit="4">
-	<div><a href="{$url}"><img src="{$pic}" /><p>{$name}</p></a></div>
-</fav>	
-</div>
-<div class="two">
-	<list id='2' limit='3' attrid='1' img='1' order='time desc'>
+<div class="two"><!--
+	<pist id='4,6,7' limit='3' attrid='1' img='1' order='time desc'>
 	<div class="pw">
 	<a href="{$url}"><img src="{$pic}" /><p>{$title|msubstr=###,0,15,'utf-8',false}</p></a>
 	</div>
-	</list>
+	</pist>-->
+	<form id="form1" name="form1" method="get" action="/index.php/Search/">
+	<input name="str" type="text" value="请输入关键字" onfocus="if(value == defaultValue){value='';this.style.color='#000'}" onblur="if(!value){value = defaultValue;this.style.color='#999'}" id="SearchStr" size="10" />
+	<input type="submit" name="button" id="button" value="搜索" />
+	</form>
+</div>
+<div class="one">
+<fav id="2" limit="4">
+	<div><a href="{$url}"><img src="{$pic}" /><p>{$name}</p></a></div>
+</fav>	
 </div>
 <div class="three">
 	<div class="menu"><i></i><span>在线学习</span></div>
 	<ul>
-	<list id='2' limit='8' img='1' order='time desc'>
+	<list id='2,9,10,11,12,13' limit='8' img='1' order='time desc'>
 	<li><div class="img">
 	<img src="{$pic}" /></div>
 	<div class="zc">

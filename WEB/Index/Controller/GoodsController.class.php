@@ -82,8 +82,12 @@ class GoodsController extends CommonController{
 			$Page -> setConfig('theme','%FIRST% %UP_PAGE% %DOWN_PAGE% %END%');
 			$show = $Page->show();
 			$this->goods = M('goods')->field($field,true)->where($where)->order('id DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
-			$this->page = $show;			
-			$this->display();		
+			$this->page = $show;
+			if($id==5){
+				$this->display(lipin);
+			}else{
+				$this->display();
+			}		
 			
 		}
 	
@@ -123,7 +127,11 @@ class GoodsController extends CommonController{
 		$this->gmjl=M('orders')->where('pid ='.$id.' and status >=2')->join('LEFT JOIN lj_member ON lj_orders.uid = lj_member.id')->field('lj_orders.uname,lj_orders.paytime,lj_member.photo')->order('lj_orders.paytime DESC')->limit('20')->select();
 		$wxconfig = wx_share_init();  
 		$this->assign('wxconfig', $wxconfig);
+		if($cid==5){
+		$this->display(dh);	
+		}else{
 		$this->display();
+		}
 	}
 
 	public function getclick () {
@@ -148,6 +156,7 @@ class GoodsController extends CommonController{
 		$data = array(
 			'uid' => $uid,
 			'pid' => $pid,
+			'pcid'=> I('cid'),
 			'pname' => $gata['title'],
 			'order' => $dh,
 			'price' => $price,
@@ -166,7 +175,7 @@ class GoodsController extends CommonController{
 	}
 		
 	//下单页面
-	public function buy (){
+	public function buy (){		
 		$h=time();
 		$dh="B".date("y",time()).substr($h, -8).date("md",time());
 		$spread=cookie('spread');
@@ -176,11 +185,16 @@ class GoodsController extends CommonController{
 		$num=I('num','',intval);
 		//if($pid !== (int) $_POST['pid']){$this->error('参数错误');}
 		$gata=M('goods')->where(array('id'=>$pid))->field('title,price,memprice,stock,isdis')->find();
-		//if($gata['stock']<$_POST['num']){$this->error('购买数量大于库存，请修改');}else{$num = (int) $_POST['num'];}
+		if(I('cid')==5){
+			$jf=M('member')->where('id='.session('userID'))->getField('integral');
+			if($jf<$_POST['num']*$gata['price']){$this->ajaxReturn(array('code'=>0,'msg'=>'您的积分不足！'));}
+			if($gata['stock']<$_POST['num']){$this->ajaxReturn(array('code'=>0,'msg'=>'购买数量大于库存！'));}
+		}
 		if($gata['isdis']){$price=$gata['memprice'];}else{$price=$gata['price'];}
 		$data = array(
 			'uid' => $uid,
 			'pid' => $pid,
+			'pcid'=> I('cid'),
 			'pname' => $gata['title'],
 			'order' => $dh,
 			'price' => $price,
@@ -191,13 +205,11 @@ class GoodsController extends CommonController{
 			'status' => 1
 		);
 		if($rs=M('orders')->add($data)){
-			echo $rs;
-			//$this->ajaxReturn($rs);
+			$this->ajaxReturn(array('code'=>1,'rs'=>$rs));
 		}else{
-			$this->ajaxReturn(0);
+			$this->ajaxReturn(array('code'=>0,'msg'=>'下单失败！'));
 		}
 	}
-	
 	
 }
 ?>

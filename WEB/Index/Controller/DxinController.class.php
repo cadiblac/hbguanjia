@@ -17,12 +17,15 @@ class DxinController extends Controller {
 	$date=M('conf')->where(array('id'=>0))->getField('confing');
 	$conf=unserialize($date);
 	$dart=array('tel'=>$mobile,'code'=>$code,'time'=>time());
-	$rs=M("yzm");
-	if($rs->where(array("tel"=>$mobile))->count()){  
-    $rs->where(array("tel"=>$mobile))->save($dart);
+	$rs=M('yzm');
+	$ji=$rs->where(array("tel"=>$mobile))->find();	
+	if($ji){
+		$rs->where(array("tel"=>$mobile))->save($dart);
 	}else{  
-	$rs->add($dart);		   
-	}  
+		$rs->add($dart);		   
+	}
+	
+	$st=M('member')->where(array('openid'=>session('userOpenid')))->getField('state');
     $accessKeyId = $conf['alid'];
     $accessKeySecret = $conf['aliSecret'];
 	
@@ -46,7 +49,11 @@ class DxinController extends Controller {
     // 必填，设置签名名称
     $request->setSignName("hb云管家");      //此处需要填写你在阿里上创建的签名
     // 必填，设置模板CODE
-    $request->setTemplateCode("SMS_117521106");    //短信模板编号
+	if($st){
+		$request->setTemplateCode("SMS_117521106");    //短信模板编号
+	}else{
+		$request->setTemplateCode("SMS_140120786");    //短信模板编号
+	}    
 	$smsData = array('code'=>$code);    //所使用的模板若有变量 在这里填入变量的值  我的变量名为username此处也为username
     $request->setTemplateParam(json_encode($smsData));   
     //发起访问请求

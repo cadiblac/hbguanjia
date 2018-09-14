@@ -16,6 +16,11 @@ class CommonController extends Controller {
    	if (C('USER_AUTH_ON') && !$notAuth){
    	  Rbac::AccessDecision() || $this->error('没有权限');
    	}
+	if(session('rname.name')=='Staff'){
+		if(CONTROLLER_NAME=='Article' && ACTION_NAME=='index' && I('id')!=14){
+			$this->error('没有权限');
+		}
+	}
     
    }
 

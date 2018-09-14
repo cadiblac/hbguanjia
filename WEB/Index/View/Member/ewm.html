@@ -19,16 +19,16 @@
 
         <div class="masthead-login">
             <figure class="masthead-figure">
-				<img src="{$Think.session.userHeadimgurl}" width="64"/>
+				<a href="/index.php/Index/member/index/spread/{$Think.session.userID}"><img src="{$Think.session.userHeadimgurl}" width="64"/></a>
             </figure>
             <div class="masthead-caption">
                 <h3 class="masthead-caption-title line-ellipsis">
-                {$Think.session.userNickname}
+                <a href="/index.php/Index/member/index/spread/{$Think.session.userID}">{$Think.session.userNickname}</a>
                                 </h3>
 
-                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
+                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}<!--<span style="color:red;margin-left:20px;">分销提成：{$member.fx}元</span>--></p>
 
-                <p class="masthead-setting"></p>
+                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">完善资料<i class="icon icon-right"></i></a></p>
             </div>
         </div>
     </section>
@@ -50,6 +50,5 @@
 
 </main>
 <include file="public/bottom" />
-<script type="text/javascript" src="__PUBLIC__/JS/check.js"></script>
 </body>
 </html>

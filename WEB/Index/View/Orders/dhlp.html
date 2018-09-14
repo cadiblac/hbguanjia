@@ -1,0 +1,27 @@
+<include file="public/header" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+<div class="main">
+	<div class="menu"><i></i><span>确认订单</span></div>
+	<div class="piclist">
+		<form action="{:U(MODULE_NAME.'/Orders/pay/','','',true)}" method="post">
+		<div class="fl"><img src="{$p.pic}" /></div>
+		<div class="fr"><input type="hidden" name="pname" value="{$p.title}" /><input type="hidden" name="pid" value="{$p.id}" />
+		<h3>{$p.title}</h3>{$p.description}
+		<div>单价：{$p.price|intval=###}积分</div></div>
+		<div class="cl">购买数量:X{$v.num}</div>
+		<div class="cl">商品金额:<span class="rad">{$v.sumprice|intval=###}积分</span><input type="hidden" name="sumprice" value="{$v.sumprice}"/></div>
+		<input type="hidden" name="out_trade_no" value="{$v.order}"/>
+		<input type="hidden" name="oid" value="{$v.id}"/>
+		<div class="input">联系人:<input type="text" name="uname" value="{$u.realname}" /></div>
+		<div class="input">联系电话:<input type="text" name="tel" value="{$u.tel}" /></div>
+		<div class="input">联系地址:<input type="text" name="adress" value="{$u.address}" /></div>
+		<div>备注:</div>
+		<div class="input"><textarea name="remark"></textarea></div>
+		<input type="submit" class="wxzf" value="兑换"/>
+		</form>
+	</div>
+</div>
+<!--end main-->
+<include file="public/bottom" />
+</body>
+</html>

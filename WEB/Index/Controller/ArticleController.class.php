@@ -23,11 +23,11 @@ class ArticleController extends CommonController{
 			$this->description = $cate[0]['description'];
 			$this->pic = $cate[0]['pic'];
 			$this->model = $cate[0]['model'];
-			if ($cate[0]['model'] !== 'Article'){
+			if ($cate[0]['model'] !== 'Article' && $cate[0]['model'] !== 'Atlas'){
 				$this->error('页面不存在');
 			}
 			$field = array('del','keywords','content');
-			$where = "cid in (".$cids.") and del=0";
+			$where = "cid in (".$id.",".$cids.") and del=0";
 			$count = M('article')->where($where)->count();
 			$Page = new \Think\Page($count,C('PAGE_NUM'));// 实例化分页类 传入总记录数和每页显示的记录数
 			$Page -> setConfig('header','共%TOTAL_ROW%条');
@@ -53,7 +53,7 @@ class ArticleController extends CommonController{
 			$this->description = $cate[0]['description'];
 			$this->pic = $cate[0]['pic'];
 			$this->model = $cate[0]['model'];
-			if ($cate[0]['model'] !== 'Article'){
+			if ($cate[0]['model'] !== 'Article' && $cate[0]['model'] !== 'Atlas'){
 				$this->error('页面不存在');
 			}
 			$field = array('del','keywords','content');
@@ -75,8 +75,7 @@ class ArticleController extends CommonController{
 			}else{
 				$this->display();
 			}
-			
-			
+
 		}
 	
 	}
@@ -159,12 +158,39 @@ class ArticleController extends CommonController{
 		if (!IS_POST) $this->error('请输入查询手机号！');
 		$tel=I('tel');
 		$del=I('leim');
+		if($del){
+			$data=array('cid'=>14,'tel'=>$tel,'del'=>0);
+		}else{
+			$data=array('cid'=>1,'tel'=>$tel,'del'=>0);
+		}
 		$db = M('article');
-		$data = $db->where(array('cid'=>1,'tel'=>$tel,'del'=>$del))->find();
+		$data = $db->where($data)->order('time desc')->select();
+		if($data){
+			$this->tel=$tel;
+			$this->data=$data;
+			$this->display();
+		}else{
+			$this->error('查询手机号错误或无数据！');
+		}
+		
+	}
+	
+	public function jieg (){
+		$tel=I('tel');
+		$id=I('id');
+		$db = M('article');
+		$data = $db->where(array('tel'=>$tel,'id'=>$id))->find();
+		$this->pics = M('atlas')->where(array('aid'=>$id))->select();
+		$this->pic = M('atlas')->where(array('gid'=>$id))->select();
 		if($data){
 			$this->cid=$data['cid'];
 			$this->data=$data;
-			$this->display();
+			$this->c=json_decode(stripslashes($data['content']),true);
+			if($data['cid']==1){
+				$this->display(jd);
+			}else{
+				$this->display();
+			}
 		}else{
 			$this->error('查询手机号错误或无数据！');
 		}
@@ -195,6 +221,17 @@ class ArticleController extends CommonController{
 		}else{
 			$this->error('您的积分不足,您可以去认证或者邀请好友来获得积分。');
 		}		
+	}
+	
+	public function kf(){
+		$id=I('id',intval);
+		$rs=M('staff')->where(array('id'=>$id))->find();
+		if($rs){
+			$this->v=$rs;
+			$this->display();
+		}else{
+			$this->error('您还没有专属客服');
+		}
 	}
 	
 }

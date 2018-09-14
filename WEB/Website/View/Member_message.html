@@ -1,6 +1,10 @@
 <include file="Public:common" />
 <title>群发消息</title>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+<link rel="stylesheet" href="__PUBLIC__/js/data-tables/DT_bootstrap.css" />
+<style type="text/css">
+.yc{height:600px; overflow-y:auto;}
+</style>	
 </head>
 
 <body class="sticky-header">
@@ -31,37 +35,27 @@
                              </span>
                         </header>
                         <div class="panel-body">
-                            <div class="adv-table editable-table ">
-								<div class="space15"></div>
-								<table class="table table-bordered table-striped dataTable">
-								
-								<thead>								
-								<tr role="row">
-									<th>昵称</th>
-									<th>头像</th>
-									<th>姓名</th>									
-									<th>操作</th>
-								</tr>
-								</thead>
-								<tbody>
-								<foreach name='member' item='v'>							
-								<tr class="">								
-									<td>{$v.username}</td>
-									<td><img src="{$v.photo}" style="height:40px;" /></td>
-									<td>{$v.realname}</td>
-									<td>
-									<span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal" onclick="huifu('{$v.openid}','{$v.username}')">发送</span>
-									</td>
-								</tr>
-								</foreach>
-								<if condition="$p ELT 1">
-								<tr><td colspan='3'></td><td><span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal" onclick="huifu(0,'所有人')">发送给所有人</span></td></tr></if>
-								</tbody>								
-								</table>
-								<div class="form-group">
-									<div class="col-lg-offset-6 col-lg-6" id="page">{$page}</div>
-								</div>
-							</div>
+						<div class="adv-table editable-table">
+						<table  class="display table table-bordered table-striped" id="editable-sample">
+						<thead>
+						<tr>
+							<th><input type="checkbox" id="checkall" value="0"></th>
+							<th>ID</th>
+							<th>昵称</th>
+							<th>头像</th>
+							<th>公司</th>
+							<th>姓名</th>
+						</tr>
+						</thead>
+						<tbody id="j_tb">
+									   
+						</tbody>
+						</table>
+						</div>
+                        <div class="form-group" style="padding-top:20px;text-align:center; border-top:#ddd 1px solid;">
+							<span class="btn btn-warning" data-toggle="modal" data-target="#myModal" onclick="huifu()">发送消息</span>
+							<span class="btn btn-warning" data-toggle="modal" data-target="#myModal2" onclick="huifu2()">项目通知</span>
+						</div>
                         </div>
                     </section>
                 </div>
@@ -75,23 +69,59 @@
 								&times;
 							</button>
 							<h4 class="modal-title" id="myModalLabel">
-								发送消息
+								消息内容
 							</h4>
 						</div>
 						<form action="{:U(MODULE_NAME.'/member/sendmail')}" method="post">
 						<div class="modal-body">
 						<div class="form-group ">
-							<input class="form-control" name="title" type="text" value="" placeholder="信息标题如：您申请的检测项目已完成"></div>
+							<input class="form-control" name="title" type="text" value="" placeholder="信息标题（必填） 如：您申请的检测项目已完成"></div>
+						<!--<div class="form-group ">
+							<input class="form-control" name="keyword2" type="text" value="" placeholder="图片地址（选填）必须是http://开头的完整地址"></div>-->
 						<div class="form-group ">
-							<input class="form-control" name="keyword1" type="text" value="" placeholder="检测产品如：噪音检测"></div>
-						<div class="form-group ">
-							<input class="form-control" name="keyword2" type="text" value="" placeholder="服务类型如：实地检测"></div>
-						<div class="form-group ">
-							<input class="form-control" name="url" type="text" value="" placeholder="点击消息跳转地址：必须是http://开头的完整地址"></div>
+							<input class="form-control" name="keyword1" type="text" value="" placeholder="推送类型如：新闻推荐、政策调整"></div>						
 						<div class="form-group ">
 							<textarea name="remark" class="form-control" rows="3" placeholder="详细信息(50字内)"></textarea>
 							<input name="openid" id="openid" type="hidden" /></div>
+						<div class="form-group ">
+							<input class="form-control" name="url" type="text" value="" placeholder="点击消息跳转地址：必须是http://开头的完整地址"></div>
+						</div>						
+						<div class="modal-footer">								
+							<button type="button" class="btn btn-primary" onclick="submit()">
+								提交
+							</button>
 						</div>
+						</form>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+			<!-- 模态框（Modal） -->
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								项目通知
+							</h4>
+						</div>
+						<form action="{:U(MODULE_NAME.'/member/sendmail')}" method="post">
+						<div class="modal-body">
+						<div class="form-group ">
+							<input class="form-control" name="name" type="text" value="" placeholder="委托人姓名"></div>
+						<div class="form-group ">
+							<input class="form-control" name="bh" type="text" value="" placeholder="项目编号"></div>
+						<div class="form-group ">
+							<input class="form-control" name="time" type="text" value="" placeholder="委托时间"></div>			
+						<div class="form-group ">
+							<label class="checkbox-inline"><input type="radio" name="zt" value="1" checked>项目启动</label>
+							<label class="checkbox-inline"><input type="radio" name="zt" value="2">项目运行</label>
+							<label class="checkbox-inline"><input type="radio" name="zt" value="3">项目完成</label>
+							<input name="openid2" id="openid2" type="hidden" /></div>
+						</div>						
 						<div class="modal-footer">								
 							<button type="button" class="btn btn-primary" onclick="submit()">
 								提交
@@ -113,13 +143,94 @@
 <script src="__PUBLIC__/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__/js/modernizr.min.js"></script>
 <script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
-
+<!--data table-->
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/data-tables/DT_bootstrap.js"></script>
 <!--common scripts for all pages-->
 <script src="__PUBLIC__/js/scripts.js"></script>
 <script>
-function huifu(id,name){
-	$('#myModalLabel').html('发送消息到:'+name);
-	$('#openid').val(id);
+jQuery(document).ready(function() {
+	$('#editable-sample').dataTable({
+	"bServerSide": true,
+	"bStateSave": true,
+	"bPaginate": true, //是否分页
+	"bAutoWidth": false,
+	"bProcessing": true, //datatable获取数据时候是否显示正在处理提示信息。
+	"iDisplayLength": 10, //每页显示10条记录
+	"aaSorting": [[ 1, "desc" ]],
+	'bFilter': true, //是否使用内置的过滤功能
+	"sAjaxSource": "{:U(MODULE_NAME.'/Member/fpage')}",
+	"aoColumns": [
+		{"mData": "id","bSortable": false,"mRender": function(data){return "<input type='checkbox' name='uid[]' value='"+data+"'>";}},
+		{"mData": "id","bSortable": true},
+		{"mData": "username","bSortable": false,"bSearchable": true},
+		{"mData": "photo","bSortable": false,"mRender": function(data){return "<img style='height:40px;' src='"+data+"'>";}},
+		{"mData": "company","bSortable": false,"bSearchable": true},
+		{"mData": "realname","bSortable": false,"bSearchable": true}
+	],
+	"aLengthMenu": [
+				[10, 20, 50, -1],
+				[10, 20, 50, "All"] // change per page values here
+			],
+	"sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
+	"sPaginationType": "bootstrap",
+	"oLanguage": {
+		"sLengthMenu": "_MENU_ 条记录每页显示",
+		"oPaginate": {
+			"sPrevious": "上一页",
+			"sNext": "下一页"
+		}
+	}
+	});
+});
+	
+$(function () {  
+	/**  
+	 * 1. 给标题栏的checkbox绑定事件  
+	 * 2. 获取标题栏的checkbox的值  
+	 * 3. 给标题栏下边的checkbox设置值  
+	 */  
+	$("#checkall").click(function () {  
+		var isChecked = $("#checkall").prop("checked");  
+		$("#j_tb input").prop("checked", isChecked);  
+	});  
+
+	/**  
+	 * 1. 给标题栏下边的checkbox绑定事件  
+	 * 2. 获取到标题栏下边的checkbox的总数量  
+	 * 3. 获取标题栏下边的checkbox中选中的数量  
+	 * 4. 判断这两个数量，如果相等，就让标题栏的选中  
+	 */  
+	$("#j_tb input").click(function () {  
+		var allLength = $("#j_tb input").length;  
+		var checkedLength = $("#j_tb input:checked").length;  
+		if(allLength == checkedLength){  
+			$("#checkall").prop("checked",true);  
+		}else {  
+			$("#checkall").prop("checked",false);  
+		}  
+	});  
+
+});
+
+function huifu(){
+	var uid=0;
+	$.each($('#j_tb input[type=checkbox]'),function(){
+		if(this.checked){
+			uid=uid+","+$(this).val();			
+		}
+	});
+	$('#openid').val(uid);
+}
+
+function huifu2(){
+	var uid=0;
+	$.each($('#j_tb input[type=checkbox]'),function(){
+		if(this.checked){
+			uid=uid+","+$(this).val();			
+		}
+	});
+	$('#openid2').val(uid);
 }
 </script>
 </body>

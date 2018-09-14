@@ -27,6 +27,14 @@
 	window.UEDITOR_CONFIG.initialFrameHeight = 500; //初始化编辑器高度,默认320
 		UE.getEditor('content',{ initialFrameWidth: null });
 	}
+function deli (id) {
+	var handleUrl = '{:U(MODULE_NAME."/Goods/deli")}'
+	$.post(handleUrl,{id:id},function(data){
+		if (data.status){
+			$('#p_'+id).remove();
+		}
+	},'json');
+}
 </script>
 <js file="__ROOT__/Data/ueditor/ueditor.config.js" />
 <js file="__ROOT__/Data/ueditor/ueditor.all.min.js" />
@@ -85,7 +93,7 @@
 										<a class="btn btn-primary upimgs" class="upimgs" id="bte">选择图片</a> 最大2M，支持jpg，gif，png格式。按CTRL多选(一次最多传30张)
 										<dl id="ul_pic" class="ul_pic clearfix">
 										<foreach name='atlas' item='p'>
-										<dd id="p_{$p.id}"><img src="{$p.img}"><p><a href="javascript:void(0);" onclick="deli({$p.id});">删除</a></p></dd>
+										<dd id="p_{$p.id}"><img src="{$p.img}"><p class="del"><a href="javascript:void(0);" onclick="deli({$p.id});">删除</a></p></dd>
 										</foreach>
 										</dl>
 									</div>

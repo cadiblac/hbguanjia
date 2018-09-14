@@ -1,0 +1,215 @@
+<include file="Public:common" />
+<title>群发消息</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+<style type="text/css">
+.yc{height:600px; overflow-y:auto;}
+</style>	
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                群发消息
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 群发消息 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                           群发消息
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+								<div class="space15"></div>
+								<table class="table table-bordered table-striped dataTable">
+								<thead>								
+								<tr role="row">
+									<th width="10%">用户id</th>
+									<th width="20%">昵称</th>
+									<th width="20%">头像</th>
+									<th width="20%">公司</th>
+									<th width="20%">姓名</th>									
+									<th width="10%">全选：<input type="checkbox" id="checkall" value="0"></th>
+								</tr>
+								</thead>
+								</table>
+								<div class="yc">								
+								<table class="table table-bordered table-striped dataTable">
+								<tbody id="j_tb">
+								<foreach name='member' item='v'>							
+								<tr class="">
+									<td width="12%">{$v.id}</td>
+									<td width="20%">{$v.username}</td>
+									<td width="20%"><img src="{$v.photo}" style="height:40px;" /></td>
+									<td width="20%">{$v.company}</td>
+									<td width="20%">{$v.realname}</td>
+									<td width="8%">
+									<input style="display:inline;" type="checkbox" name="uid[]" value="{$v.id}">
+									</td>
+								</tr>
+								</foreach>
+								</tbody>
+								</table>
+								</div>
+								<div class="form-group" style="padding-top:20px;text-align:center; border-top:#ddd 1px solid;">
+									<span class="btn btn-warning" data-toggle="modal" data-target="#myModal" onclick="huifu()">发送消息</span>
+									<span class="btn btn-warning" data-toggle="modal" data-target="#myModal2" onclick="huifu2()">项目通知</span>
+								</div>
+							</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								消息内容
+							</h4>
+						</div>
+						<form action="{:U(MODULE_NAME.'/member/sendmail')}" method="post">
+						<div class="modal-body">
+						<div class="form-group ">
+							<input class="form-control" name="title" type="text" value="" placeholder="信息标题（必填） 如：您申请的检测项目已完成"></div>
+						<!--<div class="form-group ">
+							<input class="form-control" name="keyword2" type="text" value="" placeholder="图片地址（选填）必须是http://开头的完整地址"></div>-->
+						<div class="form-group ">
+							<input class="form-control" name="keyword1" type="text" value="" placeholder="推送类型如：新闻推荐、政策调整"></div>						
+						<div class="form-group ">
+							<textarea name="remark" class="form-control" rows="3" placeholder="详细信息(50字内)"></textarea>
+							<input name="openid" id="openid" type="hidden" /></div>
+						<div class="form-group ">
+							<input class="form-control" name="url" type="text" value="" placeholder="点击消息跳转地址：必须是http://开头的完整地址"></div>
+						</div>						
+						<div class="modal-footer">								
+							<button type="button" class="btn btn-primary" onclick="submit()">
+								提交
+							</button>
+						</div>
+						</form>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+			<!-- 模态框（Modal） -->
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								项目通知
+							</h4>
+						</div>
+						<form action="{:U(MODULE_NAME.'/member/sendmail')}" method="post">
+						<div class="modal-body">
+						<div class="form-group ">
+							<input class="form-control" name="name" type="text" value="" placeholder="委托人姓名"></div>
+						<div class="form-group ">
+							<input class="form-control" name="bh" type="text" value="" placeholder="项目编号"></div>
+						<div class="form-group ">
+							<input class="form-control" name="time" type="text" value="" placeholder="委托时间"></div>			
+						<div class="form-group ">
+							<label class="checkbox-inline"><input type="radio" name="zt" value="1" checked>项目启动</label>
+							<label class="checkbox-inline"><input type="radio" name="zt" value="2">项目运行</label>
+							<label class="checkbox-inline"><input type="radio" name="zt" value="3">项目完成</label>
+							<input name="openid2" id="openid2" type="hidden" /></div>
+						</div>						
+						<div class="modal-footer">								
+							<button type="button" class="btn btn-primary" onclick="submit()">
+								提交
+							</button>
+						</div>
+						</form>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+			<!-- 模态框（Modal） -->
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+<script>
+$(function () {  
+	/**  
+	 * 1. 给标题栏的checkbox绑定事件  
+	 * 2. 获取标题栏的checkbox的值  
+	 * 3. 给标题栏下边的checkbox设置值  
+	 */  
+	$("#checkall").click(function () {  
+		var isChecked = $("#checkall").prop("checked");  
+		$("#j_tb input").prop("checked", isChecked);  
+	});  
+
+	/**  
+	 * 1. 给标题栏下边的checkbox绑定事件  
+	 * 2. 获取到标题栏下边的checkbox的总数量  
+	 * 3. 获取标题栏下边的checkbox中选中的数量  
+	 * 4. 判断这两个数量，如果相等，就让标题栏的选中  
+	 */  
+	$("#j_tb input").click(function () {  
+		var allLength = $("#j_tb input").length;  
+		var checkedLength = $("#j_tb input:checked").length;  
+		if(allLength == checkedLength){  
+			$("#checkall").prop("checked",true);  
+		}else {  
+			$("#checkall").prop("checked",false);  
+		}  
+	});  
+
+});
+
+function huifu(){
+	var uid=0;
+	$.each($('#j_tb input[type=checkbox]'),function(){
+		if(this.checked){
+			uid=uid+","+$(this).val();			
+		}
+	});
+	$('#openid').val(uid);
+}
+
+function huifu2(){
+	var uid=0;
+	$.each($('#j_tb input[type=checkbox]'),function(){
+		if(this.checked){
+			uid=uid+","+$(this).val();			
+		}
+	});
+	$('#openid2').val(uid);
+}
+</script>
+</body>
+</html>

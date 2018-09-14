@@ -7,8 +7,10 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width,initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0"/>
 <script type="text/javascript" src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/windowOpen.js" ></script>
 <link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/head.css"/>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/css.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/global.css">
 <link type="text/css" rel="stylesheet" href="__PUBLIC__/member/css/styles.min.css"/>
 </head>
 <body>
@@ -19,26 +21,26 @@
 
         <div class="masthead-login">
             <figure class="masthead-figure">
-				<img src="{$Think.session.userHeadimgurl}" width="64"/>
+				<a href="/index.php/Index/member/index/spread/{$Think.session.userID}"><img src="{$Think.session.userHeadimgurl}" width="64"/></a>
             </figure>
             <div class="masthead-caption">
                 <h3 class="masthead-caption-title line-ellipsis">
-                {$Think.session.userNickname}
-                </h3>
+                <a href="/index.php/Index/member/index/spread/{$Think.session.userID}">{$Think.session.userNickname}</a>
+                                </h3>
 
-                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}</p>
+                <p class="masthead-wallet" data-space="&nbsp;" id="underName">会员积分:{$member.integral}<!--<span style="color:red;margin-left:20px;">分销提成：{$member.fx}元</span>--></p>
 
-                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">修改资料<i class="icon icon-right"></i></a></p>
+                <p class="masthead-setting"><if condition="!$member['state']"><span style="color:red;">认证送积分</span>&nbsp;-->&nbsp;</if><a href="/index.php/Index/member/person/">完善资料<i class="icon icon-right"></i></a></p>
             </div>
         </div>
     </section>
-
   
     <section class="service-section normal-layer no-padding-layer i-border-image">
         <ul class="feature-list interaction-list">
             <li class="feature-item">                
                 <p class="inner-bar"><span class="order-text">我的分销<em id="orderInfo"></em></span><span class="tip-right text-success"><b>￥<if condition="$member['fx']">{$member.fx}<else />0</if></b></span></p>
             </li>
+			<li><button class="open-window-2btn tip-right" style="display:block;padding:5px 15px; margin:5px;border-radius:5px;color:#fff; background:#95c62b;">申请提现</button></li>
 			<foreach name="jf" item="v">
 			<li>
 				<div class="padding5">
@@ -48,12 +50,59 @@
 				</div>
 			</li>
 			</foreach>	
+			<div class="clear"></div>
         </ul>
 		<div class="page">{$page}</div>
     </section>
 
 </main>
 <include file="public/bottom" />
-<script type="text/javascript" src="__PUBLIC__/JS/check.js"></script>
+<if condition="!session('state')">
+<script type="text/javascript">
+	//游客不能登录提示框，执行此代码
+	var setTitle = '';
+	var setContents = '';
+	var setButton = '';
+
+	//下单失败提示，执行此代码
+	$('.open-window-2btn').on('click',function(){
+		setTitle = '提示';
+		setContents = '您的账号为认证不能申请提现';
+		setButton = '["确定"]';
+		$(this).openWindow(setTitle,setContents,setButton);
+	});
+</script>
+</if>
+<if condition="$member['fx'] lt 100">
+<script type="text/javascript">
+	//游客不能登录提示框，执行此代码
+	var setTitle = '';
+	var setContents = '';
+	var setButton = '';
+
+	//下单失败提示，执行此代码
+	$('.open-window-2btn').on('click',function(){
+		setTitle = '提示';
+		setContents = '分销提成不足100不能提现';
+		setButton = '["确定"]';
+		$(this).openWindow(setTitle,setContents,setButton);
+	});
+</script>
+<else />
+<script type="text/javascript">
+	//游客不能登录提示框，执行此代码
+	var setTitle = '';
+	var setContents = '';
+	var setButton = '';
+
+	//模拟账户输入交易密码，或者开立真实账户提示，执行此代码
+	$('.open-window-2btn').on('click',function(){
+		setTitle = '提示';
+		setContents = '请输入提现金额<input id="jine" type="number" pattern="[0-9]*" class="jy-password" value="" />';
+		setButton = '["取消","确定"]';
+		$(this).openWindow(setTitle,setContents,setButton);
+	});
+</script>
+</if>
 </body>
 </html>

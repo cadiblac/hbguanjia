@@ -1,5 +1,10 @@
 <include file="public/header" />
 <div class="main">
+	<div class="one">
+	<fav id="2" limit="5">
+		<div <if condition="$id eq $cid">class="f5 active"<else />class="f5"</if>><a href="{$url}">{$name}</a></div>
+	</fav>	
+	</div>
 	<div class="menu"><i></i><span>{$title}</span></div>
 	<ul class="news">
 	<foreach name="article" item="v">

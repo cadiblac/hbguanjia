@@ -209,6 +209,7 @@
                            会员管理
                             <span class="tools pull-right">
                                 <a class="fa fa-chevron-down" href="javascript:;"></a>
+                                <a class="fa fa-share" title="导出excel" href="<?php echo U(MODULE_NAME.'/Member/daochu');?>"></a>
                              </span>
                         </header>
                         <div class="panel-body">
@@ -222,6 +223,7 @@
 									<th>昵称</th>
 									<th>头像</th>
 									<th>姓名</th>
+									<th>公司</th>
 									<th>邀请人id</th>
 									<th>最近登录</th>
 									<th>认证状态</th>									
@@ -237,6 +239,7 @@
 									<td><?php echo ($v["username"]); ?></td>
 									<td><img src="<?php echo ($v["photo"]); ?>" style="height:40px;" /></td>
 									<td><?php echo ($v["realname"]); ?></td>
+									<td><?php echo ($v["company"]); ?></td>
 									<td><?php echo ($v["yqrid"]); ?></td>
 									<td><?php if($v['logintime']): echo (date('Y-m-d H:i:s',$v["logintime"])); else: echo (date('Y-m-d H:i:s',$v["regtime"])); endif; ?></td>
 									<td><?php switch($v['state']): case "0": ?>未认证<?php break;?>
@@ -246,8 +249,8 @@
 									<td><?php echo ($v["integral"]); ?></td>									
 									<td><?php if($v['usertype'] == 0): ?>积分用户<?php else: ?>付费用户<?php endif; ?></td>
 									<td>
-									<a href="<?php echo U(MODULE_NAME.'/Member/updata',array('id'=>$v['id']));?>"><span class="btn btn-success btn-xs">详情</span></a>
-									<a href="<?php echo U(MODULE_NAME.'/Member/mail',array('openid'=>$v['openid']));?>"><span class="btn btn-success btn-xs">发信息</span></a>
+									<a href="<?php echo U(MODULE_NAME.'/Member/updata',array(id=>$v['id']));?>"><span class="btn btn-success btn-xs">详情</span></a>
+									<a onclick="return confirm('确实要删除吗？')" href="<?php echo U(MODULE_NAME.'/Member/del',array(id=>$v['id']));?>"><span class="btn btn-warning btn-xs">删除</span></a>
 									</td>
 								</tr><?php endforeach; endif; ?>
 								</tbody>								

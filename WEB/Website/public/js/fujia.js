@@ -1,0 +1,33 @@
+$(document).ready(function(){
+	$('#content2').attr("name","content");
+	$('#content').css("display","none");
+	$('#content3').css("display","none");
+	$('#del').change(function(){
+		var d=$('#del option:selected').val();
+		if(d==1){
+			$('#content3').attr("name","content");
+			$('#content2').attr("name","content2");
+			$('#content3').css("display","block");
+			$('#content2').css("display","none");
+		}else{
+			$('#content3').attr("name","content3");
+			$('#content3').css("display","none");
+			$('#content2').attr("name","content");
+			$('#content2').css("display","block");
+		}
+	});
+	$('#fl').change(function(){
+		var z=$('#fl option:selected').val();
+		if(z==0){
+			$('#content').attr("name","content2");
+			$('#content2').attr("name","content");
+			$('#content').css("display","none");
+			$('#content2').css("display","block");
+		}else{
+			$('#content').attr("name","content");
+			$('#content2').attr("name","content2");
+			$('#content').css("display","block");
+			$('#content2').css("display","none");
+		}
+	});
+});

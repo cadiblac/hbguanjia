@@ -9,7 +9,7 @@ class SearchController extends CommonController{
 		if(!mb_check_encoding($str, 'utf-8')){
 		$str= iconv('gbk', 'utf-8', $str);
 		}
-		$where = "del=0 and title LIKE '%".$str."%'";
+		$where = "cid<>1 and del=0 and title LIKE '%".$str."%'";
 		$field = array('del','keywords','description','content');
 		$count = M('article')->where($where)->count();
 		$Page = new \Think\Page($count,C('PAGE_NUM'));// 实例化分页类 传入总记录数和每页显示的记录数

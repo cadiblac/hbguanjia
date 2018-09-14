@@ -1,0 +1,103 @@
+<include file="Public:common" />
+<title>员工管理</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                员工管理
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 员工管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                           员工管理
+                            <span class="pull-right">
+                                <a class="btn btn-success btn-sm" href="{:U('Staff/add')}"><span class="fa fa-plus"></span>添加员工</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+								<div class="space15"></div>
+								<table class="table table-bordered table-striped dataTable">
+								
+								<thead>								
+								<tr role="row">
+									<th>ID</th>
+									<th>姓名</th>
+									<th>公司</th>
+									<th>部门</th>
+									<th>头像</th>
+									<th>电话</th>
+									<th>QQ</th>
+									<th>微信号</th>									
+									<th>操作</th>
+								</tr>
+								</thead>
+								<tbody>
+								<foreach name='staff' item='v'>							
+								<tr class="">
+									<td>{$v.id}</td>									
+									<td>{$v.name}</td>
+									<td><switch name="v['gs']" >
+									<case value="1">黄环咨询</case>
+									<case value="2">博创检测</case>
+									<case value="3">黄环集团</case>
+									</switch></td>
+									<td><switch name="v['bm']" >
+									<case value="1">技术部</case>
+									<case value="2">市场部</case>
+									<case value="3">分析部</case>
+									<case value="4">现场部</case>
+									<case value="5">综合部</case>
+									</switch></td>
+									<td><if condition="$v['photo']"><img src="{$v.photo}" style="height:40px;" /></if></td>
+									<td>{$v.tel}</td>
+									<td>{$v.qq}</td>
+									<td>{$v.wxh}</td>									
+									<td>
+									<a href="{:U('Staff/updata',array(id=>$v['id']))}"><span class="btn btn-success btn-xs">修改</span></a>		
+									</td>
+								</tr>
+								</foreach>
+								</tbody>								
+								</table>
+								<div class="form-group">
+									<div class="col-lg-offset-6 col-lg-6" id="page">{$page}</div>
+								</div>
+							</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

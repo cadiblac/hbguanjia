@@ -62,7 +62,8 @@ class AtlasController extends CommonController{
 		$this->content = $data[0]['content'];
 		$this->tel = $data[0]['tel'];
 		$this->address = $data[0]['address'];
-		
+		$wxconfig = wx_share_init();		//微信分享jssdk初始化
+		$this->assign('wxconfig', $wxconfig); //微信分享参数
 
 		$cate = Lib\Cate::catetkd($cid);
 		$this->cid = $cid;
@@ -97,6 +98,44 @@ class AtlasController extends CommonController{
         }
         $this->prev = $last;
         $this->next = $next;
+		$this->display();
+	}
+	
+	public function ping(){
+		$data = array(
+			'xmid'=>I('xmid','',intval),
+			'sfid'=>I('ar','',intval),
+			'jfid'=>I('jr','',intval),
+			'sf'=>I('af','',intval),
+			'jf'=>I('jf','',intval),
+			'spy'=>I('ap','',htmlspecialchars),
+			'jpy'=>I('jp','',htmlspecialchars),
+			'time'=>time()
+		);
+		$zh=I('af')+I('jf');
+		if(M('pingfen')->add($data)){
+			M('article')->where(array('id'=>I('xmid')))->setField('pf','1');
+			$this->success('评分成功',U('/Index/Atlas/fx',array('f'=>$zh)));
+		}else{
+			$this->error('评分失败');
+		}
+	}
+	
+	public function fx(){
+		$f=I('f');		
+		if($f>=8){
+			$jg="服务很好，我为他们点赞";
+		}else if($f<5){
+			$jg="服务很差，我要吐槽一下";
+		}else{
+			$jg="服务一般，我为他们加油";
+		}
+		$this->title="黄环环保服务评价";
+		$this->description=$jg;
+		$this->f=$f;
+		$this->jg=$jg;
+		$wxconfig = wx_share_init();		//微信分享jssdk初始化
+		$this->assign('wxconfig', $wxconfig); //微信分享参数
 		$this->display();
 	}
 }

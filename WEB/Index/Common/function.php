@@ -7,19 +7,23 @@
 		}else{
 			$data=session('userOpenid');
 		}
+		//设置临时变量
+		if(!session("?status")){
+			unset($_GET['code']);
+			session("status","1");				
+		}
 		if($rst=M('member')->where(array('openid'=>$data))->find()){
-			M('member')->where(array('openid'=>$data))->setField('logintime',time());
-			//设置SESSION			
+			if(time()-$rst['logintime']>864000){
+				updateUser(1);
+			}else{
+				M('member')->where(array('openid'=>$data))->setField('logintime',time());
+			}
 			setSession($rst);
+			//设置SESSION
 			return true;
 		}else{
-			//设置临时变量
-			if(!session("?status")){
-				unset($_GET['code']);
-				session("status","1");				
-			}
 			//获取用户所以信息
-			getUserInfo();
+			updateUser();
 		}		
 	}
 
@@ -60,27 +64,27 @@
 			//获取用户数据
 			$json=file_get_contents($getUserInfoUrl);
 			$userInfo=json_decode($json,true);
-			//默认设置头像是132*132的			
-			//$userInfo['headimgurl']=substr($userInfo['headimgurl'],0,strlen($userInfo['headimgurl'])-1);
-			//$userInfo['headimgurl']=$userInfo['headimgurl'].'132';
-			// 将信息插入数据库
-			$mode=M('member');
-			$spread=cookie('spread');			
-			if($stu=$mode->field('id')->where(array('openid'=>$userInfo['openid']))->find()){
-				$sj=array('openid'=>$userInfo['openid'],'username'=>$userInfo['nickname'],'sex'=>$userInfo['sex'],'photo'=>$userInfo['headimgurl'],'logintime'=>time());
-				$mode->where('id='.$stu['id'])->save($sj);
-				$mid=$stu['id'];
-			}else{
-				$sj=array('openid'=>$userInfo['openid'],'username'=>$userInfo['nickname'],'sex'=>$userInfo['sex'],'photo'=>$userInfo['headimgurl'],'yqrid'=>$spread,'logintime'=>time(),'regtime'=>time());
-				$mid=$mode->data($sj)->add();				
-				fxjf($mid);
-			}
+			return	$userInfo;
+			session("status",null);
+		}
+	}
+	
+	//更新用户微信信息
+	function updateUser($id){
+		$userInfo=getUserInfo();
+		$spread=cookie('spread');
+		$mode=M('member');
+		if($id){
+			$stu=$mode->field('id,state')->where(array('openid'=>$userInfo['openid']))->find();
+			$sj=array('id'=>$stu['id'],'openid'=>$userInfo['openid'],'username'=>$userInfo['nickname'],'sex'=>$userInfo['sex'],'photo'=>$userInfo['headimgurl'],'logintime'=>time());
+			$mode->save($sj);
+		}else{
+			$sj=array('openid'=>$userInfo['openid'],'username'=>$userInfo['nickname'],'sex'=>$userInfo['sex'],'photo'=>$userInfo['headimgurl'],'yqrid'=>$spread,'logintime'=>time(),'regtime'=>time());
+			$mid=$mode->data($sj)->add();				
+			fxjf($mid);
 			if($mid){
 			$userInfo['stuID'] = $mid;
 			setSession($userInfo);
-			session("status",null);
-			}else{
-				echo "验证错误";
 			}
 		}
 	}
@@ -92,7 +96,7 @@
 		session('state',$data['state']);
 		if($data['nickname']){session('userNickname',$data['nickname']);}else{session('userNickname',$data['username']);}
 		if($data['headimgurl']){session('userHeadimgurl',$data['headimgurl']);}else{session('userHeadimgurl',$data['photo']);}
-		if($data['stuID']){session('userID',$data['stuID']);}else{session('userID',$data['id']);}		
+		if($data['stuID']){session('userID',$data['stuID']);}else{session('userID',$data['id']);}	
 	}
 
 	//获取access_token
@@ -210,5 +214,21 @@
         } else {  
             return false;  
         }  
-    }  
+    } 
+	
+	/** 
+	 * 微信分享初始化 
+	 * @return array 
+	 * @author simon <vsiryxm@qq.com> 
+	 */  
+	if (!function_exists('wx_share_init')) {  
+		function wx_share_init() {  
+			$wxconfig = array();  
+			vendor('Wxshare.class#jssdk');  
+			$config = array('APPID'=>_APPID_,'APPSECRET'=>_APPSECRET_); //这里配置了微信公众号的AppId和AppSecret
+			$jssdk = new JSSDK($config['APPID'], $config['APPSECRET']);  
+			$wxconfig = $jssdk->GetSignPackage();  
+			return $wxconfig;  
+		}  
+	} 
 ?>

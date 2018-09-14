@@ -1,0 +1,97 @@
+<include file="Public:common" />
+<title>评分管理</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userdefind.css" />
+</head>
+
+<body class="sticky-header">
+<include file="Public:header" />
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                评分管理
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('Index/index')}">首页</a>
+                </li>
+                <li class="active"> 评分管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                           评分管理
+                            <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+								<div class="space15"></div>
+								<table class="table table-bordered table-striped dataTable">
+								
+								<thead>								
+								<tr role="row">
+									<th>项目名称</th>
+									<th>市场负责人</th>
+									<th>市场评分</th>
+									<th>市场评语</th>
+									<th>技术负责人</th>
+									<th>技术评分</th>
+									<th>技术评语</th>
+									<th>评分日期</th>
+								</tr>
+								</thead>
+								<tbody>
+								<foreach name='pingf' item='v'>							
+								<tr class="">
+									<td>{$v.title}</td>									
+									<td>
+									<foreach name="st" item="s">
+									<if condition="$s['id'] eq $v['sfid']">{$s.name}</if>
+									</foreach>
+									</td>
+									<td>{$v.sf}</td>
+									<td><a href="javascript:;" title="{$v.spy}">{$v.spy|msubstr=###,0,20,'utf-8',false}</a></td>
+									<td>
+									<foreach name="st" item="s">
+									<if condition="$s['id'] eq $v['jfid']">{$s.name}</if>
+									</foreach>
+									</td>
+									<td>{$v.jf}</td>
+									<td><a href="javascript:;" title="{$v.jpy}">{$v.jpy|msubstr=###,0,20,'utf-8',false}</a></td>
+									<td>{$v.time|date='Y-m-d H:i',###}</td>									
+								</tr>
+								</foreach>
+								</tbody>								
+								</table>
+								<div class="form-group">
+									<div class="col-lg-offset-6 col-lg-6" id="page">{$page}</div>
+								</div>
+							</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+<include file="Public:bottom" />
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/modernizr.min.js"></script>
+<script src="__PUBLIC__/js/jquery.nicescroll.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__PUBLIC__/js/scripts.js"></script>
+
+</body>
+</html>

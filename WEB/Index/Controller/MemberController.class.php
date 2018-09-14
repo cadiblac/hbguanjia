@@ -57,6 +57,9 @@ class MemberController extends CommonController{
 			'tel'=>I('tel'),
 			'address'=>I('address'),
 			'QQ'=>I('QQ'),
+			'company'=>I('company'),
+			'position'=>I('position'),
+			'birthday'=>I('birthday'),
 			'email'=>I('email'),
 			'integral'=>array('exp', 'integral+'.$rzjf),
 			'state'=>1
@@ -64,6 +67,7 @@ class MemberController extends CommonController{
 			$rs=M('member')->save($date);			
 			if($rs){
 				$msg="恭喜您,认证成功!";
+				session('state',1);
 			}else{
 				$msg="Sorry,认证失败,请重试";
 			}
@@ -122,6 +126,29 @@ class MemberController extends CommonController{
 		$this->jf = M('jf')->where($where)->order('time DESC,id DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
 		$this->page = $show;
 		$this->display();
+	}
+	
+	public function sqtx (){
+		$j=I('je',0,intval);
+		$member=M('member')->where(array('openid'=>session('userOpenid')))->find();
+		$s=M('Gbook')->where("ip=".$member['id']." and retime is null")->find();
+		if($j<=0){$this->ajaxReturn(2);}else if($j>$member['fx']){$this->ajaxReturn(0);}else if($s){$this->ajaxReturn(3);
+		}else{
+			$data=array(
+			'title'=>'提现申请',
+			'username'=>$member['realname'],
+			'address' =>$member['address'],
+			'tel' =>$member['tel'],
+			'email' =>$member['email'],
+			'jine' => $j,
+			'ip' => $member['id'],
+			'content'=>'提现金额'.$j."元",
+			'time'=>time(),
+			'cid'=>8
+			);
+			
+			if(M('Gbook')->add($data)){$this->ajaxReturn(1);}else{$this->ajaxReturn(2);}
+		}
 	}
 	
 	public function jf(){

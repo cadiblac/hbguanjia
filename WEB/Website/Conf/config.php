@@ -11,7 +11,6 @@ define("_APPID_",$meter['Appid']);
 //这里填入你公众号的APPSECRET
 define('_APPSECRET_',$meter['AppSecret']);
 
-
 return array(
 	//定义模板中__public__路径
 	'TMPL_PARSE_STRING'	=> array(

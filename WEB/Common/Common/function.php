@@ -119,6 +119,21 @@ function cut_name($user_name){
     $lastStr     = mb_substr($user_name, -1, 1, 'utf-8');
     return $strlen == 2 ? $firstStr . str_repeat('*', mb_strlen($user_name, 'utf-8') - 1) : $firstStr . str_repeat("*", $strlen - 2) . $lastStr;
 }
+
+/*unicode编码转utf-8汉字*/
+function unicode_decode($unistr, $encoding = 'utf-8', $prefix = '&#', $postfix = ';') {
+    $arruni = explode($prefix, $unistr);
+    $unistr = '';
+    for($i = 1, $len = count($arruni); $i < $len; $i++) {
+        if (strlen($postfix) > 0) {
+            $arruni[$i] = substr($arruni[$i], 0, strlen($arruni[$i]) - strlen($postfix));
+        } 
+        $temp = intval($arruni[$i]);
+        $unistr .= ($temp < 256) ? chr(0) . chr($temp) : chr($temp / 256) . chr($temp % 256);
+    } 
+    return iconv('UCS-2', $encoding, $unistr);
+}
+
 /**
  * 功能：邮件发送函数
  * @param string $to 目标邮箱
@@ -210,19 +225,4 @@ function cut_name($user_name){
 		return $fileurl;
 	}
 	
-	/** 
-	 * 微信分享初始化 
-	 * @return array 
-	 * @author simon <vsiryxm@qq.com> 
-	 */  
-	if (!function_exists('wx_share_init')) {  
-		function wx_share_init() {  
-			$wxconfig = array();  
-			vendor('Wxshare.jssdk');  
-			$config = APP_DEBUG ? C("_APPID_") : C("_APPSECRET_"); //这里配置了微信公众号的AppId和AppSecret  
-			$jssdk = new JSSDK($config['APPID'], $config['APPSECRET']);  
-			$wxconfig = $jssdk->GetSignPackage();  
-			return $wxconfig;  
-		}  
-	}  
 ?>

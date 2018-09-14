@@ -1,5 +1,6 @@
 var t = $(".join-money");
 var g = $("#gid");
+var c = $("#cid");
 $(function(){
 $(".add").click(function() {
 	t.val(parseInt(t.val()) + 1); //点击加号输入框数值加1
@@ -13,7 +14,7 @@ $(".min").click(function(){
 });
 
 function addcart(){
-	$.post("/index.php/Index/goods/cart",{'id':g.val(),'num':t.val()},function(result){
+	$.post("/index.php/Index/goods/cart",{'cid':c.val(),'id':g.val(),'num':t.val()},function(result){
 	if(result==1){			
 		window.location.reload();		
 	}else{
@@ -23,12 +24,12 @@ function addcart(){
 }
 
 function buy(){
-	$.post("/index.php/Index/goods/buy",{'id':g.val(),'num':t.val()},function(result){
-	if(result){	
-		//alert(result);
-		window.location.href="/index.php/Index/Orders/index/id/"+result; 		
+	$.post("/index.php/Index/goods/buy",{'cid':c.val(),'id':g.val(),'num':t.val()},function(result){
+	console.log(result);
+	if(result.code==1){	
+		window.location.href="/index.php/Index/Orders/index/id/"+result.rs; 		
 	}else{
-		alert("下单失败！");			
+		alert(result.msg);
 	}
-	});
+	},"json");
 }

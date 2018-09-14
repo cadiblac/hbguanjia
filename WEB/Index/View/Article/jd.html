@@ -1,0 +1,609 @@
+<include file="public/header" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+<style type="text/css">
+.dlm{margin:10px auto;border-radius:5px;text-indent:10px;height:30px;line-height:30px;font-size:18px;background:#f3f3f3;}
+.firstRow {
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+.firstRow th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+.firstRow td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
+</style>
+<div class="main">
+	<div class="m_ctt">
+	<div class="newsshow_title">{$data.title}</div>
+		<div class="newsshow_sm2"> </div>
+		<div class="content">
+<if condition="$data['jf'] eq 1">
+<p style="text-align:right;color:#14F810;">合同编号：<span style="text-decoration: underline;">{$data.keywords}</span></p><p></p>
+<p>
+    <span style="font-family:黑体">项目名称：</span><span style="text-decoration:underline;">{$data.title}</span>
+</p>
+<p>
+    <span style="font-family:黑体">建设单位：</span><span style="text-decoration:underline;">{$c.jsdw}</span>
+</p>
+<p>
+    <span style="font-family:黑体">市场负责人：<a target="_blank" href="{:U('Article/kf',array('id'=>$data['author']))}"><img width="30" src="__PUBLIC__/images/wx.png" /></a>&nbsp;&nbsp;
+	<span style="font-family:黑体">技术负责人：</span><a target="_blank" href="{:U('Article/kf',array('id'=>$data['jsr']))}"><img width="30" src="__PUBLIC__/images/qq.png" /></a>
+</p>
+<p>
+    <span style="font-family:黑体">合同金额：</span><span style="text-decoration:underline;">{$data.pic}</span>元&nbsp;&nbsp;
+	<span style="font-family:黑体">合同签订日期：</span><span style="text-decoration:underline;">{$data.time|date='Y-m-d',###}</span>
+</p>
+<p>
+    
+</p>
+<p>
+    
+</p>
+<div class="dlm">检测分析承诺完成时限</div>
+<table width="100%" class="firstRow">
+    <tbody>
+        <tr>
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">检测分析</span>
+                </p>
+            </td>
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">服务承诺时限</span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">现场采样</span>
+                </p>
+            </td>
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.chn1}个工作日</span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">样品分析</span>
+                </p>
+            </td>
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.chn2}个工作日</span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">数据审核</span>
+                </p>
+            </td>
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.chn3}个工作日</span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告编制</span>
+                </p>
+            </td>
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.chn4}个工作日</span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告存档</span>
+                </p>
+            </td>
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.chn5}个工作日</span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">合计</span>
+                </p>
+            </td>
+            <td width="50%" valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.chn6}个工作日</span>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>
+<br/>
+</p>
+<div class="dlm">项目进度及概况</div>
+<table width="100%" class="firstRow">
+    <tbody>
+        <tr>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">项目全流程</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">实施流程</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">实施完成时间</span>
+                </p>
+            </td>
+            <td valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">实施细节</span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">委托阶段</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">现场踏勘</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.jind0}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.jind1}</span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center" rowspan="2">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">采样阶段</span>
+                </p>
+            </td>
+            <td  valign="center" rowspan="2">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">现场采样</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.jind2}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <foreach name="pic" item="v" >
+                    <a href="{$v.img}"><img src="{$v.img}" style="width:30px;margin:5px 10px;" /></a>
+                </foreach>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.jind3}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center;">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind3']">已完成<else />进行中</if></span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center" rowspan="2">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">样品分析</span>
+                </p>
+            </td>
+            <td  valign="center" rowspan="2">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">样品分析</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.jind4}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <foreach name="pics" item="p" >
+                    <a href="{$p.img}"><img src="{$p.img}" style="width:30px;margin:5px 10px;" /></a>
+                </foreach>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.jind5}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind5']">已完成<else />进行中</if></span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">数据综合</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">数据审核</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.time6}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind6'] eq 2">已完成</if><if condition="$c['jind6'] eq 1">进行中</if></span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告阶段</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告编制</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.time7}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind7'] eq 2">已完成</if><if condition="$c['jind7'] eq 1">进行中</if></span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">存档阶段</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告存档</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.time8}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind8'] eq 2">已完成</if><if condition="$c['jind8'] eq 1">进行中</if></span>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    <br/>
+</p>
+<else />
+<p style="text-align:right;color:#14F810;">合同编号：<span style="text-decoration: underline;">{$data.keywords}</span></p><p></p>
+<p>
+    <span style="font-family:黑体">项目名称：</span><span style="text-decoration:underline;">{$data.title}</span>
+</p>
+<p>
+    <span style="font-family:黑体">建设单位：</span><span style="text-decoration:underline;">{$c.jsdw}</span>
+</p>
+<p>
+   <span style="font-family:黑体">报告类别：</span><span style="text-decoration:underline;">{$data.description}</span>
+</p>
+<p>
+<span style="font-family:黑体">合同金额：</span><span style="text-decoration:underline;">{$data.pic}</span>元&nbsp;&nbsp;
+<span style="font-family:黑体">启动预付款：</span><span style="text-decoration:underline;">{$c.yfk}</span>元
+</p>
+<p>
+    <span style="font-family:黑体">合同签订日期：</span><span style="text-decoration:underline;">{$data.time|date='Y-m-d',###}</span>
+</p>
+<p>
+   <span style="font-family:黑体">市场负责人：</span><a target="_blank" href="{:U('Article/kf',array('id'=>$data['author']))}"><img width="30" src="__PUBLIC__/images/wx.png" /></a>&nbsp;&nbsp;
+   <span style="font-family:黑体">技术负责人：</span><a target="_blank" href="{:U('Article/kf',array('id'=>$data['jsr']))}"><img width="30" src="__PUBLIC__/images/qq.png" /></a>
+</p>
+
+<p>
+
+</p>
+<div class="dlm">报告服务承诺完成时限</div>
+<table width="100%" class="firstRow">
+    <tbody>
+        <tr>
+            <td width="50%" valign="center">
+                <p style="text-align:center;font-family:黑体;font-size:14px">
+                    报告服务承诺完成时间
+                </p>
+            </td>
+            <td width="50%" valign="center">
+                <p style="text-align:center;font-family:黑体;font-size:14px">
+                    {$c.chn1}个工作日
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>
+<br />
+</p>
+<div class="dlm">项目进度及概况</div>
+<table width="100%" class="firstRow">
+    <tbody>
+        <tr>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">项目全流程</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">实施流程</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">实施完成时间</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">实施细节</span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">准备阶段</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">现场踏勘</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.jind1}</span>
+                </p>
+            </td>
+            <td  valign="center">
+               <foreach name="pic" item="p" >
+                    <a href="{$p.img}"><img src="{$p.img}" style="width:30px;margin:5px 10px;" /></a>
+                </foreach>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">编制阶段</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告编制</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.time2}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center;">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind2'] eq 2">已完成</if><if condition="$c['jind2'] eq 1">进行中</if></span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">审核阶段</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告审核</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.time3}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind3'] eq 2">已完成</if><if condition="$c['jind3'] eq 1">进行中</if></span>
+                </p>
+            </td>
+        </tr>
+        <tr >
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">送审阶段</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告送审</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.time4}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind8'] eq 4">已完成</if><if condition="$c['jind4'] eq 1">进行中</if></span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报批阶段</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告报批</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.time5}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind5'] eq 2">已完成</if><if condition="$c['jind5'] eq 1">进行中</if></span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">存档阶段</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">报告存档</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px">{$c.time6}</span>
+                </p>
+            </td>
+            <td  valign="center">
+                <p style="text-align:center">
+                    <span style="font-family: 黑体;font-size: 12px"><if condition="$c['jind6'] eq 2">已完成</if><if condition="$c['jind6'] eq 1">进行中</if></span>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    <br/>
+</p>
+</if>
+<if condition="!$data['pf']">
+	<form action="{:U('/Index/Atlas/ping','','')}" method="post">
+	<div class="dlm">服务评分</div>
+	<p>请对您市场负责人进行评价</p>
+	<div id="QuacorGrading" style="margin:10px 0;">
+	<input name="1" type="button" />
+	<input name="2" type="button" />
+	<input name="3" type="button" />
+	<input name="4" type="button" />
+	<input name="5" type="button" />
+	<input id="QuacorGradingValue" type="hidden" name="af" value="5" />
+	<input type="hidden" name="ar" value="{$data.author}" />
+	<textarea name="ap" class="fwpj" placeholder="快来说说你对我们公司的服务提出看法（6-300个字）"></textarea>
+	</div>
+	<p>请对您技术负责人进行评价</p>
+	<div id="QuacorGrading2" style="margin:10px 0;">
+	<input name="1" type="button" />
+	<input name="2" type="button" />
+	<input name="3" type="button" />
+	<input name="4" type="button" />
+	<input name="5" type="button" />
+	<input id="QuacorGradingValue2" type="hidden" name="jf" value="5" />
+	<input type="hidden" name="jr" value="{$data.jsr}" />
+	<textarea name="jp" class="fwpj" placeholder="快来说说你对我们公司的技术质量提出看法（6-300个字）"></textarea>
+	</div>
+	<input type="hidden" name="xmid" value="{$data.id}" />
+	<input type="submit" id="tj" value="提交评分" />
+	</form>
+</if>
+	</div>
+	</div>
+</div>
+<!--end main-->
+<include file="public/bottom" />
+<script type="text/javascript">
+var GradList = document.getElementById("QuacorGrading").getElementsByTagName("input");
+var GradList2 = document.getElementById("QuacorGrading2").getElementsByTagName("input");
+
+for(var di=0;di<parseInt(document.getElementById("QuacorGradingValue").value);di++){
+	GradList[di].style.backgroundPosition = 'left center';
+}
+for(var di2=0;di2<parseInt(document.getElementById("QuacorGradingValue2").value);di2++){
+	GradList2[di2].style.backgroundPosition = 'left center';
+}
+for(var i=0;i < GradList.length;i++){
+	GradList[i].onmouseover = function(){
+		for(var Qi=0;Qi<GradList.length;Qi++){
+			GradList[Qi].style.backgroundPosition = 'right center';
+		}
+		for(var Qii=0;Qii<this.name;Qii++){
+			GradList[Qii].style.backgroundPosition = 'left center';
+		}
+		document.getElementById("QuacorGradingValue").value = this.name;
+	}
+}
+for(var i2=0;i2 < GradList2.length;i2++){
+	GradList2[i2].onmouseover = function(){
+		for(var Qi2=0;Qi2<GradList2.length;Qi2++){
+			GradList2[Qi2].style.backgroundPosition = 'right center';
+		}
+		for(var Qii2=0;Qii2<this.name;Qii2++){
+			GradList2[Qii2].style.backgroundPosition = 'left center';
+		}
+		document.getElementById("QuacorGradingValue2").value = this.name;
+	}
+}
+</script>
+</body>
+</html>

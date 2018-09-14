@@ -1,6 +1,17 @@
 <include file="public/header" />
 <div class="main">
+<div class="two">
+	<form id="form1" name="form1" method="get" action="/index.php/Search/">
+	<input name="str" type="text" value="请输入关键字" onfocus="if(value == defaultValue){value='';this.style.color='#000'}" onblur="if(!value){value = defaultValue;this.style.color='#999'}" id="SearchStr" size="10" />
+	<input type="submit" name="button" id="button" value="搜索" />
+	</form>
+</div>
 	<div class="menu"><i></i><span>{$title}</span></div>
+	<div class="one">
+	<fav id="2" limit="5">
+		<div class="f5"><a href="{$url}">{$name}</a></div>
+	</fav>	
+	</div>
 	<ul class="news">
 	<foreach name="article" item="v">
 	<li><div class="img">

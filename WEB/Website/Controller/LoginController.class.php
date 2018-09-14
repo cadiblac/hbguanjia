@@ -63,6 +63,8 @@ class LoginController extends Controller {
      session('logintime',date('y-m-d H:i:s',$user['logintime']));
      session('loginip',$user['loginip']);
      //超级管理员识别
+	 $rname=M('user')->field('lj_role.name')->join('lj_role_user on lj_user.id=lj_role_user.user_id')->join('lj_role on lj_role_user.role_id=lj_role.id')->where('lj_user.id='.$user['id'])->find();
+	 session('rname',$rname);
      if ($user['username'] == C('RBAC_SUPERADMIN')){
         session(C('ADMIN_AUTH_KEY'),true);
      }
