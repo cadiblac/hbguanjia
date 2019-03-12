@@ -132,7 +132,11 @@ class MemberController extends CommonController{
 		case 10 : $order="usertype ".$px; break; 
 		} 		
 		if($s){$where = "del=0 and (username like '%".$s."%' or company like '%".$s."%' or realname like '%".$s."%' or tel like '%".$s."%')";}else{$where=array('del'=>0);}
-		$article = M('member')->where($where)->field('id,username,photo,company,realname,FROM_UNIXTIME(logintime,"%Y-%m-%d %H:%i") as logintimes,yqrid,state,tel,usertype,integral')->order($order)->page($p,$c)->select();
+		if($c>0){
+			$article = M('member')->where($where)->field('id,username,photo,company,realname,FROM_UNIXTIME(logintime,"%Y-%m-%d %H:%i") as logintimes,yqrid,state,tel,usertype,integral')->order($order)->page($p,$c)->select();
+		}else{
+			$article = M('member')->where($where)->field('id,username,photo,company,realname,FROM_UNIXTIME(logintime,"%Y-%m-%d %H:%i") as logintimes,yqrid,state,tel,usertype,integral')->order($order)->select();
+		}
 		$count = M('member')->where($where)->count();
 		$Page = new \Think\Page($count,$c);// 实例化分页类 传入总记录数和每页显示的记录数
  		$data=array('iTotalRecords'=>$count,"iTotalDisplayRecords"=>$count,"aaData"=>$article);
