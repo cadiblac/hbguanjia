@@ -123,21 +123,27 @@ class MemberController extends CommonController{
 		$px=$_GET['sSortDir_0'];
 		$col=$_GET['iSortCol_0'];
 		switch ($col){ 
-		case 0 : $order="id ".$px; break; 
-		case 1 : $order="id ".$px; break; 
-		case 5 : $order="yqrid ".$px; break; 
-		case 6 : $order="logintime ".$px; break; 
-		case 7 : $order="state ".$px; break; 
-		case 9 : $order="integral ".$px; break; 
-		case 10 : $order="usertype ".$px; break; 
+		case 0 : $order="a.id ".$px; break; 
+		case 1 : $order="a.id ".$px; break; 
+		case 5 : $order="a.yqrid ".$px; break; 
+		case 6 : $order="a.logintime ".$px; break; 
+		case 7 : $order="a.state ".$px; break; 
+		case 9 : $order="a.integral ".$px; break; 
+		case 10 : $order="a.usertype ".$px; break; 
 		} 		
-		if($s){$where = "del=0 and (username like '%".$s."%' or company like '%".$s."%' or realname like '%".$s."%' or tel like '%".$s."%')";}else{$where=array('del'=>0);}
-		if($c>0){
-			$article = M('member')->where($where)->field('id,username,photo,company,realname,FROM_UNIXTIME(logintime,"%Y-%m-%d %H:%i") as logintimes,yqrid,state,tel,usertype,integral')->order($order)->page($p,$c)->select();
+		if($s){
+			$where = "a.del=0 and (a.username like '%".$s."%' or a.company like '%".$s."%' or a.realname like '%".$s."%' or a.tel like '%".$s."%')";
+			$where2 = "del=0 and (username like '%".$s."%' or company like '%".$s."%' or realname like '%".$s."%' or tel like '%".$s."%')";
 		}else{
-			$article = M('member')->where($where)->field('id,username,photo,company,realname,FROM_UNIXTIME(logintime,"%Y-%m-%d %H:%i") as logintimes,yqrid,state,tel,usertype,integral')->order($order)->select();
+			$where=array('a.del'=>0);
+			$where2=array('del'=>0);
 		}
-		$count = M('member')->where($where)->count();
+		if($c>0){
+			$article = M('member')->alias('a')->join('lj_member m ON a.yqrid = m.id','LEFT')->where($where)->field('a.id,a.username,a.photo,a.company,a.realname,FROM_UNIXTIME(a.logintime,"%Y-%m-%d %H:%i") as logintimes,m.username as uname,a.yqrid,a.state,a.tel,a.usertype,a.integral,a.remark')->order($order)->page($p,$c)->select();
+		}else{
+			$article = M('member')->alias('a')->join('lj_member m ON a.yqrid = m.id','LEFT')->where($where)->field('a.id,a.username,a.photo,a.company,a.realname,FROM_UNIXTIME(a.logintime,"%Y-%m-%d %H:%i") as logintimes,m.username as uname,a.yqrid,a.state,a.tel,a.usertype,a.integral,a.remark')->order($order)->select();
+		}
+		$count = M('member')->where($where2)->count();
 		$Page = new \Think\Page($count,$c);// 实例化分页类 传入总记录数和每页显示的记录数
  		$data=array('iTotalRecords'=>$count,"iTotalDisplayRecords"=>$count,"aaData"=>$article);
 		$this->ajaxReturn($data);
